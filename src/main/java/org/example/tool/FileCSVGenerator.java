@@ -16,7 +16,7 @@ public class FileCSVGenerator {
         int index;
 
         try {
-            String fileTitle = projName + "VersionInfo.csv";
+            String fileTitle = projName + "_releaseList.csv";
 
             //Name of CSV for output
             fileWriter = new FileWriter(fileTitle);
