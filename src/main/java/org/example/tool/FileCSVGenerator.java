@@ -26,7 +26,7 @@ public class FileCSVGenerator {
             numVersions = JiraExtraction.listOfReleasesDate.size();
             for (int i = 0; i < numVersions; i++) {
                 index = i + 1;
-                fileWriter.append((char) index);
+                fileWriter.append(Integer.toString(index));
                 fileWriter.append(",");
                 fileWriter.append(JiraExtraction.releaseID.get(JiraExtraction.listOfReleasesDate.get(i)));
                 fileWriter.append(",");

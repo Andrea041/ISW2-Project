@@ -16,7 +16,7 @@ import java.util.List;
 public class JiraExtraction {
     public static HashMap<LocalDateTime, String> releaseNames;
     public static HashMap<LocalDateTime, String> releaseID;
-    public static ArrayList<LocalDateTime> listOfReleasesDate;
+    public static ArrayList<LocalDateTime> listOfReleasesDate;  // this list will contain only the release's dates
     private final String projectName;
     public JiraExtraction(String projectName){
         this.projectName = projectName.toUpperCase();
@@ -24,6 +24,8 @@ public class JiraExtraction {
 
     public List<Release> getReleaseInfo() throws IOException {
         List<Release> releases = new ArrayList<>();
+        listOfReleasesDate = new ArrayList<>();
+
         int i = 0;
 
         String url = "https://issues.apache.org/jira/rest/api/2/project/"
@@ -43,14 +45,21 @@ public class JiraExtraction {
                 releaseDate = jsonObject.get("releaseDate").toString();
                 releaseName = jsonObject.get("name").toString();
                 releaseID = jsonObject.get("id").toString();
+
                 ReleaseTool.addRelease(releaseDate, releaseName, releaseID);
             }
         }
 
-        listOfReleasesDate.sort(LocalDateTime::compareTo);  // order releases by date
+        listOfReleasesDate.sort(LocalDateTime::compareTo); // order releases by date
 
         /* Generate CSV file */
         FileCSVGenerator.generateVersionInfo(projectName);
+
+        /* Build new releases list */
+        for (i = 0; i < listOfReleasesDate.size(); i++) {
+            Release release = new Release(i+1, releaseNames.get(listOfReleasesDate.get(i)), listOfReleasesDate.get(i));
+            releases.add(release);
+        }
 
         return releases;
     }
