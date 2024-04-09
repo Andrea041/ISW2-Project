@@ -53,7 +53,7 @@ public class JiraExtraction {
         listOfReleasesDate.sort(LocalDateTime::compareTo); // order releases by date
 
         /* Generate CSV file */
-        FileCSVGenerator.generateVersionInfo(projectName);
+        FileCSVGenerator.generateReleaseInfo(projectName);
 
         /* Build new releases list */
         for (i = 0; i < listOfReleasesDate.size(); i++) {

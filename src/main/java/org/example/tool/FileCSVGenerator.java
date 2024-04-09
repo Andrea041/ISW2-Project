@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class FileCSVGenerator {
     private FileCSVGenerator() {}
 
-    public static void generateVersionInfo(String projName) {
+    public static void generateReleaseInfo(String projName) {
         FileWriter fileWriter = null;
         int numVersions;
         int index;
