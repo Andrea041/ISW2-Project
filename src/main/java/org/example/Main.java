@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.controller.JiraExtraction;
 import org.example.controller.Metrics;
 
 import java.io.IOException;

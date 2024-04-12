@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.entity.Release;
+import org.example.entity.Ticket;
 import org.example.tool.FileCSVGenerator;
 import org.example.tool.Json;
 import org.example.tool.ReleaseTool;
@@ -9,15 +10,14 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class JiraExtraction {
     public static HashMap<LocalDateTime, String> releaseNames;
     public static HashMap<LocalDateTime, String> releaseID;
     public static ArrayList<LocalDateTime> listOfReleasesDate;  // this list will contain only the release's dates
     private final String projectName;
+
     public JiraExtraction(String projectName){
         this.projectName = projectName.toUpperCase();
     }
@@ -64,8 +64,8 @@ public class JiraExtraction {
         return releases;
     }
 
-    /*
-    public List<Ticket> fetchTickets(List<Release> releaseList) throws IOException, JSONException {
+
+    public List<Ticket> fetchTickets(List<Release> releasesList, String projectName) throws IOException {
         int j;
         int i = 0;
         int total;
@@ -77,19 +77,70 @@ public class JiraExtraction {
             //Only gets a max of 1000 at a time, so must do this multiple times if bugs >1000
             j = i + 1000;
             String url = "https://issues.apache.org/jira/rest/api/2/search?jql=project=%22"
-                    + this.projectName + "%22AND%22issueType%22=%22Bug%22AND(%22status%22=%22closed%22OR"
+                    + projectName + "%22AND%22issueType%22=%22Bug%22AND(%22status%22=%22closed%22OR"
                     + "%22status%22=%22resolved%22)AND%22resolution%22=%22fixed%22&fields=key,resolutiondate,versions,created&startAt="
                     + i + "&maxResults=" + j;
             JSONObject json = Json.readJsonFromUrl(url);
             JSONArray issues = json.getJSONArray("issues");
             total = json.getInt("total");
 
-            for (; i < total && i < j; i++) {
+            for (i = 0; i < total && i < j; i++) {
                 //Iterate through each bug
-                String key = issues.getJSONObject(i%1000).get("key").toString();
+                String key = issues.getJSONObject(i % 1000).get("key").toString();    // Print of key: "BOOKKEEPER-1105"
+                JSONObject jsonIssues = issues.getJSONObject(i % 1000).getJSONObject("fields");
 
+                LocalDateTime creationDate = LocalDateTime.parse(jsonIssues.getString("created").substring(0, 16));
+                LocalDateTime resolutionDate = LocalDateTime.parse(jsonIssues.getString("resolutiondate").substring(0, 16));
+
+                JSONArray affectedVersion = jsonIssues.getJSONArray("versions");
+                List<Integer> listAV = new ArrayList<>();   // affected version list that contain index
+                List<Release> avReleaseList = new ArrayList<>();
+
+                if (affectedVersion.isEmpty())
+                    listAV.add(null); // no affected version
+                else {
+                    /* Iterating through each version in fields */
+                    for (int k = 0; k < affectedVersion.length(); k++) {
+                        String av = affectedVersion.getJSONObject(k).getString("name");    // Like: "4.5.0"
+
+                        /* Adding index of AV release to affected version list */
+                        for (Release release : releasesList) {
+                            if (av.equals(release.getName()))
+                                listAV.add(release.getIndex());
+                        }
+                    }
+                }
+
+                Ticket ticket = new Ticket(creationDate, resolutionDate, key);
+
+                /* Update affected version list with Release */
+                for (Integer index : listAV) {
+                    if (index != null)
+                        avReleaseList.add(releasesList.get(index - 1));
+                }
+
+                if (!avReleaseList.isEmpty()) {
+                    ticket.setAffectedVersionsList(avReleaseList);  // setting the related affected version list to the ticket
+                    ticket.setInjectedVersion(avReleaseList.get(0));    // injected version is the first one in the list
+                    ticket.setOpeningVersion(fetchVersion(creationDate, releasesList));
+                    ticket.setFixedVersion(fetchVersion(resolutionDate, releasesList));
+
+                    // otherwise some ticket fields are null
+
+                    listOfTicket.add(ticket);
+                }
             }
         } while (i < total);
+
+        return listOfTicket;
     }
-    */
+
+    private Release fetchVersion(LocalDateTime dateTime, List<Release> releaseList) {
+        for (Release release : releaseList) {
+            if (!release.getDate().isBefore(dateTime)) {
+                return release;
+            }
+        }
+        return null;
+    }
 }
