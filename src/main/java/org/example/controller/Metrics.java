@@ -16,7 +16,7 @@ public class Metrics {
         List<Ticket> ticketList = jira.fetchTickets(releaseList, projectName);  // fetch all project's list
 
         for (Ticket ticket : ticketList) {
-            System.out.printf("Ticket key: %s, IV: %s, OV: %s, FV: %s\n", ticket.getTicketKey(), ticket.getOpeningVersion().getName(), ticket.getInjectedVersion().getName(), ticket.getFixedVersion().getName());
+            System.out.printf("Ticket key: %s, OV: %s, FV: %s\n", ticket.getTicketKey(), ticket.getOpeningVersion().getName() , ticket.getFixedVersion().getName());
         }
     }
 }

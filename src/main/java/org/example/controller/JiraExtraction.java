@@ -119,19 +119,14 @@ public class JiraExtraction {
                         avReleaseList.add(releasesList.get(index - 1));
                 }
 
-                if (!avReleaseList.isEmpty()) {
-                    ticket.setAffectedVersionsList(avReleaseList);  // setting the related affected version list to the ticket
-                    ticket.setInjectedVersion(avReleaseList.get(0));    // injected version is the first one in the list
-                    ticket.setOpeningVersion(fetchVersion(creationDate, releasesList));
-                    ticket.setFixedVersion(fetchVersion(resolutionDate, releasesList));
 
-                    // otherwise some ticket fields are null
+                ticket.setAffectedVersionsList(avReleaseList);  // setting the related affected version list to the ticket
+                ticket.setOpeningVersion(fetchVersion(creationDate, releasesList));
+                ticket.setFixedVersion(fetchVersion(resolutionDate, releasesList));
 
-                    listOfTicket.add(ticket);
-                }
+                listOfTicket.add(ticket);
             }
         } while (i < total);
-
         return listOfTicket;
     }
 
