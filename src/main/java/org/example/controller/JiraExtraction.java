@@ -117,6 +117,8 @@ public class JiraExtraction {
                 for (Integer index : listAV) {
                     if (index != null)
                         avReleaseList.add(releasesList.get(index - 1));
+
+                    // else == empty affected version's list
                 }
 
 
