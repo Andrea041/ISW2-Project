@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

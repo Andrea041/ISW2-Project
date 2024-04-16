@@ -1,10 +1,10 @@
-package org.example.controller;
+package org.example.controllers;
 
-import org.example.entity.Release;
-import org.example.entity.Ticket;
-import org.example.tool.FileCSVGenerator;
-import org.example.tool.Json;
-import org.example.tool.ReleaseTool;
+import org.example.entities.Release;
+import org.example.entities.Ticket;
+import org.example.tools.FileCSVGenerator;
+import org.example.tools.Json;
+import org.example.tools.ReleaseTool;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -96,7 +96,9 @@ public class JiraExtraction {
                 List<Integer> listAV = new ArrayList<>();   // affected version list that contain index
                 List<Release> avReleaseList = new ArrayList<>();
 
-                if (!affectedVersion.isEmpty()) {
+                if (affectedVersion.isEmpty())
+                    listAV.add(null); // no affected version
+                else {
                     /* Iterating through each version in fields */
                     for (int k = 0; k < affectedVersion.length(); k++) {
                         String av = affectedVersion.getJSONObject(k).getString("name");    // Like: "4.5.0"
@@ -113,7 +115,10 @@ public class JiraExtraction {
 
                 /* Update affected version list with Release */
                 for (Integer index : listAV) {
-                    avReleaseList.add(releasesList.get(index - 1));
+                    if (index != null)
+                        avReleaseList.add(releasesList.get(index - 1));
+
+                    // else == empty affected version's list
                 }
 
 

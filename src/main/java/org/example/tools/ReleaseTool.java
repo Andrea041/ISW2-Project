@@ -1,6 +1,6 @@
-package org.example.tool;
+package org.example.tools;
 
-import org.example.controller.JiraExtraction;
+import org.example.controllers.JiraExtraction;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

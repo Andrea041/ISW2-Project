@@ -1,20 +1,22 @@
-package org.example.tool;
+package org.example.tools;
 
-import org.example.entity.Release;
-import org.example.entity.Ticket;
+import org.example.entities.Release;
+import org.example.entities.Ticket;
 
 import java.util.List;
 
 public class TicketTool {
     private TicketTool() {}
 
-    public static void fixInconsistentTickets(List<Ticket> ticketListOG) {
+    public static void fixInconsistentTickets(List<Ticket> ticketListOG, List<Release> releaseList) {
         for (Ticket ticket : ticketListOG) {
             /* Check if affected version's list is not empty */
             if (!ticket.getAffectedVersionsList().isEmpty()) {
                 checkTicket(ticket);
             }
         }
+
+        ticketListOG.removeIf(ticket -> !ticket.getOpeningVersion().getDate().isAfter(releaseList.get(0).getDate()));
     }
 
     private static void checkTicket(Ticket ticket) {

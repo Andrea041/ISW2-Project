@@ -1,6 +1,6 @@
-package org.example.tool;
+package org.example.tools;
 
-import org.example.controller.JiraExtraction;
+import org.example.controllers.JiraExtraction;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,6 +40,7 @@ public class FileCSVGenerator {
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         } finally {
             try {
+                assert fileWriter != null;
                 fileWriter.flush();
                 fileWriter.close();
             } catch (IOException e) {

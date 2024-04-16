@@ -1,4 +1,4 @@
-package org.example.tool;
+package org.example.tools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
