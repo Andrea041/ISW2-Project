@@ -84,7 +84,7 @@ public class JiraExtraction {
             JSONArray issues = json.getJSONArray("issues");
             total = json.getInt("total");
 
-            for (i = 0; i < total && i < j; i++) {
+            for (; i < total && i < j; i++) {
                 //Iterate through each bug
                 String key = issues.getJSONObject(i % 1000).get("key").toString();    // Print of key: "BOOKKEEPER-1105"
                 JSONObject jsonIssues = issues.getJSONObject(i % 1000).getJSONObject("fields");
@@ -96,9 +96,7 @@ public class JiraExtraction {
                 List<Integer> listAV = new ArrayList<>();   // affected version list that contain index
                 List<Release> avReleaseList = new ArrayList<>();
 
-                if (affectedVersion.isEmpty())
-                    listAV.add(null); // no affected version
-                else {
+                if (!affectedVersion.isEmpty()) {
                     /* Iterating through each version in fields */
                     for (int k = 0; k < affectedVersion.length(); k++) {
                         String av = affectedVersion.getJSONObject(k).getString("name");    // Like: "4.5.0"
@@ -115,10 +113,7 @@ public class JiraExtraction {
 
                 /* Update affected version list with Release */
                 for (Integer index : listAV) {
-                    if (index != null)
-                        avReleaseList.add(releasesList.get(index - 1));
-
-                    // else == empty affected version's list
+                    avReleaseList.add(releasesList.get(index - 1));
                 }
 
 
