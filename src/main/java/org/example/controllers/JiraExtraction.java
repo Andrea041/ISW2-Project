@@ -2,9 +2,9 @@ package org.example.controllers;
 
 import org.example.entities.Release;
 import org.example.entities.Ticket;
-import org.example.tools.FileCSVGenerator;
-import org.example.tools.Json;
-import org.example.tools.ReleaseTool;
+import org.example.tool.FileCSVGenerator;
+import org.example.tool.Json;
+import org.example.tool.ReleaseTool;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -51,9 +51,6 @@ public class JiraExtraction {
         }
 
         listOfReleasesDate.sort(LocalDateTime::compareTo); // order releases by date
-
-        /* Generate CSV file */
-        FileCSVGenerator.generateReleaseInfo(projectName);
 
         /* Build new releases list */
         for (i = 0; i < listOfReleasesDate.size(); i++) {

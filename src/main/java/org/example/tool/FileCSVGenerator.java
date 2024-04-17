@@ -1,4 +1,4 @@
-package org.example.tools;
+package org.example.tool;
 
 import org.example.controllers.JiraExtraction;
 

@@ -2,9 +2,14 @@ package org.example.controllers;
 
 import org.example.entities.Release;
 import org.example.entities.Ticket;
+import org.example.enumeration.ProjectNames;
+import org.example.tool.TicketTool;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProportionMethod {
     private static final int THRESHOLD = 5;
@@ -12,8 +17,9 @@ public class ProportionMethod {
     private ProportionMethod() {}
 
     /* Proportion formula used: P = (FV-IV)/(FV-OV) */
-    public static void calculateProportion(List<Ticket> fixedTicketList, List<Release> releaseList) {
+    public static void calculateProportion(List<Ticket> fixedTicketList, List<Release> releaseList) throws IOException {
         List<Ticket> ticketListToProportion = new ArrayList<>();    // list to put ticket used with proportion
+        float P_coldStart = coldStartProportion();
 
         for (Ticket ticket : fixedTicketList) {
             /* Check if ticket has an injected version */
@@ -22,43 +28,45 @@ public class ProportionMethod {
             }
             /* Compute proportion */
             else {
-                computeProportion(ticket, ticketListToProportion, releaseList);
+                computeProportion(ticket, ticketListToProportion, releaseList, P_coldStart);
             }
         }
     }
 
-    private static void computeProportion(Ticket ticket, List<Ticket> ticketListProp, List<Release> releaseList) {
+    private static void computeProportion(Ticket ticket, List<Ticket> ticketListProp, List<Release> releaseList, float P_coldStart) throws IOException {
         float P;
-        float IV;
 
         if (ticketListProp.size() < THRESHOLD) {
-            P = coldStartProportion(ticketListProp);
-
-            /* Check for FV=OV case */
-            if (ticket.getOpeningVersion().getIndex() == ticket.getFixedVersion().getIndex()
-                    && ticket.getInjectedVersion() == null) {
-                IV = P;
-
-                ticket.setInjectedVersion(releaseList.get(((int) IV)-1));
-            }
-
-            IV = (ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex())*P;
-            ticket.setInjectedVersion(releaseList.get(((int) IV)-1));
+            P = P_coldStart;
+            settingIV(ticket, releaseList, P);
+            // TODO settare affected version
         }
         else {
             P = incrementProportion(ticketListProp);
-
-            /* Check for FV=OV case */
-            if (ticket.getOpeningVersion().getIndex() == ticket.getFixedVersion().getIndex()
-                    && ticket.getInjectedVersion() == null) {
-                IV = P;
-
-                ticket.setInjectedVersion(releaseList.get(((int) IV)-1));
-            }
-
-            IV = (ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex())*P;
-            ticket.setInjectedVersion(releaseList.get(((int) IV)-1));
+            settingIV(ticket, releaseList, P);
+            // TODO settare affected version
         }
+    }
+
+    private static void settingIV(Ticket ticket, List<Release> releaseList, float p) {
+        int IV;
+        // TODO risolvi questo dubbio: uso il math.round o il cast a intero? danno due risultati differenti, forse con il math.round risulta più preciso
+
+        if (ticket.getOpeningVersion().getIndex() == ticket.getFixedVersion().getIndex()
+                && ticket.getInjectedVersion() == null) {
+            IV = (int) (ticket.getFixedVersion().getIndex() - p);
+        } else {
+            /* IV=FV-((FV-OV)*P) */
+            IV = (int) (ticket.getFixedVersion().getIndex()-((ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex())*p));
+        }
+
+        if (IV < 1.0) {
+            IV = 1;
+        }
+
+        for (Release release : releaseList)
+            if (release.getIndex() == IV)
+                ticket.setInjectedVersion(release);
     }
 
     private static float incrementProportion(List<Ticket> list) {
@@ -80,17 +88,54 @@ public class ProportionMethod {
         return P_Increment;
     }
 
-    private static float coldStartProportion(List<Ticket> list) {
-        // TODO devo fare la procedura dell'increment ma estendendo a più progetti e la media sui ticket totali dei vari progetti??
+    private static float coldStartProportion() throws IOException {
+        List<Float> proportionValueProjects = new ArrayList<>();    // List for other projects
+        float P;
+        float P_ColdStart;
+
+        for (ProjectNames name : ProjectNames.values()) {
+            float P_Sum = 0;
+            List<Float> proportionValue = new ArrayList<>();    // List for single project
+
+            JiraExtraction jira = new JiraExtraction(name.toString());
+
+            List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases
+            Logger.getAnonymousLogger().log(Level.INFO, "Releases extracted on "+name);
+
+            List<Ticket> ticketList = jira.fetchTickets(releaseList, name.toString());  // fetch all project's list
+            Logger.getAnonymousLogger().log(Level.INFO, "Tickets extracted on "+name);
+            TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
+            ticketList.removeIf(ticket -> ticket.getInjectedVersion() == null);
+            Logger.getAnonymousLogger().log(Level.INFO, "Tickets fixed on "+name);
+
+            for (Ticket ticket : ticketList) {
+                P = computeP(ticket);
+                proportionValue.add(P);
+            }
+
+            for (Float P_value : proportionValue) {
+                P_Sum += P_value;
+            }
+
+            proportionValueProjects.add(P_Sum/(proportionValue.size()));
+        }
+
+        float P_Sum = 0;
+        for (Float P_valueTotal : proportionValueProjects) {
+            P_Sum += P_valueTotal;
+        }
+        P_ColdStart = P_Sum/(proportionValueProjects.size());
+
+        return P_ColdStart;
     }
 
     private static float computeP(Ticket ticket) {
         /* Check if FV=OV then set FV-OV=1 */
         if (ticket.getOpeningVersion().getIndex() == ticket.getFixedVersion().getIndex()) {
-            return (float) (ticket.getFixedVersion().getIndex() - ticket.getInjectedVersion().getIndex());
+            return (ticket.getFixedVersion().getIndex() - ticket.getInjectedVersion().getIndex());
         }
 
         /* General case */
-        return (float) (ticket.getFixedVersion().getIndex() - ticket.getInjectedVersion().getIndex())/(ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex());
+        return (ticket.getFixedVersion().getIndex() - ticket.getInjectedVersion().getIndex()) * 1.0f/(ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex());
     }
 }
