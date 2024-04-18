@@ -39,18 +39,27 @@ public class ProportionMethod {
         if (ticketListProp.size() < THRESHOLD) {
             P = P_coldStart;
             settingIV(ticket, releaseList, P);
-            // TODO settare affected version
+            settingAV(ticket, releaseList);
         }
         else {
             P = incrementProportion(ticketListProp);
             settingIV(ticket, releaseList, P);
-            // TODO settare affected version
+            settingAV(ticket, releaseList);
         }
+    }
+
+    private static void settingAV(Ticket ticket, List<Release> releaseList) {
+        List<Release> tempAV = new ArrayList<>();
+
+        for (int i = ticket.getInjectedVersion().getIndex(); i < ticket.getFixedVersion().getIndex(); i++) {
+            tempAV.add(releaseList.get(i-1));
+        }
+
+        ticket.setAffectedVersionsList(tempAV);
     }
 
     private static void settingIV(Ticket ticket, List<Release> releaseList, float p) {
         int IV;
-        // TODO risolvi questo dubbio: uso il math.round o il cast a intero? danno due risultati differenti, forse con il math.round risulta più preciso
 
         if (ticket.getOpeningVersion().getIndex() == ticket.getFixedVersion().getIndex()
                 && ticket.getInjectedVersion() == null) {
@@ -64,9 +73,7 @@ public class ProportionMethod {
             IV = 1;
         }
 
-        for (Release release : releaseList)
-            if (release.getIndex() == IV)
-                ticket.setInjectedVersion(release);
+        ticket.setInjectedVersion(releaseList.get(IV-1));
     }
 
     private static float incrementProportion(List<Ticket> list) {

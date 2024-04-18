@@ -24,15 +24,12 @@ public class Executor {
 
         List<Ticket> ticketList = jira.fetchTickets(releaseList, projectName);  // fetch all project's list
         TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
-        ticketList.sort(Comparator.comparing(Ticket::getCreationDate));
+        ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
 
-        ProportionMethod.calculateProportion(ticketList, releaseList);
+        ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
 
-        for (Ticket ticket : ticketList) {
-            System.out.printf("Ticket key: %s, IV: %s, OV: %s, FV: %s\n", ticket.getTicketKey(),
-                    ticket.getInjectedVersion().getName(),
-                    ticket.getOpeningVersion().getName(),
-                    ticket.getFixedVersion().getName());
-        }
+        FileCSVGenerator.generateTicketInfo(projectName, ticketList);
+
+        // TODO implementa il merge tra git e jira
     }
 }
