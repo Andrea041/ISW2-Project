@@ -38,14 +38,12 @@ public class ProportionMethod {
 
         if (ticketListProp.size() < THRESHOLD) {
             P = P_coldStart;
-            settingIV(ticket, releaseList, P);
-            settingAV(ticket, releaseList);
         }
         else {
             P = incrementProportion(ticketListProp);
-            settingIV(ticket, releaseList, P);
-            settingAV(ticket, releaseList);
         }
+        settingIV(ticket, releaseList, P);
+        settingAV(ticket, releaseList);
     }
 
     private static void settingAV(Ticket ticket, List<Release> releaseList) {

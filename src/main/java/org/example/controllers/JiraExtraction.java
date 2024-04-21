@@ -120,21 +120,12 @@ public class JiraExtraction {
 
 
                 ticket.setAffectedVersionsList(avReleaseList);  // setting the related affected version list to the ticket
-                ticket.setOpeningVersion(fetchVersion(creationDate, releasesList));
-                ticket.setFixedVersion(fetchVersion(resolutionDate, releasesList));
+                ticket.setOpeningVersion(ReleaseTool.fetchVersion(creationDate, releasesList));
+                ticket.setFixedVersion(ReleaseTool.fetchVersion(resolutionDate, releasesList));
 
                 listOfTicket.add(ticket);
             }
         } while (i < total);
         return listOfTicket;
-    }
-
-    private Release fetchVersion(LocalDateTime dateTime, List<Release> releaseList) {
-        for (Release release : releaseList) {
-            if (!release.getDate().isBefore(dateTime)) {
-                return release;
-            }
-        }
-        return null;
     }
 }

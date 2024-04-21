@@ -12,15 +12,12 @@ public class Ticket {
     private Release fixedVersion;
     private List<Release> affectedVersionsList;
     private final String ticketKey;
-    private final List<Commit> commitsList;
-
 
     public Ticket(LocalDateTime creationDate, LocalDateTime resolutionDate, String ticketKey) {
         this.creationDate = creationDate;
         this.resolutionDate = resolutionDate;
         this.ticketKey = ticketKey;
 
-        this.commitsList = new ArrayList<>();
         this.affectedVersionsList = new ArrayList<>();
     }
 
@@ -34,10 +31,6 @@ public class Ticket {
 
     public String getTicketKey() {
         return ticketKey;
-    }
-
-    public List<Commit> getCommitsList() {
-        return commitsList;
     }
 
     public Release getFixedVersion() {
