@@ -1,17 +1,20 @@
 package org.example.entities;
 
+import org.eclipse.jgit.revwalk.RevCommit;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ticket {
     private final LocalDateTime creationDate;
-    private final LocalDateTime resolutionDate;
+    private LocalDateTime resolutionDate;
     private Release injectedVersion;
     private Release openingVersion;
     private Release fixedVersion;
     private List<Release> affectedVersionsList;
     private final String ticketKey;
+    private List<RevCommit> commitList;
 
     public Ticket(LocalDateTime creationDate, LocalDateTime resolutionDate, String ticketKey) {
         this.creationDate = creationDate;
@@ -19,6 +22,7 @@ public class Ticket {
         this.ticketKey = ticketKey;
 
         this.affectedVersionsList = new ArrayList<>();
+        this.commitList = new ArrayList<>();
     }
 
     public LocalDateTime getCreationDate() {
@@ -63,5 +67,17 @@ public class Ticket {
 
     public void setFixedVersion(Release fixedVersion) {
         this.fixedVersion = fixedVersion;
+    }
+
+    public void setCommitList(List<RevCommit> commitList) {
+        this.commitList = commitList;
+    }
+
+    public List<RevCommit> getCommitList() {
+        return commitList;
+    }
+
+    public void setResolutionDate(LocalDateTime resolutionDate) {
+        this.resolutionDate = resolutionDate;
     }
 }

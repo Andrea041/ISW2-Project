@@ -1,19 +1,17 @@
 package org.example.controllers;
 
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.FileCSVGenerator;
 import org.example.tool.TicketTool;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Executor {
-    private static final String PATH_TO_REPO = "/Users/andreaandreoli/OneDrive - Universita' degli Studi di Roma Tor Vergata";
+    private static final String PATH_TO_REPO = "/Users/andreaandreoli/ISW2_REPO";
 
     private Executor() {}
 
@@ -31,10 +29,23 @@ public class Executor {
 
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
 
+        GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
+        List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
+
+        for (RevCommit commit : commitList) {
+            for (Release release : releaseList) {
+                if (release.getCommitList().contains(commit)) {
+                    release.setJavaClassList(git.getClasses(commit, release));
+                }
+            }
+        }
+
+        TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their final "stage"
+
         /* Generate CSV file of tickets */
         FileCSVGenerator.generateTicketInfo(projectName, ticketList);
 
-        List<RevCommit> commitList = GitExtraction.getCommits(projectName.toLowerCase(), PATH_TO_REPO, releaseList);
-
+        Buggyness buggyness = new Buggyness(PATH_TO_REPO, projectName.toLowerCase());
+        buggyness.evaluateBuggy(ticketList, releaseList);
     }
 }

@@ -1,9 +1,13 @@
 package org.example.tool;
 
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TicketTool {
@@ -40,5 +44,32 @@ public class TicketTool {
             /* Setting injected version as the first one in affected version's list */
             ticket.setInjectedVersion(ticket.getAffectedVersionsList().getFirst());
         }
+    }
+
+    public static void linkTicketsToCommits(List<Ticket> ticketList, List<RevCommit> commitList) {
+        for (Iterator<Ticket> iterator = ticketList.iterator(); iterator.hasNext();) {
+            Ticket ticket = iterator.next();
+            for (RevCommit commit : commitList) {
+                if (checkCommit(commit.getFullMessage(), ticket.getTicketKey())) {
+                    ticket.getCommitList().add(commit);
+                }
+            }
+
+            /* Remove ticket without any associated commit cause are usefully */
+            if (ticket.getCommitList().isEmpty()) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private static boolean checkCommit(String commitMessage, String ticketKey) {
+        return commitMessage.contains(ticketKey + "\n")
+                || commitMessage.contains(ticketKey + ":")
+                || commitMessage.contains(ticketKey + " ")
+                || commitMessage.contains(ticketKey + "_")
+                || commitMessage.contains(ticketKey + "]")
+                || commitMessage.contains(ticketKey + ".")
+                || commitMessage.contains(ticketKey + "/")
+                || commitMessage.endsWith(ticketKey);
     }
 }
