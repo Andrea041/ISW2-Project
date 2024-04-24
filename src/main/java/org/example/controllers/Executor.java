@@ -4,6 +4,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
+import org.example.tool.CommitTool;
 import org.example.tool.FileCSVGenerator;
 import org.example.tool.TicketTool;
 
@@ -27,6 +28,9 @@ public class Executor {
         TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
         ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
 
+        /* Generate CSV file of tickets */
+        FileCSVGenerator.generateTicketInfo(projectName, ticketList);
+
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
 
         GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
@@ -36,16 +40,25 @@ public class Executor {
             for (Release release : releaseList) {
                 if (release.getCommitList().contains(commit)) {
                     release.setJavaClassList(git.getClasses(commit, release));
+                    for (JavaClass javaClass : release.getJavaClassList()) {
+                        javaClass.setCommitList(commit);
+                    }
                 }
             }
         }
 
         TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their final "stage"
-
-        /* Generate CSV file of tickets */
-        FileCSVGenerator.generateTicketInfo(projectName, ticketList);
+        List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
 
         Buggyness buggyness = new Buggyness(PATH_TO_REPO, projectName.toLowerCase());
         buggyness.evaluateBuggy(ticketList, releaseList);
+
+        /* Compute metrics for each java class in each release */
+        for (Release release : releaseList) {
+            for (JavaClass javaClass : release.getJavaClassList()) {
+                EvaluateMetrics.evaluateMetrics(javaClass, release, filteredCommit);
+                System.out.println(javaClass.getFixNumber());
+            }
+        }
     }
 }

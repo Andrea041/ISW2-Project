@@ -35,6 +35,7 @@ public class Buggyness {
 
     public void evaluateBuggy(List<Ticket> ticketList, List<Release> releaseList) throws IOException {
         for (Ticket ticket : ticketList) {
+            /* For each ticket fetch the affected versions */
             List<Release> affectedVersions = new ArrayList<>(ticket.getAffectedVersionsList());
 
             /* Each ticket can be linked to one or more commit */
@@ -78,7 +79,7 @@ public class Buggyness {
                 /* Check commit change type */
                 if (diffEntry.getChangeType().toString().equals(DELETE) || diffEntry.getChangeType().toString().equals(MODIFY)) {
                     filePath = diffEntry.getOldPath();  // old path is probably where was the bug
-                } else {    // this is in case of an ADD type cause old path is /dev/null
+                } else {    // this is in case of an ADD type cause old path is /dev/null, maybe an added file can be buggy
                     filePath = diffEntry.getNewPath();
                 }
 

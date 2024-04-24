@@ -8,7 +8,7 @@ import java.util.List;
 public class JavaClass {
     private String name;
     private String content;
-    private List<RevCommit> commitList;
+    private final List<RevCommit> commitList;
     private boolean buggy;
     private Release release;
 
@@ -107,8 +107,8 @@ public class JavaClass {
         this.churn = churn;
     }
 
-    public void setCommitList(List<RevCommit> commitList) {
-        this.commitList = commitList;
+    public void setCommitList(RevCommit commitList) {
+        this.commitList.add(commitList);
     }
 
     public void setContent(String content) {
