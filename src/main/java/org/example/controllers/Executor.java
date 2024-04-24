@@ -28,13 +28,15 @@ public class Executor {
         TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
         ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
 
+        ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
+
         /* Generate CSV file of tickets */
         FileCSVGenerator.generateTicketInfo(projectName, ticketList);
 
-        ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
-
         GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
+
+        releaseList.removeIf(release -> release.getCommitList().isEmpty());
 
         for (RevCommit commit : commitList) {
             for (Release release : releaseList) {
