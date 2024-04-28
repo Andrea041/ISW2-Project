@@ -12,7 +12,7 @@ public class CommitTool {
 
         for (RevCommit commit : commitList) {
             for (Ticket ticket : ticketList) {
-                if (ticket.getCommitList().contains(commit)) {
+                if (ticket.getCommitList().contains(commit) && !filteredCommitList.contains(commit)) {
                     filteredCommitList.add(commit);
                 }
             }

@@ -59,21 +59,22 @@ public class GitExtraction {
         return commits;
     }
 
-    public List<JavaClass> getClasses(RevCommit commit, Release release) throws IOException {
-        List<JavaClass> classes = new ArrayList<>();
-
+    public JavaClass getClass(RevCommit commit, Release release, List<String> classList) throws IOException {
         ObjectId tree = commit.getTree();
         TreeWalk treeWalk = new TreeWalk(repository);
         treeWalk.addTree(tree);
         treeWalk.setRecursive(true);
+        JavaClass cl = null;
 
         while (treeWalk.next()) {
-            if (treeWalk.getPathString().contains(".java") && !treeWalk.getPathString().contains("/test/")) {
-                JavaClass cl = new JavaClass(treeWalk.getPathString(), new String(repository.open(treeWalk.getObjectId(0)).getBytes(), StandardCharsets.UTF_8), release);   // (class_name, class_code, class_release)
-                classes.add(cl);
+            if (treeWalk.getPathString().contains(".java") && !treeWalk.getPathString().contains("/test/") && !classList.contains(treeWalk.getPathString())) {
+                cl = new JavaClass(treeWalk.getPathString(),
+                                new String(repository.open(treeWalk.getObjectId(0)).getBytes(),
+                                StandardCharsets.UTF_8), release);   // (class_name, class_code, class_release)
+                classList.add(treeWalk.getPathString());
             }
         }
 
-        return classes;
+        return cl;
     }
 }

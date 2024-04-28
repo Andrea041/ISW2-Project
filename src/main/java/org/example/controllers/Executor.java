@@ -30,27 +30,25 @@ public class Executor {
 
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
 
-        /* Generate CSV file of tickets */
-        FileCSVGenerator.generateTicketInfo(projectName, ticketList);
-
         GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
 
-        releaseList.removeIf(release -> release.getCommitList().isEmpty());
+        releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting release without commits
 
-        for (RevCommit commit : commitList) {
-            for (Release release : releaseList) {
-                if (release.getCommitList().contains(commit)) {
-                    release.setJavaClassList(git.getClasses(commit, release));
-                    for (JavaClass javaClass : release.getJavaClassList()) {
-                        javaClass.setCommitList(commit);
-                    }
-                }
+        for (Release release : releaseList) {
+            List<String> classNames = new ArrayList<>();
+            for (RevCommit commit : commitList) {
+                release.getJavaClassList().add(git.getClass(commit, release, classNames));
             }
         }
 
         TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their final "stage"
+
+        /* Generate CSV file of tickets */
+        FileCSVGenerator.generateTicketInfo(projectName, ticketList);
+
         List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
+        System.out.println(filteredCommit.size());
 
         Buggyness buggyness = new Buggyness(PATH_TO_REPO, projectName.toLowerCase());
         buggyness.evaluateBuggy(ticketList, releaseList);
@@ -59,7 +57,7 @@ public class Executor {
         for (Release release : releaseList) {
             for (JavaClass javaClass : release.getJavaClassList()) {
                 EvaluateMetrics.evaluateMetrics(javaClass, release, filteredCommit);
-                System.out.println(javaClass.getFixNumber());
+                //System.out.println(javaClass.getFixNumber());
             }
         }
     }
