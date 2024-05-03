@@ -33,22 +33,18 @@ public class Executor {
         GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
 
-        releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting release without commits
-
-        for (Release release : releaseList) {
-            List<String> classNames = new ArrayList<>();
-            for (RevCommit commit : commitList) {
-                release.getJavaClassList().add(git.getClass(commit, release, classNames));
-            }
-        }
-
         TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their final "stage"
 
         /* Generate CSV file of tickets */
         FileCSVGenerator.generateTicketInfo(projectName, ticketList);
 
         List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
-        System.out.println(filteredCommit.size());
+        releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting release without commits
+
+        git.getClasses(releaseList);
+
+        for (Release release : releaseList)
+            git.assignCommitsToClasses(release.getJavaClassList(), release.getCommitList(), releaseList);
 
         Buggyness buggyness = new Buggyness(PATH_TO_REPO, projectName.toLowerCase());
         buggyness.evaluateBuggy(ticketList, releaseList);
@@ -56,9 +52,10 @@ public class Executor {
         /* Compute metrics for each java class in each release */
         for (Release release : releaseList) {
             for (JavaClass javaClass : release.getJavaClassList()) {
-                EvaluateMetrics.evaluateMetrics(javaClass, release, filteredCommit);
-                //System.out.println(javaClass.getFixNumber());
+                EvaluateMetrics.evaluateMetrics(javaClass, filteredCommit);
             }
         }
+
+        FileCSVGenerator.generateTrainingSet(projectName, releaseList);
     }
 }

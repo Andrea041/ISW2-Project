@@ -29,6 +29,17 @@ public class JavaClass {
         this.content = content;
         this.commitList = new ArrayList<>();
         this.release = release;
+
+        this.LOCSize = 0;
+        this.LOCTouched = 0;
+        this.revisionNumber = 0;
+        this.authorNumber = 0;
+        this.fixNumber = 0;
+        this.LOCAdded = 0;
+        this.maxLOCAdded = 0;
+        this.avgLOCAdded = 0;
+        this.churn = 0;
+        this.maxChurn = 0;
     }
 
     public List<RevCommit> getCommitList() {

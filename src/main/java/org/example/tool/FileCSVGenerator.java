@@ -1,6 +1,8 @@
 package org.example.tool;
 
 import org.example.controllers.JiraExtraction;
+import org.example.entities.JavaClass;
+import org.example.entities.Release;
 import org.example.entities.Ticket;
 
 import java.io.FileWriter;
@@ -80,6 +82,63 @@ public class FileCSVGenerator {
                 }
                 fileWriter.append("}");
                 fileWriter.append("\n");
+            }
+
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        } finally {
+            try {
+                assert fileWriter != null;
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+            }
+        }
+    }
+
+    public static void generateTrainingSet(String projName, List<Release> releaseList) {
+        FileWriter fileWriter = null;
+        int numVersions;
+        int index;
+
+        try {
+            String fileTitle = projName + "_trainingSet.csv";
+
+            //Name of CSV for output
+            fileWriter = new FileWriter(fileTitle);
+            fileWriter.append("Version ID,Class Name,LOC,LOC_touched,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn");
+            fileWriter.append("\n");
+
+            numVersions = releaseList.size();
+            for (int i = 0; i < numVersions; i++) {
+                for (JavaClass javaClass : releaseList.get(i).getJavaClassList()) {
+                    index = i + 1;
+                    fileWriter.append(Integer.toString(index));
+                    fileWriter.append(",");
+                    fileWriter.append(javaClass.getName());
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getLOCSize()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getLOCTouched()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getRevisionNumber()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getFixNumber()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getAuthorNumber()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getLOCAdded()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getMaxLOCAdded()));
+                    fileWriter.append(",");
+                    fileWriter.append(Double.toString(javaClass.getAvgLOCAdded()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getChurn()));
+                    fileWriter.append(",");
+                    fileWriter.append(Integer.toString(javaClass.getMaxChurn()));
+                    fileWriter.append("\n");
+                }
             }
 
         } catch (Exception e) {

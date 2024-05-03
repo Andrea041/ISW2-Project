@@ -16,7 +16,7 @@ public class ReleaseTool {
             JiraExtraction.listOfReleasesDate.add(dateTime);    // Date added to date list
 
         JiraExtraction.releaseNames.put(dateTime, name);    // key-value association: name to date
-        JiraExtraction.releaseID.put(dateTime, id); //// key-value association: id to date
+        JiraExtraction.releaseID.put(dateTime, id); // key-value association: id to date
     }
 
     public static Release fetchVersion(LocalDateTime dateTime, List<Release> releaseList) {
@@ -25,23 +25,19 @@ public class ReleaseTool {
                 return release;
             }
         }
+
         return null;
     }
 
     public static Release fetchCommitRelease(LocalDateTime commitDate, List<Release> releaseList) {
-        for (int i = 0; i < releaseList.size() - 1; i++) {
+        for (int i = 0; i < releaseList.size(); i++) {
             Release release = releaseList.get(i);
-            Release nextRelease = releaseList.get(i + 1);
 
-            if (nextRelease != null && commitDate.isAfter(release.getDate()) && commitDate.isBefore(nextRelease.getDate())){
+            if (commitDate.isBefore(release.getDate())) {
                 return release;
-            } else if (nextRelease == null) {
+            } else if (commitDate.isAfter(releaseList.getLast().getDate())) {
                 return releaseList.getLast();
             }
-        }
-
-        if (commitDate.isAfter(releaseList.getLast().getDate())) {
-            return releaseList.getLast();
         }
 
         return null;

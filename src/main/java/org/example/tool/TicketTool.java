@@ -58,7 +58,8 @@ public class TicketTool {
             /* Remove ticket without any associated commit cause are usefully */
             if (ticket.getCommitList().isEmpty()) {
                 iterator.remove();
-            }
+            } else
+                System.out.println("Ticket " + ticket.getTicketKey() + " has been linked to commits.");
         }
     }
 

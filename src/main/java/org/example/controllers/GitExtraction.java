@@ -4,13 +4,16 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.InitCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import org.eclipse.jgit.treewalk.TreeWalk;
-import org.example.entities.Release;
-import org.example.tool.ReleaseTool;
 import org.example.entities.JavaClass;
+import org.example.entities.Release;
+import org.example.tool.ClassTool;
+import org.example.tool.CommitTool;
+import org.example.tool.ReleaseTool;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GitExtraction {
-    private final Repository repository;
+    public static Repository repository = null;
     private final Git git;
 
     public GitExtraction(String pathToRepo, String projectName) throws IOException {
@@ -29,7 +32,7 @@ public class GitExtraction {
         gitInit.setDirectory(new File(pathToRepo + "/" + projectName + "/.git"));
 
         this.git = Git.open(new File(pathToRepo + "/" + projectName + "/.git"));
-        this.repository = git.getRepository();
+        repository = git.getRepository();
     }
 
     public List<RevCommit> getCommits(List<Release> releaseList) throws IOException {
@@ -43,6 +46,8 @@ public class GitExtraction {
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
 
+        commits.sort(Comparator.comparing(c -> c.getAuthorIdent().getWhen().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()));
+
         /* Assign each commit to each release */
         for (RevCommit commit : commits) {
             Release release = ReleaseTool.fetchCommitRelease(commit.getAuthorIdent().getWhen().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), releaseList);
@@ -51,30 +56,47 @@ public class GitExtraction {
                 release.getCommitList().add(commit);
         }
 
-        /* Order commits in each release by date */
-        for (Release release : releaseList) {
-            release.getCommitList().sort(Comparator.comparing(RevCommit::getCommitTime));
-        }
-
         return commits;
     }
 
-    public JavaClass getClass(RevCommit commit, Release release, List<String> classList) throws IOException {
-        ObjectId tree = commit.getTree();
-        TreeWalk treeWalk = new TreeWalk(repository);
-        treeWalk.addTree(tree);
-        treeWalk.setRecursive(true);
-        JavaClass cl = null;
+    public void getClasses(List<Release> releaseList) throws IOException {
+        for (Release release : releaseList) {
+            List<String> classNameList = new ArrayList<>();
+            for (RevCommit commit : release.getCommitList()) {
+                ObjectId objectId = commit.getTree();
+                TreeWalk treeWalk = new TreeWalk(repository);
+                treeWalk.setRecursive(true);
+                treeWalk.reset(objectId);
 
-        while (treeWalk.next()) {
-            if (treeWalk.getPathString().contains(".java") && !treeWalk.getPathString().contains("/test/") && !classList.contains(treeWalk.getPathString())) {
-                cl = new JavaClass(treeWalk.getPathString(),
-                                new String(repository.open(treeWalk.getObjectId(0)).getBytes(),
-                                StandardCharsets.UTF_8), release);   // (class_name, class_code, class_release)
-                classList.add(treeWalk.getPathString());
+                while (treeWalk.next())
+                    newJavaClass(treeWalk, release, classNameList);
             }
         }
 
-        return cl;
+        releaseList.removeIf(release -> release.getCommitList().isEmpty());
+    }
+
+    private void newJavaClass(TreeWalk treeWalk, Release release, List<String> classNameList) throws IOException {
+        if (treeWalk.getPathString().endsWith(".java") && !treeWalk.getPathString().contains("/test/") && !classNameList.contains(treeWalk.getPathString())) {
+            classNameList.add(treeWalk.getPathString());
+
+            ObjectId objectId = treeWalk.getObjectId(0);
+            ObjectLoader loader = repository.open(objectId);
+            byte[] bytes = loader.getBytes();
+            JavaClass javaClass = new JavaClass(treeWalk.getPathString(), new String(bytes, StandardCharsets.UTF_8), release);
+            release.getJavaClassList().add(javaClass);
+        }
+    }
+
+    public void assignCommitsToClasses(List<JavaClass> javaClassList, List<RevCommit> commitList, List<Release> releaseList) throws IOException {
+        for (RevCommit commit : commitList) {
+            Release commitRelease = CommitTool.getCommitRelease(commit, releaseList);
+
+            if (commitRelease != null) {
+                List<String> classNameList = ClassTool.getModifiedClass(commit);
+                for (String classes : classNameList)
+                    CommitTool.assignCommitClass(javaClassList, classes, commitRelease, commit);
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ public class Buggyness {
     private static final String DELETE = "DELETE";
     private static final String MODIFY = "MODIFY";
 
-    public Buggyness (String pathToRepo, String projectName) throws IOException {
+    public Buggyness(String pathToRepo, String projectName) throws IOException {
         InitCommand gitInit = Git.init();
         gitInit.setDirectory(new File(pathToRepo + "/" + projectName + "/.git"));
 
