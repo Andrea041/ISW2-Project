@@ -33,11 +33,9 @@ public class CommitTool {
         return null;
     }
 
-    public static void assignCommitClass(List<JavaClass> javaClassList, String classModified, Release release, RevCommit commit) {
+    public static void assignCommitClass(List<JavaClass> javaClassList, String classModified, RevCommit commit) {
         for (JavaClass javaClass : javaClassList) {
-            if (javaClass.getName().equals(classModified)
-                    && javaClass.getRelease().getIndex() == release.getIndex()
-                    && !javaClass.getCommitList().contains(commit)) {
+            if (javaClass.getName().equals(classModified) && !javaClass.getCommitList().contains(commit)) {
                 javaClass.getCommitList().add(commit);
             }
         }

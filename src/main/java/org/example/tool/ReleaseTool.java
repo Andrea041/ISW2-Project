@@ -2,9 +2,11 @@ package org.example.tool;
 
 import org.example.controllers.JiraExtraction;
 import org.example.entities.Release;
+import org.example.entities.Ticket;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 
 public class ReleaseTool {

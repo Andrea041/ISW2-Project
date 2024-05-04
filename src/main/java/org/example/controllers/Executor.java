@@ -6,6 +6,7 @@ import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.CommitTool;
 import org.example.tool.FileCSVGenerator;
+import org.example.tool.ReleaseTool;
 import org.example.tool.TicketTool;
 
 import java.io.IOException;
@@ -29,23 +30,36 @@ public class Executor {
         ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
 
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
+        TicketTool.fixInconsistentTickets(ticketList, releaseList);
 
         GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
+        releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting releases without commits
 
-        TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their final "stage"
+        /* Reassign index to each release */
+        int index = 1;
+        for (Release release : releaseList) {
+            release.setIndex(index);
+            index++;
+        }
+
+        /* Keep half past releases */
+        int half = releaseList.size() / 2;
+        releaseList.removeIf(release -> release.getIndex() > half);
+
+        TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their "final stage"
 
         /* Generate CSV file of tickets */
         FileCSVGenerator.generateTicketInfo(projectName, ticketList);
 
         List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
-        releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting release without commits
 
         git.getClasses(releaseList);
 
         for (Release release : releaseList)
             git.assignCommitsToClasses(release.getJavaClassList(), release.getCommitList(), releaseList);
 
+        /* Evaluate buggyness */
         Buggyness buggyness = new Buggyness(PATH_TO_REPO, projectName.toLowerCase());
         buggyness.evaluateBuggy(ticketList, releaseList);
 

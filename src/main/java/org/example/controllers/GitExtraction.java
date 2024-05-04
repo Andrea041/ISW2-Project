@@ -8,6 +8,7 @@ import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 
+import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.treewalk.TreeWalk;
 import org.example.entities.JavaClass;
 import org.example.entities.Release;
@@ -46,8 +47,6 @@ public class GitExtraction {
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
 
-        commits.sort(Comparator.comparing(c -> c.getAuthorIdent().getWhen().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()));
-
         /* Assign each commit to each release */
         for (RevCommit commit : commits) {
             Release release = ReleaseTool.fetchCommitRelease(commit.getAuthorIdent().getWhen().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), releaseList);
@@ -63,17 +62,15 @@ public class GitExtraction {
         for (Release release : releaseList) {
             List<String> classNameList = new ArrayList<>();
             for (RevCommit commit : release.getCommitList()) {
-                ObjectId objectId = commit.getTree();
+                RevTree tree = commit.getTree();
                 TreeWalk treeWalk = new TreeWalk(repository);
+                treeWalk.addTree(tree);
                 treeWalk.setRecursive(true);
-                treeWalk.reset(objectId);
 
                 while (treeWalk.next())
                     newJavaClass(treeWalk, release, classNameList);
             }
         }
-
-        releaseList.removeIf(release -> release.getCommitList().isEmpty());
     }
 
     private void newJavaClass(TreeWalk treeWalk, Release release, List<String> classNameList) throws IOException {
@@ -83,6 +80,7 @@ public class GitExtraction {
             ObjectId objectId = treeWalk.getObjectId(0);
             ObjectLoader loader = repository.open(objectId);
             byte[] bytes = loader.getBytes();
+
             JavaClass javaClass = new JavaClass(treeWalk.getPathString(), new String(bytes, StandardCharsets.UTF_8), release);
             release.getJavaClassList().add(javaClass);
         }
@@ -95,7 +93,7 @@ public class GitExtraction {
             if (commitRelease != null) {
                 List<String> classNameList = ClassTool.getModifiedClass(commit);
                 for (String classes : classNameList)
-                    CommitTool.assignCommitClass(javaClassList, classes, commitRelease, commit);
+                    CommitTool.assignCommitClass(javaClassList, classes, commit);
             }
         }
     }

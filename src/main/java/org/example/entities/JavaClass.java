@@ -46,8 +46,11 @@ public class JavaClass {
         return commitList;
     }
 
-    public boolean getBuggy() {
-        return buggy;
+    public String getBuggy() {
+        if (buggy)
+            return "yes";
+        else
+            return "no";
     }
 
     public double getAvgLOCAdded() {

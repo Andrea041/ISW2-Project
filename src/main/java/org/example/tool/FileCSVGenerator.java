@@ -107,40 +107,45 @@ public class FileCSVGenerator {
 
             //Name of CSV for output
             fileWriter = new FileWriter(fileTitle);
-            fileWriter.append("Version ID,Class Name,LOC,LOC_touched,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn");
+            fileWriter.append("Version ID,Class Name,Version,LOC,LOC_touched,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
             fileWriter.append("\n");
 
-            numVersions = releaseList.size();
-            for (int i = 0; i < numVersions; i++) {
-                for (JavaClass javaClass : releaseList.get(i).getJavaClassList()) {
-                    index = i + 1;
-                    fileWriter.append(Integer.toString(index));
-                    fileWriter.append(",");
-                    fileWriter.append(javaClass.getName());
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getLOCSize()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getLOCTouched()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getRevisionNumber()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getFixNumber()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getAuthorNumber()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getLOCAdded()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getMaxLOCAdded()));
-                    fileWriter.append(",");
-                    fileWriter.append(Double.toString(javaClass.getAvgLOCAdded()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getChurn()));
-                    fileWriter.append(",");
-                    fileWriter.append(Integer.toString(javaClass.getMaxChurn()));
-                    fileWriter.append("\n");
-                }
-            }
+            int i = 0;
 
+            for(Release release : releaseList) {
+               for (JavaClass javaClass : release.getJavaClassList()) {
+                   index = i + 1;
+                   fileWriter.append(Integer.toString(index));
+                   fileWriter.append(",");
+                   fileWriter.append(javaClass.getName());
+                   fileWriter.append(",");
+                   fileWriter.append(release.getName());
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getLOCSize()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getLOCTouched()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getRevisionNumber()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getFixNumber()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getAuthorNumber()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getLOCAdded()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getMaxLOCAdded()));
+                   fileWriter.append(",");
+                   fileWriter.append(Double.toString(javaClass.getAvgLOCAdded()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getChurn()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getMaxChurn()));
+                   fileWriter.append(",");
+                   fileWriter.append(javaClass.getBuggy());
+                   fileWriter.append("\n");
+               }
+               i++;
+           }
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         } finally {

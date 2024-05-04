@@ -11,6 +11,7 @@ public class EvaluateMetrics {
         fixNumber(javaClass, commitList);
         authorNumber(javaClass);
         findSize(javaClass);
+        revisionNumber(javaClass);
     }
 
     private static void fixNumber(JavaClass javaClass, List<RevCommit> commitList) {
@@ -36,5 +37,9 @@ public class EvaluateMetrics {
     private static void findSize(JavaClass javaClass) {
         String[] size = javaClass.getContent().split("\r\n|\r|\n");
         javaClass.setLOCSize(size.length);
+    }
+
+    private static void revisionNumber(JavaClass javaClass) {
+        javaClass.setRevisionNumber(javaClass.getCommitList().size());
     }
 }
