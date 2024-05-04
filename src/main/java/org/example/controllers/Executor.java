@@ -65,9 +65,8 @@ public class Executor {
 
         /* Compute metrics for each java class in each release */
         for (Release release : releaseList) {
-            for (JavaClass javaClass : release.getJavaClassList()) {
-                EvaluateMetrics.evaluateMetrics(javaClass, filteredCommit);
-            }
+            EvaluateMetrics compMetrics = new EvaluateMetrics(release.getJavaClassList(), filteredCommit);
+            compMetrics.evaluateMetrics();
         }
 
         FileCSVGenerator.generateTrainingSet(projectName, releaseList);

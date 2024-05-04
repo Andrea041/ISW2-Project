@@ -18,29 +18,25 @@ public class ClassTool {
     public static List<String> getModifiedClass(RevCommit commit) throws IOException {
         List<String> modifiedClasses = new ArrayList<>();
 
-        DiffFormatter diffFormatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
-        ObjectReader reader = repository.newObjectReader();
+        try(DiffFormatter diffFormatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
+            ObjectReader reader = repository.newObjectReader()) {
+            CanonicalTreeParser newTree = new CanonicalTreeParser();
 
-        CanonicalTreeParser newTreeIter = new CanonicalTreeParser();
-        ObjectId newTree = commit.getTree();
-        newTreeIter.reset(reader, newTree);
-
-        if (commit.getParentCount() > 0) {
+            ObjectId objectIdNew = commit.getTree();
+            newTree.reset(reader, objectIdNew);
             RevCommit commitParent = commit.getParent(0);
-            CanonicalTreeParser oldTreeIter = new CanonicalTreeParser();
-            ObjectId oldTree = commitParent.getTree();
-            oldTreeIter.reset(reader, oldTree);
 
+            CanonicalTreeParser oldTree = new CanonicalTreeParser();
+            ObjectId objectIdOld = commitParent.getTree();
+            oldTree.reset(reader, objectIdOld);
             diffFormatter.setRepository(repository);
-            List<DiffEntry> entries = diffFormatter.scan(oldTreeIter, newTreeIter);
-
+            List<DiffEntry> entries = diffFormatter.scan(oldTree, newTree);
 
             for(DiffEntry entry : entries) {
-                if(entry.getChangeType().equals(DiffEntry.ChangeType.MODIFY) && entry.getNewPath().contains(".java") && !entry.getNewPath().contains("/test/")) {
+                if(entry.getNewPath().contains(".java") && !entry.getNewPath().contains("/test/"))
                     modifiedClasses.add(entry.getNewPath());
-                }
             }
-        }
+        } catch(ArrayIndexOutOfBoundsException ignored) {}
 
         return modifiedClasses;
     }

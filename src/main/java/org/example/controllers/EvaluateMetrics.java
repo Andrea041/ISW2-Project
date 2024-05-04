@@ -7,39 +7,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EvaluateMetrics {
-    public static void evaluateMetrics(JavaClass javaClass, List<RevCommit> commitList) {
-        fixNumber(javaClass, commitList);
-        authorNumber(javaClass);
-        findSize(javaClass);
-        revisionNumber(javaClass);
+    private final List<JavaClass> javaClassList;
+    private final List<RevCommit> commitList;
+
+    public EvaluateMetrics(List<JavaClass> javaClassList, List<RevCommit> commitList) {
+        this.javaClassList = javaClassList;
+        this.commitList = commitList;
     }
 
-    private static void fixNumber(JavaClass javaClass, List<RevCommit> commitList) {
-        int count = 0;
-        for (RevCommit commit : javaClass.getCommitList()) {
-            if (commitList.contains(commit)) {
-                count++;
+    public void evaluateMetrics() {
+        fixNumber();
+        authorNumber();
+        findSize();
+        revisionNumber();
+    }
+
+    private void fixNumber() {
+        for (JavaClass javaClass : javaClassList) {
+            int count = 0;
+            for (RevCommit commit : javaClass.getCommitList()) {
+                if (commitList.contains(commit)) {
+                    count++;
+                }
             }
+            javaClass.setFixNumber(count);
         }
-        javaClass.setFixNumber(count);
     }
 
-    private static void authorNumber(JavaClass javaClass) {
-        List<String> authorNames = new ArrayList<>();
-        for (RevCommit commit : javaClass.getCommitList()) {
-            if (!authorNames.contains(commit.getAuthorIdent().getName())) {
-                authorNames.add(commit.getAuthorIdent().getName());
+    private void authorNumber() {
+        for (JavaClass javaClass : javaClassList) {
+            List<String> authorNames = new ArrayList<>();
+            for (RevCommit commit : javaClass.getCommitList()) {
+                if (!authorNames.contains(commit.getAuthorIdent().getName())) {
+                    authorNames.add(commit.getAuthorIdent().getName());
+                }
             }
+            javaClass.setAuthorNumber(authorNames.size());
         }
-        javaClass.setAuthorNumber(authorNames.size());
     }
 
-    private static void findSize(JavaClass javaClass) {
-        String[] size = javaClass.getContent().split("\r\n|\r|\n");
-        javaClass.setLOCSize(size.length);
+    private void findSize() {
+        for (JavaClass javaClass : javaClassList) {
+            String[] size = javaClass.getContent().split("\r\n|\r|\n");
+            javaClass.setLOCSize(size.length);
+        }
     }
 
-    private static void revisionNumber(JavaClass javaClass) {
-        javaClass.setRevisionNumber(javaClass.getCommitList().size());
+    private void revisionNumber() {
+        for (JavaClass javaClass : javaClassList)
+            javaClass.setRevisionNumber(javaClass.getCommitList().size());
     }
 }
