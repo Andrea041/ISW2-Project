@@ -1,12 +1,10 @@
 package org.example.controllers;
 
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.CommitTool;
 import org.example.tool.FileCSVGenerator;
-import org.example.tool.ReleaseTool;
 import org.example.tool.TicketTool;
 
 import java.io.IOException;
@@ -15,11 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Executor {
-    private static final String PATH_TO_REPO = "/Users/andreaandreoli/ISW2_REPO";
 
     private Executor() {}
 
-    public static void dataExtraction(String projectName) throws IOException {
+    public static void dataExtraction(String projectName, String pathToRepo) throws IOException {
         JiraExtraction jira = new JiraExtraction(projectName);
 
         List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases
@@ -37,7 +34,7 @@ public class Executor {
         Logger.getAnonymousLogger().log(Level.INFO, "Proportion done!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);
 
-        GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
+        GitExtraction git = new GitExtraction(pathToRepo, projectName.toLowerCase());
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
         Logger.getAnonymousLogger().log(Level.INFO, "Commit list fetched!");
         releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting releases without commits
@@ -67,7 +64,7 @@ public class Executor {
             git.assignCommitsToClasses(release.getJavaClassList(), release.getCommitList(), releaseList);
 
         /* Evaluate buggyness */
-        Buggyness buggyness = new Buggyness(PATH_TO_REPO, projectName.toLowerCase());
+        Buggyness buggyness = new Buggyness(pathToRepo, projectName.toLowerCase());
         buggyness.evaluateBuggy(ticketList, releaseList);
 
         /* Compute metrics for each java class in each release */

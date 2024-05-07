@@ -27,12 +27,13 @@ import java.util.logging.Logger;
 public class GitExtraction {
     public static Repository repository = null;
     private final Git git;
+    private static final String REPO_EXTENSION = "/.git";
 
     public GitExtraction(String pathToRepo, String projectName) throws IOException {
         InitCommand gitInit = Git.init();
-        gitInit.setDirectory(new File(pathToRepo + "/" + projectName + "/.git"));
+        gitInit.setDirectory(new File(pathToRepo + projectName + REPO_EXTENSION));
 
-        this.git = Git.open(new File(pathToRepo + "/" + projectName + "/.git"));
+        this.git = Git.open(new File(pathToRepo + projectName + REPO_EXTENSION));
         repository = git.getRepository();
     }
 

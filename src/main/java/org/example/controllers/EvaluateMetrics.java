@@ -95,7 +95,7 @@ public class EvaluateMetrics {
                             deletedLines.add(delLine);
                         }
                     }
-                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                }
             }
 
             locAddedMetrics(javaClass, addedLines);

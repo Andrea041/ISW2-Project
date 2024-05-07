@@ -2,7 +2,6 @@ package org.example.controllers;
 
 import org.example.entities.Release;
 import org.example.entities.Ticket;
-import org.example.tool.FileCSVGenerator;
 import org.example.tool.Json;
 import org.example.tool.ReleaseTool;
 import org.json.JSONArray;
@@ -13,9 +12,9 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class JiraExtraction {
-    public static HashMap<LocalDateTime, String> releaseNames;
-    public static HashMap<LocalDateTime, String> releaseID;
-    public static ArrayList<LocalDateTime> listOfReleasesDate;  // this list will contain only the release's dates
+    public static final Map<LocalDateTime, String> releaseNames = Map.of();
+    public static final Map<LocalDateTime, String> releaseID = Map.of();
+    private final List<LocalDateTime> listOfReleasesDate = new ArrayList<>();  // this list will contain only the release's dates
     private final String projectName;
 
     public JiraExtraction(String projectName){
@@ -24,7 +23,6 @@ public class JiraExtraction {
 
     public List<Release> getReleaseInfo() throws IOException {
         List<Release> releases = new ArrayList<>();
-        listOfReleasesDate = new ArrayList<>();
 
         int i = 0;
 
@@ -32,8 +30,6 @@ public class JiraExtraction {
                 + this.projectName;
         JSONObject json = Json.readJsonFromUrl(url);
         JSONArray versions = json.getJSONArray("versions");
-        releaseNames = new HashMap<>();
-        releaseID = new HashMap<>();
 
         for (; i<versions.length(); i++) {
             String releaseName;

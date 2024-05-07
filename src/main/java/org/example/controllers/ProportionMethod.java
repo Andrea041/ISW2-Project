@@ -19,7 +19,7 @@ public class ProportionMethod {
     /* Proportion formula used: P = (FV-IV)/(FV-OV) */
     public static void calculateProportion(List<Ticket> fixedTicketList, List<Release> releaseList) throws IOException {
         List<Ticket> ticketListToProportion = new ArrayList<>();    // list to put ticket used with proportion
-        float P_coldStart = coldStartProportion();
+        float pColdStart = coldStartProportion();
 
         for (Ticket ticket : fixedTicketList) {
             /* Check if ticket has an injected version */
@@ -28,21 +28,21 @@ public class ProportionMethod {
             }
             /* Compute proportion */
             else {
-                computeProportion(ticket, ticketListToProportion, releaseList, P_coldStart);
+                computeProportion(ticket, ticketListToProportion, releaseList, pColdStart);
             }
         }
     }
 
-    private static void computeProportion(Ticket ticket, List<Ticket> ticketListProp, List<Release> releaseList, float P_coldStart) throws IOException {
-        float P;
+    private static void computeProportion(Ticket ticket, List<Ticket> ticketListProp, List<Release> releaseList, float pColdStart) throws IOException {
+        float p;
 
         if (ticketListProp.size() < THRESHOLD) {
-            P = P_coldStart;
+            p = pColdStart;
         }
         else {
-            P = incrementProportion(ticketListProp);
+            p = incrementProportion(ticketListProp);
         }
-        settingIV(ticket, releaseList, P);
+        settingIV(ticket, releaseList, p);
         settingAV(ticket, releaseList);
     }
 
@@ -57,49 +57,49 @@ public class ProportionMethod {
     }
 
     private static void settingIV(Ticket ticket, List<Release> releaseList, float p) {
-        int IV;
+        int iv;
 
         if (ticket.getOpeningVersion().getIndex() == ticket.getFixedVersion().getIndex()
                 && ticket.getInjectedVersion() == null) {
-            IV = (int) (ticket.getFixedVersion().getIndex() - p);
+            iv = (int) (ticket.getFixedVersion().getIndex() - p);
         } else {
             /* IV=FV-((FV-OV)*P) */
-            IV = (int) (ticket.getFixedVersion().getIndex()-((ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex())*p));
+            iv = (int) (ticket.getFixedVersion().getIndex()-((ticket.getFixedVersion().getIndex()-ticket.getOpeningVersion().getIndex())*p));
         }
 
-        if (IV < 1.0) {
-            IV = 1;
+        if (iv < 1.0) {
+            iv = 1;
         }
 
-        ticket.setInjectedVersion(releaseList.get(IV-1));
+        ticket.setInjectedVersion(releaseList.get(iv-1));
     }
 
     private static float incrementProportion(List<Ticket> list) {
         List<Float> proportionValue = new ArrayList<>();
-        float P_Increment;
-        float P;
-        float P_Sum = 0;
+        float pIncrement;
+        float p;
+        float pSum = 0;
 
         for (Ticket ticket : list) {
-            P = computeP(ticket);
-            proportionValue.add(P);
+            p = computeP(ticket);
+            proportionValue.add(p);
         }
 
-        for (Float P_value : proportionValue) {
-            P_Sum += P_value;
+        for (Float pValue : proportionValue) {
+            pSum += pValue;
         }
-        P_Increment = P_Sum/(proportionValue.size());
+        pIncrement = pSum/(proportionValue.size());
 
-        return P_Increment;
+        return pIncrement;
     }
 
     private static float coldStartProportion() throws IOException {
         List<Float> proportionValueProjects = new ArrayList<>();    // List for other projects
-        float P;
-        float P_ColdStart;
+        float p;
+        float pColdStart;
 
         for (ProjectNames name : ProjectNames.values()) {
-            float P_Sum = 0;
+            float pSum = 0;
             List<Float> proportionValue = new ArrayList<>();    // List for single project
 
             JiraExtraction jira = new JiraExtraction(name.toString());
@@ -114,24 +114,24 @@ public class ProportionMethod {
             Logger.getAnonymousLogger().log(Level.INFO, "Tickets fixed on "+name);
 
             for (Ticket ticket : ticketList) {
-                P = computeP(ticket);
-                proportionValue.add(P);
+                p = computeP(ticket);
+                proportionValue.add(p);
             }
 
-            for (Float P_value : proportionValue) {
-                P_Sum += P_value;
+            for (Float pValue : proportionValue) {
+                pSum += pValue;
             }
 
-            proportionValueProjects.add(P_Sum/(proportionValue.size()));
+            proportionValueProjects.add(pSum/(proportionValue.size()));
         }
 
-        float P_Sum = 0;
+        float pSum = 0;
         for (Float P_valueTotal : proportionValueProjects) {
-            P_Sum += P_valueTotal;
+            pSum += P_valueTotal;
         }
-        P_ColdStart = P_Sum/(proportionValueProjects.size());
+        pColdStart = pSum/(proportionValueProjects.size());
 
-        return P_ColdStart;
+        return pColdStart;
     }
 
     private static float computeP(Ticket ticket) {
