@@ -107,7 +107,7 @@ public class FileCSVGenerator {
 
             //Name of CSV for output
             fileWriter = new FileWriter(fileTitle);
-            fileWriter.append("Version ID,Class Name,Version,LOC,LOC_touched,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
+            fileWriter.append("Version ID,Class Name,Version,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
             fileWriter.append("\n");
 
             int i = 0;
@@ -124,6 +124,8 @@ public class FileCSVGenerator {
                    fileWriter.append(Integer.toString(javaClass.getLOCSize()));
                    fileWriter.append(",");
                    fileWriter.append(Integer.toString(javaClass.getLOCTouched()));
+                   fileWriter.append(",");
+                   fileWriter.append(Integer.toString(javaClass.getAge().getYears()));
                    fileWriter.append(",");
                    fileWriter.append(Integer.toString(javaClass.getRevisionNumber()));
                    fileWriter.append(",");

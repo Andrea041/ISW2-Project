@@ -2,6 +2,10 @@ package org.example.entities;
 
 import org.eclipse.jgit.revwalk.RevCommit;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +27,7 @@ public class JavaClass {
     private double avgLOCAdded;
     private int churn;
     private int maxChurn;
+    private final Period age;
 
     public JavaClass(String name, String content, Release release) {
         this.name = name;
@@ -40,6 +45,7 @@ public class JavaClass {
         this.avgLOCAdded = 0;
         this.churn = 0;
         this.maxChurn = 0;
+        this.age = Period.between(LocalDate.from(release.getDate()), LocalDate.from(LocalDateTime.now()));
     }
 
     public List<RevCommit> getCommitList() {
@@ -167,5 +173,9 @@ public class JavaClass {
 
     public void setRevisionNumber(int revisionNumber) {
         this.revisionNumber = revisionNumber;
+    }
+
+    public Period getAge() {
+        return age;
     }
 }

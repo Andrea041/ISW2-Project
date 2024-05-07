@@ -2,6 +2,7 @@ package org.example.entities;
 
 import org.eclipse.jgit.revwalk.RevCommit;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

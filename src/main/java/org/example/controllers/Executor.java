@@ -11,6 +11,8 @@ import org.example.tool.TicketTool;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Executor {
     private static final String PATH_TO_REPO = "/Users/andreaandreoli/ISW2_REPO";
@@ -21,19 +23,23 @@ public class Executor {
         JiraExtraction jira = new JiraExtraction(projectName);
 
         List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases
+        Logger.getAnonymousLogger().log(Level.INFO, "Release list fetched!");
 
         /* Generate CSV file of releases */
         FileCSVGenerator.generateReleaseInfo(projectName);
 
         List<Ticket> ticketList = jira.fetchTickets(releaseList, projectName);  // fetch all project's list
+        Logger.getAnonymousLogger().log(Level.INFO, "Ticket list fetched!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
         ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
 
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
+        Logger.getAnonymousLogger().log(Level.INFO, "Proportion done!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);
 
         GitExtraction git = new GitExtraction(PATH_TO_REPO, projectName.toLowerCase());
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
+        Logger.getAnonymousLogger().log(Level.INFO, "Commit list fetched!");
         releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting releases without commits
 
         /* Reassign index to each release */
@@ -55,6 +61,7 @@ public class Executor {
         List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
 
         git.getClasses(releaseList);
+        Logger.getAnonymousLogger().log(Level.INFO, "Classes fetched!");
 
         for (Release release : releaseList)
             git.assignCommitsToClasses(release.getJavaClassList(), release.getCommitList(), releaseList);
@@ -70,5 +77,6 @@ public class Executor {
         }
 
         FileCSVGenerator.generateTrainingSet(projectName, releaseList);
+        Logger.getAnonymousLogger().log(Level.INFO, "Training set file generated!");
     }
 }
