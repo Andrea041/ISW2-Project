@@ -60,7 +60,7 @@ public class EvaluateMetrics {
     private void findSize() {
         for (JavaClass javaClass : javaClassList) {
             String[] size = javaClass.getContent().split("\r\n|\r|\n");
-            javaClass.setLOCSize(size.length);
+            javaClass.setLocSize(size.length);
         }
     }
 
@@ -115,7 +115,7 @@ public class EvaluateMetrics {
                 maxLOC = line;
         }
 
-        javaClass.setLOCAdded(sumLines);
+        javaClass.setLocAdded(sumLines);
 
         double avgLOCAdded = 1.0 * sumLines /javaClass.getRevisionNumber();
         if (javaClass.getRevisionNumber() != 0)
@@ -136,7 +136,7 @@ public class EvaluateMetrics {
         for (Integer line : deletedLines)
             totDeletedLines += line;
 
-        javaClass.setLOCTouched(totAddedLines + totDeletedLines);
+        javaClass.setLocTouched(totAddedLines + totDeletedLines);
     }
 
     private void churnMetrics(JavaClass javaClass, List<Integer> addedLines, List<Integer> deletedLines) {

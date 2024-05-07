@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class FileCSVGenerator {
     private FileCSVGenerator() {}
 
-    public static void generateReleaseInfo(String projName) {
+    public static void generateReleaseInfo(String projName, List<Release> releases) {
         FileWriter fileWriter = null;
         int numVersions;
         int index;
@@ -27,16 +27,16 @@ public class FileCSVGenerator {
             fileWriter.append("Index,Version ID,Version Name,Date");
             fileWriter.append("\n");
 
-            numVersions = JiraExtraction.listOfReleasesDate.size();
+            numVersions = releases.size();
             for (int i = 0; i < numVersions; i++) {
                 index = i + 1;
                 fileWriter.append(Integer.toString(index));
                 fileWriter.append(",");
-                fileWriter.append(JiraExtraction.releaseID.get(JiraExtraction.listOfReleasesDate.get(i)));
+                fileWriter.append(JiraExtraction.releaseID.get(releases.get(i).getDate()));
                 fileWriter.append(",");
-                fileWriter.append(JiraExtraction.releaseNames.get(JiraExtraction.listOfReleasesDate.get(i)));
+                fileWriter.append(JiraExtraction.releaseNames.get(releases.get(i).getDate()));
                 fileWriter.append(",");
-                fileWriter.append(JiraExtraction.listOfReleasesDate.get(i).toString());
+                fileWriter.append(releases.get(i).toString());
                 fileWriter.append("\n");
             }
 
@@ -99,7 +99,6 @@ public class FileCSVGenerator {
 
     public static void generateTrainingSet(String projName, List<Release> releaseList) {
         FileWriter fileWriter = null;
-        int numVersions;
         int index;
 
         try {
@@ -121,9 +120,9 @@ public class FileCSVGenerator {
                    fileWriter.append(",");
                    fileWriter.append(release.getName());
                    fileWriter.append(",");
-                   fileWriter.append(Integer.toString(javaClass.getLOCSize()));
+                   fileWriter.append(Integer.toString(javaClass.getLocSize()));
                    fileWriter.append(",");
-                   fileWriter.append(Integer.toString(javaClass.getLOCTouched()));
+                   fileWriter.append(Integer.toString(javaClass.getLocTouched()));
                    fileWriter.append(",");
                    fileWriter.append(Integer.toString(javaClass.getAge().getYears()));
                    fileWriter.append(",");
@@ -133,7 +132,7 @@ public class FileCSVGenerator {
                    fileWriter.append(",");
                    fileWriter.append(Integer.toString(javaClass.getAuthorNumber()));
                    fileWriter.append(",");
-                   fileWriter.append(Integer.toString(javaClass.getLOCAdded()));
+                   fileWriter.append(Integer.toString(javaClass.getLocAdded()));
                    fileWriter.append(",");
                    fileWriter.append(Integer.toString(javaClass.getMaxLOCAdded()));
                    fileWriter.append(",");

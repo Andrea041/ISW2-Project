@@ -42,7 +42,7 @@ public class JiraExtraction {
                 releaseName = jsonObject.get("name").toString();
                 releaseID = jsonObject.get("id").toString();
 
-                ReleaseTool.addRelease(releaseDate, releaseName, releaseID);
+                ReleaseTool.addRelease(releaseDate, releaseName, releaseID, listOfReleasesDate);
             }
         }
 

@@ -2,7 +2,6 @@ package org.example.entities;
 
 import org.eclipse.jgit.revwalk.RevCommit;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -17,12 +16,12 @@ public class JavaClass {
     private Release release;
 
     /* metrics */
-    private int LOCSize;
-    private int LOCTouched;
+    private int locSize;
+    private int locTouched;
     private int revisionNumber;
     private int authorNumber;
     private int fixNumber;
-    private int LOCAdded;
+    private int locAdded;
     private int maxLOCAdded;
     private double avgLOCAdded;
     private int churn;
@@ -35,12 +34,12 @@ public class JavaClass {
         this.commitList = new ArrayList<>();
         this.release = release;
 
-        this.LOCSize = 0;
-        this.LOCTouched = 0;
+        this.locSize = 0;
+        this.locTouched = 0;
         this.revisionNumber = 0;
         this.authorNumber = 0;
         this.fixNumber = 0;
-        this.LOCAdded = 0;
+        this.locAdded = 0;
         this.maxLOCAdded = 0;
         this.avgLOCAdded = 0;
         this.churn = 0;
@@ -75,16 +74,16 @@ public class JavaClass {
         return fixNumber;
     }
 
-    public int getLOCAdded() {
-        return LOCAdded;
+    public int getLocAdded() {
+        return locAdded;
     }
 
-    public int getLOCSize() {
-        return LOCSize;
+    public int getLocSize() {
+        return locSize;
     }
 
-    public int getLOCTouched() {
-        return LOCTouched;
+    public int getLocTouched() {
+        return locTouched;
     }
 
     public int getMaxChurn() {
@@ -143,16 +142,16 @@ public class JavaClass {
         this.fixNumber = fixNumber;
     }
 
-    public void setLOCAdded(int LOCAdded) {
-        this.LOCAdded = LOCAdded;
+    public void setLocAdded(int locAdded) {
+        this.locAdded = locAdded;
     }
 
-    public void setLOCSize(int LOCSize) {
-        this.LOCSize = LOCSize;
+    public void setLocSize(int locSize) {
+        this.locSize = locSize;
     }
 
-    public void setLOCTouched(int LOCTouched) {
-        this.LOCTouched = LOCTouched;
+    public void setLocTouched(int locTouched) {
+        this.locTouched = locTouched;
     }
 
     public void setMaxChurn(int maxChurn) {

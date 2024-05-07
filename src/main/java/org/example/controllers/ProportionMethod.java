@@ -33,7 +33,7 @@ public class ProportionMethod {
         }
     }
 
-    private static void computeProportion(Ticket ticket, List<Ticket> ticketListProp, List<Release> releaseList, float pColdStart) throws IOException {
+    private static void computeProportion(Ticket ticket, List<Ticket> ticketListProp, List<Release> releaseList, float pColdStart) {
         float p;
 
         if (ticketListProp.size() < THRESHOLD) {

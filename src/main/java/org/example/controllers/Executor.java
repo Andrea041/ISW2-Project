@@ -23,7 +23,7 @@ public class Executor {
         Logger.getAnonymousLogger().log(Level.INFO, "Release list fetched!");
 
         /* Generate CSV file of releases */
-        FileCSVGenerator.generateReleaseInfo(projectName);
+        FileCSVGenerator.generateReleaseInfo(projectName, releaseList);
 
         List<Ticket> ticketList = jira.fetchTickets(releaseList, projectName);  // fetch all project's list
         Logger.getAnonymousLogger().log(Level.INFO, "Ticket list fetched!");

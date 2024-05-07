@@ -24,12 +24,13 @@ public class Buggyness {
 
     private static final String DELETE = "DELETE";
     private static final String MODIFY = "MODIFY";
+    private static final String REPO_EXTENSION = "/.git";
 
     public Buggyness(String pathToRepo, String projectName) throws IOException {
         InitCommand gitInit = Git.init();
-        gitInit.setDirectory(new File(pathToRepo + "/" + projectName + "/.git"));
+        gitInit.setDirectory(new File(pathToRepo + projectName + REPO_EXTENSION));
 
-        Git git = Git.open(new File(pathToRepo + "/" + projectName + "/.git"));
+        Git git = Git.open(new File(pathToRepo + projectName + REPO_EXTENSION));
         this.repository = git.getRepository();
     }
 
