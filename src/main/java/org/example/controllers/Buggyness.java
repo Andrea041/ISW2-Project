@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.InitCommand;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.lib.Repository;
@@ -18,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Buggyness {
     private final Repository repository;
@@ -30,8 +33,9 @@ public class Buggyness {
         InitCommand gitInit = Git.init();
         gitInit.setDirectory(new File(pathToRepo + projectName + REPO_EXTENSION));
 
-        Git git = Git.open(new File(pathToRepo + projectName + REPO_EXTENSION));
-        this.repository = git.getRepository();
+        try (Git git = Git.open(new File(pathToRepo + projectName + REPO_EXTENSION))) {
+            this.repository = git.getRepository();
+        }
     }
 
     public void evaluateBuggy(List<Ticket> ticketList, List<Release> releaseList) throws IOException {
