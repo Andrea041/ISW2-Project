@@ -8,13 +8,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class JiraExtraction {
-    public static final Map<LocalDateTime, String> releaseNames = Map.of();
-    public static final Map<LocalDateTime, String> releaseID = Map.of();
-    private final List<LocalDateTime> listOfReleasesDate = new ArrayList<>();  // this list will contain only the release's dates
+    public static Map<LocalDateTime, String> releaseNames;
+    public static Map<LocalDateTime, String> releaseID;
+    private static ArrayList<LocalDateTime> listOfReleasesDate;  // this list will contain only the release's dates
     private final String projectName;
 
     public JiraExtraction(String projectName){
@@ -23,6 +24,9 @@ public class JiraExtraction {
 
     public List<Release> getReleaseInfo() throws IOException {
         List<Release> releases = new ArrayList<>();
+        listOfReleasesDate = new ArrayList<>();
+        releaseNames = new HashMap<>();
+        releaseID = new HashMap<>();
 
         int i = 0;
 
@@ -42,7 +46,7 @@ public class JiraExtraction {
                 releaseName = jsonObject.get("name").toString();
                 releaseID = jsonObject.get("id").toString();
 
-                ReleaseTool.addRelease(releaseDate, releaseName, releaseID, listOfReleasesDate);
+                addRelease(releaseDate, releaseName, releaseID);
             }
         }
 
@@ -123,5 +127,16 @@ public class JiraExtraction {
             }
         } while (i < total);
         return listOfTicket;
+    }
+
+    private void addRelease(String strDate, String name, String id) {
+        LocalDate date = LocalDate.parse(strDate);
+        LocalDateTime dateTime = date.atStartOfDay();   // Date format: 2011-12-07T00:00
+
+        if (!listOfReleasesDate.contains(dateTime))
+            listOfReleasesDate.add(dateTime);    // Date added to date list
+
+        releaseNames.put(dateTime, name);    // key-value association: name to date
+        releaseID.put(dateTime, id); // key-value association: id to date
     }
 }
