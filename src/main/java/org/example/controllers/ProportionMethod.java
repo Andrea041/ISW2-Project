@@ -105,13 +105,10 @@ public class ProportionMethod {
             JiraExtraction jira = new JiraExtraction(name.toString());
 
             List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases
-            Logger.getAnonymousLogger().log(Level.INFO, String.format("Releases extracted on %s", name));
 
             List<Ticket> ticketList = jira.fetchTickets(releaseList, name.toString());  // fetch all project's list
-            Logger.getAnonymousLogger().log(Level.INFO, String.format("Tickets extracted on %s", name));
             TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
             ticketList.removeIf(ticket -> ticket.getInjectedVersion() == null);
-            Logger.getAnonymousLogger().log(Level.INFO, String.format("Tickets fixed on %s", name));
 
             for (Ticket ticket : ticketList) {
                 p = computeP(ticket);

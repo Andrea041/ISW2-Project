@@ -31,7 +31,7 @@ public class Executor {
         ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
 
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
-        Logger.getAnonymousLogger().log(Level.INFO, "Proportion done!");
+        Logger.getAnonymousLogger().log(Level.INFO, "Proportion computed!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);
 
         GitExtraction git = new GitExtraction(pathToRepo, projectName.toLowerCase());
