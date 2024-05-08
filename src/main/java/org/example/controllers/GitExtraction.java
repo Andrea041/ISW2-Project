@@ -14,8 +14,8 @@ import org.example.entities.Release;
 import org.example.tool.ClassTool;
 import org.example.tool.CommitTool;
 import org.example.tool.ReleaseTool;
+import org.example.tool.RepoFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.ZoneId;
@@ -26,11 +26,10 @@ import java.util.logging.Logger;
 public class GitExtraction {
     private final Git git;
     private final Repository repository;
-    private static final String REPO_EXTENSION = "/.git";
 
-    public GitExtraction(String pathToRepo, String projectName) throws IOException {
-        this.git = Git.open(new File(pathToRepo + projectName + REPO_EXTENSION));
-        this.repository = git.getRepository();
+    public GitExtraction() {
+        this.git = RepoFactory.getGit();
+        this.repository = RepoFactory.getRepo();
     }
 
     public List<RevCommit> getCommits(List<Release> releaseList) {

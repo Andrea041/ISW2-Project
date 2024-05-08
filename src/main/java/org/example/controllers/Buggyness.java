@@ -13,6 +13,7 @@ import org.eclipse.jgit.util.io.DisabledOutputStream;
 import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
+import org.example.tool.RepoFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,15 +25,9 @@ public class Buggyness {
 
     private static final String DELETE = "DELETE";
     private static final String MODIFY = "MODIFY";
-    private static final String REPO_EXTENSION = "/.git";
 
-    public Buggyness(String pathToRepo, String projectName) throws IOException {
-        InitCommand gitInit = Git.init();
-        gitInit.setDirectory(new File(pathToRepo + projectName + REPO_EXTENSION));
-
-        try (Git git = Git.open(new File(pathToRepo + projectName + REPO_EXTENSION))) {
-            this.repository = git.getRepository();
-        }
+    public Buggyness() {
+        this.repository = RepoFactory.getRepo();
     }
 
     public void evaluateBuggy(List<Ticket> ticketList, List<Release> releaseList) throws IOException {

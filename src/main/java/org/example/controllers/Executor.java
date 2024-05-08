@@ -34,7 +34,7 @@ public class Executor {
         Logger.getAnonymousLogger().log(Level.INFO, "Proportion computed!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);
 
-        GitExtraction git = new GitExtraction(pathToRepo, projectName.toLowerCase());
+        GitExtraction git = new GitExtraction();
         List<RevCommit> commitList = git.getCommits(releaseList);    // fetch commit list
         Logger.getAnonymousLogger().log(Level.INFO, "Commit list fetched!");
         releaseList.removeIf(release -> release.getCommitList().isEmpty()); // deleting releases without commits
@@ -64,12 +64,12 @@ public class Executor {
             git.assignCommitsToClasses(release.getJavaClassList(), release.getCommitList(), releaseList);
 
         /* Evaluate buggyness */
-        Buggyness buggyness = new Buggyness(pathToRepo, projectName.toLowerCase());
+        Buggyness buggyness = new Buggyness();
         buggyness.evaluateBuggy(ticketList, releaseList);
 
         /* Compute metrics for each java class in each release */
         for (Release release : releaseList) {
-            EvaluateMetrics compMetrics = new EvaluateMetrics(release.getJavaClassList(), filteredCommit, pathToRepo, projectName.toLowerCase());
+            EvaluateMetrics compMetrics = new EvaluateMetrics(release.getJavaClassList(), filteredCommit);
             compMetrics.evaluateMetrics();
         }
 
