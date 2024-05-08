@@ -1,7 +1,5 @@
 package org.example.controllers;
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.InitCommand;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.lib.Repository;
@@ -15,7 +13,6 @@ import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.RepoFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

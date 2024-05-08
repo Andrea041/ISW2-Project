@@ -16,7 +16,7 @@ public class Executor {
 
     private Executor() {}
 
-    public static void dataExtraction(String projectName, String pathToRepo) throws IOException {
+    public static void dataExtraction(String projectName) throws IOException {
         JiraExtraction jira = new JiraExtraction(projectName);
 
         List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases

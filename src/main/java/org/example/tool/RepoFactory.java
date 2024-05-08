@@ -50,7 +50,7 @@ public class RepoFactory {
 
                 repository = git.getRepository();
             } catch (GitAPIException e) {
-                throw new RuntimeException(e);
+                Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
             }
         } else {
             try {
