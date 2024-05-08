@@ -15,6 +15,8 @@ import java.util.List;
 import static org.example.controllers.GitExtraction.repository;
 
 public class ClassTool {
+    private ClassTool() {}
+
     public static List<String> getModifiedClass(RevCommit commit) throws IOException {
         List<String> modifiedClasses = new ArrayList<>();
 
@@ -36,7 +38,7 @@ public class ClassTool {
                 if(entry.getNewPath().contains(".java") && !entry.getNewPath().contains("/test/"))
                     modifiedClasses.add(entry.getNewPath());
             }
-        } catch(ArrayIndexOutOfBoundsException ignored) {}
+        }
 
         return modifiedClasses;
     }

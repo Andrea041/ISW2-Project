@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommitTool {
+    private CommitTool() {}
+
     public static List<RevCommit> filterCommit(List<RevCommit> commitList, List<Ticket> ticketList) {
         List<RevCommit> filteredCommitList = new ArrayList<>();
 

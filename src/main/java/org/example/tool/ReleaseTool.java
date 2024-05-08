@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReleaseTool {
+    private ReleaseTool() {}
 
     public static Release fetchVersion(LocalDateTime dateTime, List<Release> releaseList) {
         for (Release release : releaseList) {
