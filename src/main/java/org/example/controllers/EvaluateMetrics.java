@@ -1,26 +1,32 @@
 package org.example.controllers;
 
+import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.diff.Edit;
 import org.eclipse.jgit.diff.RawTextComparator;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.util.io.DisabledOutputStream;
 import org.example.entities.JavaClass;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.controllers.GitExtraction.repository;
-
 public class EvaluateMetrics {
     private final List<JavaClass> javaClassList;
     private final List<RevCommit> commitList;
+    private final String repoPath;
+    private final String projectName;
+    private static final String REPO_EXTENSION = "/.git";
 
-    public EvaluateMetrics(List<JavaClass> javaClassList, List<RevCommit> commitList) {
+    public EvaluateMetrics(List<JavaClass> javaClassList, List<RevCommit> commitList, String repoPath, String projectName) {
         this.javaClassList = javaClassList;
         this.commitList = commitList;
+        this.repoPath = repoPath;
+        this.projectName = projectName;
     }
 
     public void evaluateMetrics() throws IOException {
@@ -79,7 +85,7 @@ public class EvaluateMetrics {
                 try (DiffFormatter df = new DiffFormatter(DisabledOutputStream.INSTANCE)) {
                     RevCommit parentCommit = commit.getParent(0);
 
-                    df.setRepository(repository);
+                    df.setRepository(Git.open(new File(repoPath + projectName + REPO_EXTENSION)).getRepository());
                     df.setDiffComparator(RawTextComparator.DEFAULT);
                     List<DiffEntry> diffEntryList = df.scan(parentCommit.getTree(), commit.getTree());
                     

@@ -4,6 +4,7 @@ import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectReader;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 import org.eclipse.jgit.util.io.DisabledOutputStream;
@@ -12,12 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.controllers.GitExtraction.repository;
-
 public class ClassTool {
     private ClassTool() {}
 
-    public static List<String> getModifiedClass(RevCommit commit) throws IOException {
+    public static List<String> getModifiedClass(RevCommit commit, Repository repository) throws IOException {
         List<String> modifiedClasses = new ArrayList<>();
 
         try(DiffFormatter diffFormatter = new DiffFormatter(DisabledOutputStream.INSTANCE);

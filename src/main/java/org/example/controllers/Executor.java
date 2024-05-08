@@ -69,7 +69,7 @@ public class Executor {
 
         /* Compute metrics for each java class in each release */
         for (Release release : releaseList) {
-            EvaluateMetrics compMetrics = new EvaluateMetrics(release.getJavaClassList(), filteredCommit);
+            EvaluateMetrics compMetrics = new EvaluateMetrics(release.getJavaClassList(), filteredCommit, pathToRepo, projectName.toLowerCase());
             compMetrics.evaluateMetrics();
         }
 
