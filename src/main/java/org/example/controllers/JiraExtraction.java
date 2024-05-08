@@ -13,15 +13,15 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class JiraExtraction {
-    private Map<LocalDateTime, String> releaseNames;
-    private Map<LocalDateTime, String> releaseID;
-    private List<LocalDateTime> listOfReleaseDates;
+    private final Map<LocalDateTime, String> releaseNames;
+    private final Map<LocalDateTime, String> releasesID;
+    private final List<LocalDateTime> listOfReleaseDates;
     private final String projectName;
 
     public JiraExtraction(String projectName) {
         this.projectName = projectName.toUpperCase();
         this.releaseNames = new HashMap<>();
-        this.releaseID = new HashMap<>();
+        this.releasesID = new HashMap<>();
         this.listOfReleaseDates = new ArrayList<>();
     }
 
@@ -44,7 +44,7 @@ public class JiraExtraction {
         Collections.sort(listOfReleaseDates);
 
         for (int i = 0; i < listOfReleaseDates.size(); i++) {
-            Release release = new Release(i + 1, releaseNames.get(listOfReleaseDates.get(i)), listOfReleaseDates.get(i), releaseID.get(listOfReleaseDates.get(i)));
+            Release release = new Release(i + 1, releaseNames.get(listOfReleaseDates.get(i)), listOfReleaseDates.get(i), releasesID.get(listOfReleaseDates.get(i)));
             releases.add(release);
         }
 
@@ -110,7 +110,7 @@ public class JiraExtraction {
         if (!listOfReleaseDates.contains(dateTime))
             listOfReleaseDates.add(dateTime);
         releaseNames.put(dateTime, name);
-        releaseID.put(dateTime, id);
+        releasesID.put(dateTime, id);
     }
 }
 

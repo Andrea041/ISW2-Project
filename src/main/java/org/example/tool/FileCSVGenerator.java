@@ -1,6 +1,5 @@
 package org.example.tool;
 
-import org.example.controllers.JiraExtraction;
 import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
