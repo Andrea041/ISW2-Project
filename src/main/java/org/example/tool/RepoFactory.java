@@ -26,7 +26,7 @@ public class RepoFactory {
         try (InputStream input = new FileInputStream("src/main/java/org/example/tool/configuration.properties")) {
             prop.load(input);
         } catch (IOException e) {
-            Logger.getAnonymousLogger().log(Level.INFO, String.format("File not found, %s", e));
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
 
         String projectName = prop.getProperty("PROJECT_NAME");

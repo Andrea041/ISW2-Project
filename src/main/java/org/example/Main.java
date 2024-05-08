@@ -19,7 +19,6 @@ public class Main {
         }
 
         String projectName = prop.getProperty("PROJECT_NAME");
-        String repo = prop.getProperty("REPOSITORY_PATH");
 
         Executor.dataExtraction(projectName);
     }
