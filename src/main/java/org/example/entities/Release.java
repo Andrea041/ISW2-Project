@@ -12,11 +12,13 @@ public class Release {
     private final LocalDateTime date;
     private final List<RevCommit> commitList;
     private List<JavaClass> javaClassList;
+    private final String versionID;
 
-    public Release(int id, String name, LocalDateTime date) {
+    public Release(int id, String name, LocalDateTime date, String versionID) {
         this.index = id;
         this.name = name;
         this.date = date;
+        this.versionID = versionID;
 
         commitList = new ArrayList<>();
         javaClassList = new ArrayList<>();
@@ -48,5 +50,9 @@ public class Release {
 
     public List<JavaClass> getJavaClassList() {
         return javaClassList;
+    }
+
+    public String getVersionID() {
+        return versionID;
     }
 }

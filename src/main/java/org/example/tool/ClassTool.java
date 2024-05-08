@@ -38,7 +38,7 @@ public class ClassTool {
                 if(entry.getNewPath().contains(".java") && !entry.getNewPath().contains("/test/"))
                     modifiedClasses.add(entry.getNewPath());
             }
-        }
+        } catch (ArrayIndexOutOfBoundsException ignore) {}
 
         return modifiedClasses;
     }

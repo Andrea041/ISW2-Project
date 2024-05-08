@@ -13,130 +13,104 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class JiraExtraction {
-    public static Map<LocalDateTime, String> releaseNames;
-    public static Map<LocalDateTime, String> releaseID;
-    private static ArrayList<LocalDateTime> listOfReleasesDate;  // this list will contain only the release's dates
+    private Map<LocalDateTime, String> releaseNames;
+    private Map<LocalDateTime, String> releaseID;
+    private List<LocalDateTime> listOfReleaseDates;
     private final String projectName;
 
-    public JiraExtraction(String projectName){
+    public JiraExtraction(String projectName) {
         this.projectName = projectName.toUpperCase();
+        this.releaseNames = new HashMap<>();
+        this.releaseID = new HashMap<>();
+        this.listOfReleaseDates = new ArrayList<>();
     }
 
     public List<Release> getReleaseInfo() throws IOException {
         List<Release> releases = new ArrayList<>();
-        listOfReleasesDate = new ArrayList<>();
-        releaseNames = new HashMap<>();
-        releaseID = new HashMap<>();
-
-        int i = 0;
-
-        String url = "https://issues.apache.org/jira/rest/api/2/project/"
-                + this.projectName;
+        String url = "https://issues.apache.org/jira/rest/api/2/project/" + this.projectName;
         JSONObject json = Json.readJsonFromUrl(url);
         JSONArray versions = json.getJSONArray("versions");
 
-        for (; i<versions.length(); i++) {
-            String releaseName;
-            String releaseDate;
-            String releaseID;
+        for (int i = 0; i < versions.length(); i++) {
             JSONObject jsonObject = versions.getJSONObject(i);
-
-            if(jsonObject.has("releaseDate") && jsonObject.has("name")) {
-                releaseDate = jsonObject.get("releaseDate").toString();
-                releaseName = jsonObject.get("name").toString();
-                releaseID = jsonObject.get("id").toString();
-
+            if (jsonObject.has("releaseDate") && jsonObject.has("name")) {
+                String releaseDate = jsonObject.getString("releaseDate");
+                String releaseName = jsonObject.getString("name");
+                String releaseID = jsonObject.getString("id");
                 addRelease(releaseDate, releaseName, releaseID);
             }
         }
 
-        listOfReleasesDate.sort(LocalDateTime::compareTo); // order releases by date
+        Collections.sort(listOfReleaseDates);
 
-        /* Build new releases list */
-        for (i = 0; i < listOfReleasesDate.size(); i++) {
-            Release release = new Release(i+1, releaseNames.get(listOfReleasesDate.get(i)), listOfReleasesDate.get(i));
+        for (int i = 0; i < listOfReleaseDates.size(); i++) {
+            Release release = new Release(i + 1, releaseNames.get(listOfReleaseDates.get(i)), listOfReleaseDates.get(i), releaseID.get(listOfReleaseDates.get(i)));
             releases.add(release);
         }
 
         return releases;
     }
 
-
-    public List<Ticket> fetchTickets(List<Release> releasesList, String projectName) throws IOException {
-        int j;
-        int i = 0;
+    public List<Ticket> fetchTickets(List<Release> releasesList) throws IOException {
+        List<Ticket> listOfTickets = new ArrayList<>();
+        int startAt = 0;
+        int maxResults = 1000;
         int total;
 
-        List<Ticket> listOfTicket = new ArrayList<>();
-
-        //Get JSON API for closed bugs w/ AV in the project
         do {
-            //Only gets a max of 1000 at a time, so must do this multiple times if bugs >1000
-            j = i + 1000;
             String url = "https://issues.apache.org/jira/rest/api/2/search?jql=project=%22"
                     + projectName + "%22AND%22issueType%22=%22Bug%22AND(%22status%22=%22closed%22OR"
                     + "%22status%22=%22resolved%22)AND%22resolution%22=%22fixed%22&fields=key,resolutiondate,versions,created&startAt="
-                    + i + "&maxResults=" + j;
+                    + startAt + "&maxResults=" + maxResults;
             JSONObject json = Json.readJsonFromUrl(url);
             JSONArray issues = json.getJSONArray("issues");
             total = json.getInt("total");
 
-            for (; i < total && i < j; i++) {
-                //Iterate through each bug
-                String key = issues.getJSONObject(i % 1000).get("key").toString();    // Print of key: "BOOKKEEPER-1105"
-                JSONObject jsonIssues = issues.getJSONObject(i % 1000).getJSONObject("fields");
+            for (int i = 0; i < Math.min(total - startAt, maxResults); i++) {
+                JSONObject issue = issues.getJSONObject(i);
+                String key = issue.getString("key");
+                JSONObject fields = issue.getJSONObject("fields");
 
-                LocalDateTime creationDate = LocalDateTime.parse(jsonIssues.getString("created").substring(0, 16));
-                LocalDateTime resolutionDate = LocalDateTime.parse(jsonIssues.getString("resolutiondate").substring(0, 16));
-
-                JSONArray affectedVersion = jsonIssues.getJSONArray("versions");
-                List<Integer> listAV = new ArrayList<>();   // affected version list that contain index
-                List<Release> avReleaseList = new ArrayList<>();
-
-                if (affectedVersion.isEmpty())
-                    listAV.add(null); // no affected version
-                else {
-                    /* Iterating through each version in fields */
-                    for (int k = 0; k < affectedVersion.length(); k++) {
-                        String av = affectedVersion.getJSONObject(k).getString("name");    // Like: "4.5.0"
-
-                        /* Adding index of AV release to affected version list */
-                        for (Release release : releasesList) {
-                            if (av.equals(release.getName()))
-                                listAV.add(release.getIndex());
-                        }
-                    }
-                }
+                LocalDateTime creationDate = LocalDateTime.parse(fields.getString("created").substring(0, 16));
+                LocalDateTime resolutionDate = LocalDateTime.parse(fields.getString("resolutiondate").substring(0, 16));
+                List<Release> affectedVersions = getAffectedVersions(fields.getJSONArray("versions"), releasesList);
 
                 Ticket ticket = new Ticket(creationDate, resolutionDate, key);
-
-                /* Update affected version list with Release */
-                for (Integer index : listAV) {
-                    if (index != null)
-                        avReleaseList.add(releasesList.get(index - 1));
-
-                    // else == empty affected version's list
-                }
-
-
-                ticket.setAffectedVersionsList(avReleaseList);  // setting the related affected version list to the ticket
+                ticket.setAffectedVersionsList(affectedVersions);
                 ticket.setOpeningVersion(ReleaseTool.fetchVersion(creationDate, releasesList));
                 ticket.setFixedVersion(ReleaseTool.fetchVersion(resolutionDate, releasesList));
 
-                listOfTicket.add(ticket);
+                listOfTickets.add(ticket);
             }
-        } while (i < total);
-        return listOfTicket;
+
+            startAt += maxResults;
+        } while (startAt < total);
+
+        return listOfTickets;
+    }
+
+    private List<Release> getAffectedVersions(JSONArray affectedVersions, List<Release> releasesList) {
+        List<Release> avReleaseList = new ArrayList<>();
+        if (affectedVersions == null || affectedVersions.isEmpty())
+            return avReleaseList;
+
+        for (int k = 0; k < affectedVersions.length(); k++) {
+            String av = affectedVersions.getJSONObject(k).getString("name");
+            for (Release release : releasesList) {
+                if (av.equals(release.getName()))
+                    avReleaseList.add(release);
+            }
+        }
+        return avReleaseList;
     }
 
     private void addRelease(String strDate, String name, String id) {
         LocalDate date = LocalDate.parse(strDate);
-        LocalDateTime dateTime = date.atStartOfDay();   // Date format: 2011-12-07T00:00
-
-        if (!listOfReleasesDate.contains(dateTime))
-            listOfReleasesDate.add(dateTime);    // Date added to date list
-
-        releaseNames.put(dateTime, name);    // key-value association: name to date
-        releaseID.put(dateTime, id); // key-value association: id to date
+        LocalDateTime dateTime = date.atStartOfDay();
+        if (!listOfReleaseDates.contains(dateTime))
+            listOfReleaseDates.add(dateTime);
+        releaseNames.put(dateTime, name);
+        releaseID.put(dateTime, id);
     }
 }
+

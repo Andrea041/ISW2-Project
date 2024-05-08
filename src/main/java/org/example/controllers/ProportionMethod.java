@@ -104,7 +104,7 @@ public class ProportionMethod {
 
             List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases
 
-            List<Ticket> ticketList = jira.fetchTickets(releaseList, name.toString());  // fetch all project's list
+            List<Ticket> ticketList = jira.fetchTickets(releaseList);  // fetch all project's list
             TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
             ticketList.removeIf(ticket -> ticket.getInjectedVersion() == null);
 

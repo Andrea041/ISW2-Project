@@ -25,7 +25,7 @@ public class Executor {
         /* Generate CSV file of releases */
         FileCSVGenerator.generateReleaseInfo(projectName, releaseList);
 
-        List<Ticket> ticketList = jira.fetchTickets(releaseList, projectName);  // fetch all project's list
+        List<Ticket> ticketList = jira.fetchTickets(releaseList);  // fetch all project's list
         Logger.getAnonymousLogger().log(Level.INFO, "Ticket list fetched!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
         ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date

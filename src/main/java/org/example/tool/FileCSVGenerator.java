@@ -43,12 +43,12 @@ public class FileCSVGenerator {
                 Release release = releases.get(i);
                 int index = i + 1;
 
-                writeToFile(fileWriter, index + "," + JiraExtraction.releaseID.get(release.getDate()) + "," +
-                        JiraExtraction.releaseNames.get(release.getDate()) + "," + release.getDate().toString());
+                writeToFile(fileWriter, index + "," + release.getVersionID() + "," +
+                        release.getName() + "," + release.getDate().toString());
             }
 
-        } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        } catch (IOException e) {
+            Logger.getAnonymousLogger().log(Level.SEVERE, "An error occurred while generating release info", e);
         } finally {
             closeWriter(fileWriter);
         }
@@ -64,9 +64,10 @@ public class FileCSVGenerator {
             writeToFile(fileWriter, "Key,Injected Version,Opening Version,Fixed Version, Affected Version List");
 
             for (Ticket ticket : ticketList) {
+                String affectedVersions = getAffectedVersionsAsString(ticket);
                 writeToFile(fileWriter, ticket.getTicketKey() + "," + ticket.getInjectedVersion().getName() + "," +
                         ticket.getOpeningVersion().getName() + "," + ticket.getFixedVersion().getName() + "," +
-                        ticket.getAffectedVersionsList().toString());
+                        affectedVersions);
             }
 
         } catch (Exception e) {
@@ -74,6 +75,15 @@ public class FileCSVGenerator {
         } finally {
             closeWriter(fileWriter);
         }
+    }
+
+    private static String getAffectedVersionsAsString(Ticket ticket) {
+        List<Release> affectedVersions = ticket.getAffectedVersionsList();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Release release : affectedVersions) {
+            stringBuilder.append(release.getName()).append(" ");
+        }
+        return stringBuilder.toString();
     }
 
     public static void generateTrainingSet(String projName, List<Release> releaseList) {

@@ -1,306 +1,306 @@
 Key,Injected Version,Opening Version,Fixed Version, Affected Version List
-BOOKKEEPER-142,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-146,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-148,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-150,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-152,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-153,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-156,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-161,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-162,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-163,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-166,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-167,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-169,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-170,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-171,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-173,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-174,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-176,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-177,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-180,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-182,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-184,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-186,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-188,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-189,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-190,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-193,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-194,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-195,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-198,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-207,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-211,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-212,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-213,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-235,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-242,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-245,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-258,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-260,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-274,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-279,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-281,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-287,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-288,4.0.0,4.1.0,4.1.0,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-294,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-296,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-298,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-302,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-303,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-306,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-307,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-322,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-324,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-326,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-327,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-329,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-330,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-336,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-337,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf]
-BOOKKEEPER-338,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-343,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-349,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-355,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-365,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-371,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-372,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-381,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-382,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-383,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-387,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-392,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-395,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-396,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-404,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-408,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-413,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-415,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-424,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-425,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-434,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-436,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-439,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-442,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-454,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-457,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-458,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-461,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-466,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-467,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-468,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-469,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-470,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-471,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-474,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-475,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-477,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-481,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-480,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-479,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-482,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-483,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-484,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-485,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-493,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-497,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-498,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-500,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-503,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-504,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-507,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-509,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-511,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-512,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-513,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-514,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-520,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-522,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-530,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-531,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-532,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-533,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-534,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-538,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-539,4.0.0,4.1.1,4.1.1,[org.example.entities.Release@7ea37dbf, org.example.entities.Release@70be0a2b]
-BOOKKEEPER-543,4.1.0,4.1.1,4.1.1,[org.example.entities.Release@70be0a2b]
-BOOKKEEPER-544,4.1.0,4.1.1,4.2.2,[org.example.entities.Release@70be0a2b, org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-548,4.1.1,4.2.0,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-549,4.1.1,4.2.0,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-554,4.2.0,4.2.1,4.2.1,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-556,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-557,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-559,4.2.0,4.2.1,4.2.1,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-561,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-567,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-568,4.2.0,4.2.1,4.2.1,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-569,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-578,4.1.1,4.2.1,4.4.0,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-579,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-580,4.2.0,4.2.1,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-581,4.2.0,4.2.1,4.2.1,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-584,4.2.0,4.2.1,4.2.2,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-585,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-586,4.1.1,4.2.1,4.2.1,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-594,4.1.1,4.2.1,4.4.0,[org.example.entities.Release@2133814f, org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-596,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-597,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-598,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957]
-BOOKKEEPER-599,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-600,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-601,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-602,4.2.0,4.2.2,4.2.3,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-603,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-604,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-607,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-610,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-617,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-619,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957]
-BOOKKEEPER-620,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-623,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957, org.example.entities.Release@1e730495]
-BOOKKEEPER-624,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957]
-BOOKKEEPER-626,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957, org.example.entities.Release@1e730495]
-BOOKKEEPER-632,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957, org.example.entities.Release@1e730495]
-BOOKKEEPER-635,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-636,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957, org.example.entities.Release@1e730495]
-BOOKKEEPER-641,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957]
-BOOKKEEPER-642,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-646,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957]
-BOOKKEEPER-649,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-652,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-654,4.2.0,4.2.2,4.2.3,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-663,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-664,4.2.1,4.2.2,4.3.0,[org.example.entities.Release@23986957]
-BOOKKEEPER-667,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957]
-BOOKKEEPER-668,4.2.1,4.2.2,4.2.2,[org.example.entities.Release@23986957, org.example.entities.Release@1e730495]
-BOOKKEEPER-673,4.2.1,4.2.2,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-676,4.2.1,4.2.2,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-678,4.2.1,4.2.2,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-683,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd, org.example.entities.Release@23986957]
-BOOKKEEPER-686,4.2.0,4.2.2,4.2.2,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-688,4.2.0,4.2.2,4.2.3,[org.example.entities.Release@4c15e7fd]
-BOOKKEEPER-698,4.2.1,4.3.0,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-700,4.2.1,4.3.0,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-708,4.2.2,4.3.0,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-709,4.2.1,4.3.0,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-710,4.2.2,4.3.0,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-711,4.2.2,4.3.0,4.3.0,[org.example.entities.Release@23f7d05d]
-BOOKKEEPER-712,4.2.1,4.3.0,4.3.0,[org.example.entities.Release@23986957]
-BOOKKEEPER-714,4.2.2,4.3.0,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-719,4.2.1,4.3.0,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-720,4.2.1,4.3.0,4.3.0,[org.example.entities.Release@23986957, org.example.entities.Release@23f7d05d]
-BOOKKEEPER-724,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-725,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-726,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-727,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-728,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-729,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-730,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-731,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-739,4.3.0,4.2.3,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-740,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-742,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-743,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-744,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-745,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-746,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-750,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-751,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-755,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-763,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-765,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-766,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-767,4.2.2,4.2.3,4.2.3,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495]
-BOOKKEEPER-768,4.2.2,4.2.3,4.3.1,[org.example.entities.Release@23f7d05d]
-BOOKKEEPER-769,4.2.2,4.2.3,4.4.0,[org.example.entities.Release@23f7d05d, org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-774,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-777,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-778,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-779,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-780,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-783,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-784,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-785,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-786,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-793,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-794,4.2.3,4.3.1,4.4.0,[org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-795,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-797,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-799,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-800,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-801,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-802,4.2.3,4.3.1,4.3.2,[org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88]
-BOOKKEEPER-803,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-804,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-805,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-809,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-813,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-814,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-815,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-821,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-823,4.2.3,4.3.1,4.3.2,[org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88]
-BOOKKEEPER-828,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-831,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-833,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-834,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-835,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-838,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-839,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-840,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-847,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-848,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495]
-BOOKKEEPER-852,4.3.0,4.3.1,4.5.0,[org.example.entities.Release@1e730495]
-BOOKKEEPER-854,4.3.0,4.3.1,4.3.1,[org.example.entities.Release@1e730495, org.example.entities.Release@7d3a22a9]
-BOOKKEEPER-858,4.2.3,4.3.2,4.3.2,[org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88]
-BOOKKEEPER-863,4.2.3,4.3.2,4.3.2,[org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88]
-BOOKKEEPER-872,4.2.3,4.3.2,4.3.2,[org.example.entities.Release@7d3a22a9, org.example.entities.Release@1d082e88]
-BOOKKEEPER-883,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-890,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-891,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-893,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-897,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-898,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-899,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-900,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-902,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-903,4.3.2,4.4.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-907,4.3.2,4.4.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-908,4.3.2,4.4.0,4.5.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-909,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-910,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-911,4.3.2,4.4.0,4.4.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-913,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-914,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-924,4.3.2,4.4.0,4.5.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-925,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88, org.example.entities.Release@60704c]
-BOOKKEEPER-926,4.3.1,4.4.0,4.4.0,[org.example.entities.Release@1d082e88]
-BOOKKEEPER-927,4.3.2,4.4.0,4.5.0,[org.example.entities.Release@60704c]
-BOOKKEEPER-933,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-939,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-952,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-955,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-956,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-957,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-958,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-959,4.4.0,4.5.0,4.5.0,[org.example.entities.Release@6b19b79]
-BOOKKEEPER-980,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-984,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-986,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-988,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-989,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-999,4.4.0,4.5.0,4.5.0,[org.example.entities.Release@6b19b79]
-BOOKKEEPER-1013,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1018,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1021,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1031,4.4.0,4.5.0,4.5.0,[org.example.entities.Release@6b19b79]
-BOOKKEEPER-1044,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1047,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1058,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1061,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1072,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1073,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1074,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1075,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1077,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1098,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
-BOOKKEEPER-1104,4.3.2,4.5.0,4.5.0,[org.example.entities.Release@60704c, org.example.entities.Release@6b19b79]
+BOOKKEEPER-142,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-146,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-148,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-150,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-152,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-153,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-156,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-161,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-162,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-163,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-166,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-167,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-169,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-170,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-171,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-173,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-174,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-176,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-177,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-180,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-182,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-184,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-186,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-188,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-189,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-190,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-193,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-194,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-195,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-198,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-207,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-211,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-212,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-213,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-235,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-242,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-245,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-258,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-260,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-274,4.0.0,4.1.0,4.1.0,4.0.0 4.1.0 
+BOOKKEEPER-279,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-281,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-287,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-288,4.0.0,4.1.0,4.1.0,4.0.0 
+BOOKKEEPER-294,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-296,4.0.0,4.1.1,4.1.1,4.0.0 
+BOOKKEEPER-298,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-302,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-303,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-306,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-307,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-322,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-324,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-326,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-327,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-329,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-330,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-336,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-337,4.0.0,4.1.1,4.1.1,4.0.0 
+BOOKKEEPER-338,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-343,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-349,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-355,4.1.0,4.1.1,4.1.1,4.1.0 4.2.0 
+BOOKKEEPER-365,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-371,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-372,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-381,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-382,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-383,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-387,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-392,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-395,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-396,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-404,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-408,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-413,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-415,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-424,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-425,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-434,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-436,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-439,4.1.0,4.1.1,4.1.1,4.1.0 4.2.0 
+BOOKKEEPER-442,4.1.0,4.1.1,4.1.1,4.1.0 4.2.0 
+BOOKKEEPER-454,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-457,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-458,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-461,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-466,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-467,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-468,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-469,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-470,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-471,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-474,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-475,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-477,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-481,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-480,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-479,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-482,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-483,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-484,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-485,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-493,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-497,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-498,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-500,4.1.0,4.1.1,4.1.1,4.1.0 4.2.0 
+BOOKKEEPER-503,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-504,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-507,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-509,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-511,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-512,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-513,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-514,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-520,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-522,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-530,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-531,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-532,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-533,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-534,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-538,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-539,4.0.0,4.1.1,4.1.1,4.0.0 4.1.0 
+BOOKKEEPER-543,4.1.0,4.1.1,4.1.1,4.1.0 
+BOOKKEEPER-544,4.1.0,4.1.1,4.2.2,4.1.0 4.1.1 4.2.0 4.2.1 
+BOOKKEEPER-548,4.1.1,4.2.0,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-549,4.1.1,4.2.0,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-554,4.2.0,4.2.1,4.2.1,4.2.0 
+BOOKKEEPER-556,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-557,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-559,4.2.0,4.2.1,4.2.1,4.2.0 
+BOOKKEEPER-561,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-567,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-568,4.2.0,4.2.1,4.2.1,4.2.0 
+BOOKKEEPER-569,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-578,4.1.1,4.2.1,4.4.0,4.1.1 4.2.0 4.2.1 4.2.2 4.3.0 4.2.3 4.3.1 4.3.2 
+BOOKKEEPER-579,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-580,4.2.0,4.2.1,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-581,4.2.0,4.2.1,4.2.1,4.2.0 4.2.1 
+BOOKKEEPER-584,4.2.0,4.2.1,4.2.2,4.2.0 
+BOOKKEEPER-585,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-586,4.1.1,4.2.1,4.2.1,4.1.1 4.2.0 
+BOOKKEEPER-594,4.1.1,4.2.1,4.4.0,4.1.1 4.2.0 4.2.1 4.2.2 4.3.0 4.2.3 4.3.1 4.3.2 
+BOOKKEEPER-596,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-597,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-598,4.2.1,4.2.2,4.2.2,4.2.1 
+BOOKKEEPER-599,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-600,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-601,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-602,4.2.0,4.2.2,4.2.3,4.2.0 4.2.1 
+BOOKKEEPER-603,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-604,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-607,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-610,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-617,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-619,4.2.1,4.2.2,4.2.2,4.2.1 
+BOOKKEEPER-620,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-623,4.2.1,4.2.2,4.2.2,4.2.1 4.3.0 
+BOOKKEEPER-624,4.2.1,4.2.2,4.2.2,4.2.1 
+BOOKKEEPER-626,4.2.1,4.2.2,4.2.2,4.2.1 4.3.0 
+BOOKKEEPER-632,4.2.1,4.2.2,4.2.2,4.2.1 4.3.0 
+BOOKKEEPER-635,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-636,4.2.1,4.2.2,4.2.2,4.2.1 4.3.0 
+BOOKKEEPER-641,4.2.1,4.2.2,4.2.2,4.2.1 
+BOOKKEEPER-642,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-646,4.2.1,4.2.2,4.2.2,4.2.1 
+BOOKKEEPER-649,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-652,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-654,4.2.0,4.2.2,4.2.3,4.2.0 
+BOOKKEEPER-663,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-664,4.2.1,4.2.2,4.3.0,4.2.1 
+BOOKKEEPER-667,4.2.1,4.2.2,4.2.2,4.2.1 
+BOOKKEEPER-668,4.2.1,4.2.2,4.2.2,4.2.1 4.3.0 
+BOOKKEEPER-673,4.2.1,4.2.2,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-676,4.2.1,4.2.2,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-678,4.2.1,4.2.2,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-683,4.2.0,4.2.2,4.2.2,4.2.0 4.2.1 
+BOOKKEEPER-686,4.2.0,4.2.2,4.2.2,4.2.0 
+BOOKKEEPER-688,4.2.0,4.2.2,4.2.3,4.2.0 
+BOOKKEEPER-698,4.2.1,4.3.0,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-700,4.2.1,4.3.0,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-708,4.2.2,4.3.0,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-709,4.2.1,4.3.0,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-710,4.2.2,4.3.0,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-711,4.2.2,4.3.0,4.3.0,4.2.2 
+BOOKKEEPER-712,4.2.1,4.3.0,4.3.0,4.2.1 
+BOOKKEEPER-714,4.2.2,4.3.0,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-719,4.2.1,4.3.0,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-720,4.2.1,4.3.0,4.3.0,4.2.1 4.2.2 
+BOOKKEEPER-724,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-725,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-726,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-727,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-728,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-729,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-730,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-731,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-739,4.3.0,4.2.3,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-740,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-742,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-743,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-744,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-745,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-746,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-750,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-751,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-755,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-763,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-765,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-766,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-767,4.2.2,4.2.3,4.2.3,4.2.2 4.3.0 
+BOOKKEEPER-768,4.2.2,4.2.3,4.3.1,4.2.2 
+BOOKKEEPER-769,4.2.2,4.2.3,4.4.0,4.2.2 4.3.0 4.2.3 4.3.1 4.3.2 
+BOOKKEEPER-774,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-777,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-778,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-779,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-780,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-783,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-784,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-785,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-786,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-793,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-794,4.2.3,4.3.1,4.4.0,4.2.3 4.3.1 4.3.2 
+BOOKKEEPER-795,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-797,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-799,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-800,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-801,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-802,4.2.3,4.3.1,4.3.2,4.2.3 4.3.1 
+BOOKKEEPER-803,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-804,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-805,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-809,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-813,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-814,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-815,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-821,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-823,4.2.3,4.3.1,4.3.2,4.2.3 4.3.1 
+BOOKKEEPER-828,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-831,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-833,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-834,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-835,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-838,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-839,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-840,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-847,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-848,4.3.0,4.3.1,4.3.1,4.3.0 
+BOOKKEEPER-852,4.3.0,4.3.1,4.5.0,4.3.0 
+BOOKKEEPER-854,4.3.0,4.3.1,4.3.1,4.3.0 4.2.3 
+BOOKKEEPER-858,4.2.3,4.3.2,4.3.2,4.2.3 4.3.1 
+BOOKKEEPER-863,4.2.3,4.3.2,4.3.2,4.2.3 4.3.1 
+BOOKKEEPER-872,4.2.3,4.3.2,4.3.2,4.2.3 4.3.1 
+BOOKKEEPER-883,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-890,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-891,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-893,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-897,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-898,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-899,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-900,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-902,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-903,4.3.2,4.4.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-907,4.3.2,4.4.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-908,4.3.2,4.4.0,4.5.0,4.3.2 
+BOOKKEEPER-909,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-910,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-911,4.3.2,4.4.0,4.4.0,4.3.2 
+BOOKKEEPER-913,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-914,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-924,4.3.2,4.4.0,4.5.0,4.3.2 
+BOOKKEEPER-925,4.3.1,4.4.0,4.4.0,4.3.1 4.3.2 
+BOOKKEEPER-926,4.3.1,4.4.0,4.4.0,4.3.1 
+BOOKKEEPER-927,4.3.2,4.4.0,4.5.0,4.3.2 
+BOOKKEEPER-933,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-939,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-952,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-955,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-956,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-957,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-958,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-959,4.4.0,4.5.0,4.5.0,4.4.0 
+BOOKKEEPER-980,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-984,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-986,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-988,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-989,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-999,4.4.0,4.5.0,4.5.0,4.4.0 
+BOOKKEEPER-1013,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1018,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1021,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1031,4.4.0,4.5.0,4.5.0,4.4.0 
+BOOKKEEPER-1044,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1047,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1058,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1061,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1072,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1073,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1074,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1075,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1077,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1098,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
+BOOKKEEPER-1104,4.3.2,4.5.0,4.5.0,4.3.2 4.4.0 
