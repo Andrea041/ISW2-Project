@@ -40,15 +40,14 @@ public class RepoFactory {
                 Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
             }
 
-            ProgressMonitor monitor = new TextProgressMonitor(new PrintWriter(System.out));
             try {
                 git = Git.cloneRepository()
                         .setURI(repo)
                         .setDirectory(tempDir.toFile())
-                        .setProgressMonitor(monitor)
                         .call();
 
                 repository = git.getRepository();
+                Logger.getAnonymousLogger().log(Level.INFO, "Repository cloned!");
             } catch (GitAPIException e) {
                 Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
             }
