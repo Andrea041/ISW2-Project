@@ -65,7 +65,7 @@ public class Executor {
 
         /* Evaluate buggyness */
         Buggyness buggyness = new Buggyness();
-        buggyness.evaluateBuggy(ticketList, releaseList);
+        buggyness.evaluateBuggy(ticketList);
 
         /* Compute metrics for each java class in each release */
         for (Release release : releaseList) {
