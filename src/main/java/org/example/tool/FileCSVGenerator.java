@@ -99,7 +99,7 @@ public class FileCSVGenerator {
                 int index = i + 1;
 
                 for (JavaClass javaClass : release.getJavaClassList()) {
-                    writeToFile(fileWriter, index + "," + javaClass.getName() + "," + release.getName() + "," +
+                    writeToFile(fileWriter, index + "," + javaClass.getName() + "," +
                             javaClass.getLocSize() + "," + javaClass.getLocTouched() + "," +
                             javaClass.getAge().getYears() + "," + javaClass.getRevisionNumber() + "," +
                             javaClass.getFixNumber() + "," + javaClass.getAuthorNumber() + "," +

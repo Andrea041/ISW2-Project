@@ -66,23 +66,25 @@ public class Buggyness {
 
     private void findBug(List<DiffEntry> diffEntryList, List<Release> releaseList, List<Release> affectedReleases) {
         for (DiffEntry diffEntry : diffEntryList) {
+            String filePath;
             /* Check if file in the commit is with extension .java, else discard it */
-            if (diffEntry.getNewPath().endsWith(".java")) {
-                String filePath;
+            if (!diffEntry.getNewPath().endsWith(".java")) {
+                continue;
+            }
 
-                /* Check commit change type */
-                if (diffEntry.getChangeType().toString().equals(DELETE) || diffEntry.getChangeType().toString().equals(MODIFY)) {
-                    filePath = diffEntry.getOldPath();  // old path is probably where was the bug
-                } else {    // this is in case of an ADD type cause old path is /dev/null, maybe an added file can be buggy
-                    filePath = diffEntry.getNewPath();
-                }
+            /* Check commit change type */
+            if (diffEntry.getChangeType().toString().equals(DELETE) || diffEntry.getChangeType().toString().equals(MODIFY)) {
+                filePath = diffEntry.getOldPath();  // old path is probably where was the bug
+            } else {    // this is in case of an ADD type cause old path is /dev/null, maybe an added file can be buggy
+                filePath = diffEntry.getNewPath();
+            }
 
-                /* Check for buggy classes */
-                for (Release release : releaseList) {
-                    for (JavaClass javaClass : release.getJavaClassList()) {
-                        if (javaClass.getName().equals(filePath) && affectedReleases.contains(release)) {
-                            javaClass.setBuggy(true);
-                        }
+            /* Check for buggy classes */
+            for (Release release : releaseList) {
+                for (JavaClass javaClass : release.getJavaClassList()) {
+                    if (javaClass.getName().equals(filePath) && affectedReleases.contains(release)) {
+                        javaClass.setBuggy(true);
+                        break;
                     }
                 }
             }
