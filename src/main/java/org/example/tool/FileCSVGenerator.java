@@ -92,7 +92,7 @@ public class FileCSVGenerator {
             String fileTitle = projName + "_trainingSet.csv";
             fileWriter = new FileWriter(fileTitle);
 
-            writeToFile(fileWriter, "Version ID,Class Name,Version,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
+            writeToFile(fileWriter, "Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
 
             for (int i = 0; i < releaseList.size(); i++) {
                 Release release = releaseList.get(i);

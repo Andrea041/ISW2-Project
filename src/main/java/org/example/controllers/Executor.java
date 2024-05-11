@@ -50,6 +50,7 @@ public class Executor {
         int half = releaseList.size() / 2;
         releaseList.removeIf(release -> release.getIndex() > half);
 
+        Logger.getAnonymousLogger().log(Level.INFO, "Linking tickets and commits...");
         TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their "final stage"
 
         /* Generate CSV file of tickets */
@@ -57,6 +58,7 @@ public class Executor {
 
         List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
 
+        Logger.getAnonymousLogger().log(Level.INFO, "Retrieving java classes...");
         git.getClasses(releaseList);
         Logger.getAnonymousLogger().log(Level.INFO, "Classes fetched!");
 

@@ -1,4 +1,4 @@
-Version ID,Class Name,Version,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness
+Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness
 1,openjpa-jdbc-5/src/main/java/org/apache/openjpa/jdbc/kernel/JDBC3SavepointManager.java,62,62,17,2,0,1,62,62,31.0,62,62,no
 1,openjpa-jdbc-5/src/main/java/org/apache/openjpa/jdbc/meta/strats/EnumValueHandler.java,100,100,17,2,0,1,100,100,50.0,100,100,no
 1,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/ant/MappingToolTask.java,211,218,17,4,0,2,215,211,53.75,212,211,no

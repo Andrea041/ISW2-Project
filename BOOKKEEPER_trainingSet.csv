@@ -1,4 +1,4 @@
-Version ID,Class Name,Version,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness
+Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness
 1,bookkeeper-benchmark/src/main/java/org/apache/bookkeeper/benchmark/MySqlClient.java,137,333,12,4,0,2,235,137,58.75,139,137,no
 1,bookkeeper-benchmark/src/main/java/org/apache/bookkeeper/benchmark/TestClient.java,244,436,12,5,0,2,340,252,68.0,262,252,no
 1,bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/Bookie.java,1026,1466,12,14,0,3,1246,545,89.0,1026,545,yes
