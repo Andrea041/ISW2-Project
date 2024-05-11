@@ -21,7 +21,9 @@ public class Buggyness {
 
     public void evaluateBuggy(List<Ticket> ticketList) throws IOException {
         for (Ticket ticket : ticketList) {
+            /* Fetching affected version releases */
             List<Release> affectedReleaseList = new ArrayList<>(ticket.getAffectedVersionsList());
+
             for (Release release : affectedReleaseList) {
                 labelClasses(release, ticket);
             }
@@ -30,7 +32,9 @@ public class Buggyness {
 
     private void labelClasses(Release release, Ticket ticket) throws IOException {
         for (RevCommit commit : ticket.getCommitList()) {
+            /* Fetching classes touched by each commit (fix commit) in each ticket */
             List<String> classNameList = ClassTool.getModifiedClass(commit, repository);
+
             for (JavaClass javaClass : release.getJavaClassList()) {
                 if (classNameList.contains(javaClass.getName()))
                     javaClass.setBuggy(true);
