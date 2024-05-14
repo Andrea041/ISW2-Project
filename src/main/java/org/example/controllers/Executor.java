@@ -4,6 +4,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.CommitTool;
+import org.example.tool.FileARFFGenerator;
 import org.example.tool.FileCSVGenerator;
 import org.example.tool.TicketTool;
 
@@ -77,5 +78,9 @@ public class Executor {
 
         FileCSVGenerator.generateTrainingSet(projectName, releaseList);
         Logger.getAnonymousLogger().log(Level.INFO, "Training set file generated!");
+
+        /* Generate .arff file */
+        FileARFFGenerator arffGenerator = new FileARFFGenerator(projectName);
+        arffGenerator.csvToARFF();
     }
 }

@@ -51,5 +51,11 @@
             <artifactId>slf4j-nop</artifactId>
             <version>1.7.25</version>
         </dependency>
+
+        <dependency>
+            <groupId>nz.ac.waikato.cms.weka</groupId>
+            <artifactId>weka-dev</artifactId>
+            <version>3.9.5</version>
+        </dependency>
     </dependencies>
 </project>
