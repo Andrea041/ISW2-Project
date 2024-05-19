@@ -37,70 +37,35 @@ public class FileCSVGenerator {
         this.projName = projName;
         this.directoryPath = directoryPath + projName.toLowerCase() + File.separator;
 
-        Path path = Paths.get(directoryPath);
-        Path pathTraining = Paths.get(this.directoryPath + TRAINING);
-        Path pathFiveRunTrain = Paths.get(this.directoryPath + FIVE_RUN_TRAINING);
-        Path pathThreeRunTrain = Paths.get(this.directoryPath + THREE_RUN_TRAINING);
-        Path pathFiveRunTest = Paths.get(this.directoryPath + FIVE_RUN_TRAINING);
-        Path pathThreeRunTest = Paths.get(this.directoryPath + THREE_RUN_TRAINING);
-        Path pathOther = Paths.get(this.directoryPath + OTHERFILES);
-        Path pathTesting = Paths.get(this.directoryPath + TESTING);
-        Path pathTrainingCsvFive = Paths.get(this.directoryPath + TRAINING_CSV_FIVE);
-        Path pathTrainingArffFive = Paths.get(this.directoryPath + TRAINING_ARFF_FIVE);
-        Path pathTrainingCsvThree = Paths.get(this.directoryPath + TRAINING_CSV_THREE);
-        Path pathTrainingArffThree = Paths.get(this.directoryPath + TRAINING_ARFF_THREE);
-        Path pathTestingCsvFive = Paths.get(this.directoryPath + TESTING_CSV_FIVE);
-        Path pathTestingArffFive = Paths.get(this.directoryPath + TESTING_ARFF_FIVE);
-        Path pathTestingCsvThree = Paths.get(this.directoryPath + TESTING_CSV_THREE);
-        Path pathTestingArffThree = Paths.get(this.directoryPath + TESTING_ARFF_THREE);
+        String[] subPaths = {
+                "",
+                TRAINING,
+                TESTING,
+                OTHERFILES,
+                FIVE_RUN_TRAINING,
+                THREE_RUN_TRAINING,
+                FIVE_RUN_TESTING,
+                THREE_RUN_TESTING,
+                TRAINING_CSV_FIVE,
+                TRAINING_ARFF_FIVE,
+                TRAINING_CSV_THREE,
+                TRAINING_ARFF_THREE,
+                TESTING_CSV_FIVE,
+                TESTING_ARFF_FIVE,
+                TESTING_CSV_THREE,
+                TESTING_ARFF_THREE
+        };
 
-        if (!Files.exists(path))
-            Files.createDirectories(path);
+        createDirectories(subPaths);
+    }
 
-        if (!Files.exists(pathTraining))
-            Files.createDirectories(pathTraining);
-
-        if (!Files.exists(pathTesting))
-            Files.createDirectories(pathTesting);
-
-        if (!Files.exists(pathOther))
-            Files.createDirectories(pathOther);
-
-        if (!Files.exists(pathFiveRunTest))
-            Files.createDirectories(pathFiveRunTest);
-
-        if (!Files.exists(pathThreeRunTest))
-            Files.createDirectories(pathThreeRunTest);
-
-        if (!Files.exists(pathFiveRunTrain))
-            Files.createDirectories(pathFiveRunTrain);
-
-        if (!Files.exists(pathThreeRunTrain))
-            Files.createDirectories(pathThreeRunTrain);
-
-        if (!Files.exists(pathTrainingCsvFive))
-            Files.createDirectories(pathTrainingCsvFive);
-
-        if (!Files.exists(pathTrainingArffFive))
-            Files.createDirectories(pathTrainingArffFive);
-
-        if (!Files.exists(pathTrainingCsvThree))
-            Files.createDirectories(pathTrainingCsvThree);
-
-        if (!Files.exists(pathTrainingArffThree))
-            Files.createDirectories(pathTrainingArffThree);
-
-        if (!Files.exists(pathTestingArffFive))
-            Files.createDirectories(pathTestingArffFive);
-
-        if (!Files.exists(pathTestingCsvFive))
-            Files.createDirectories(pathTestingCsvFive);
-
-        if (!Files.exists(pathTestingArffThree))
-            Files.createDirectories(pathTestingArffThree);
-
-        if (!Files.exists(pathTestingCsvThree))
-            Files.createDirectories(pathTestingCsvThree);
+    private void createDirectories(String[] subPaths) throws IOException {
+        for (String subPath : subPaths) {
+            Path path = Paths.get(this.directoryPath + subPath);
+            if (!Files.exists(path)) {
+                Files.createDirectories(path);
+            }
+        }
     }
 
     private void writeToFile(FileWriter fileWriter, String content) throws IOException {
