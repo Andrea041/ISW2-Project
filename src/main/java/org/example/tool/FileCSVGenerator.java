@@ -45,14 +45,14 @@ public class FileCSVGenerator {
         Path pathThreeRunTest = Paths.get(this.directoryPath + THREE_RUN_TRAINING);
         Path pathOther = Paths.get(this.directoryPath + OTHERFILES);
         Path pathTesting = Paths.get(this.directoryPath + TESTING);
-        Path pathTrainingCSV_five = Paths.get(this.directoryPath + TRAINING_CSV_FIVE);
-        Path pathTrainingARFF_five = Paths.get(this.directoryPath + TRAINING_ARFF_FIVE);
-        Path pathTrainingCSV_three = Paths.get(this.directoryPath + TRAINING_CSV_THREE);
-        Path pathTrainingARFF_three = Paths.get(this.directoryPath + TRAINING_ARFF_THREE);
-        Path pathTestingCSV_five = Paths.get(this.directoryPath + TESTING_CSV_FIVE);
-        Path pathTestingARFF_five = Paths.get(this.directoryPath + TESTING_ARFF_FIVE);
-        Path pathTestingCSV_three = Paths.get(this.directoryPath + TESTING_CSV_THREE);
-        Path pathTestingARFF_three = Paths.get(this.directoryPath + TESTING_ARFF_THREE);
+        Path pathTrainingCsvFive = Paths.get(this.directoryPath + TRAINING_CSV_FIVE);
+        Path pathTrainingArffFive = Paths.get(this.directoryPath + TRAINING_ARFF_FIVE);
+        Path pathTrainingCsvThree = Paths.get(this.directoryPath + TRAINING_CSV_THREE);
+        Path pathTrainingArffThree = Paths.get(this.directoryPath + TRAINING_ARFF_THREE);
+        Path pathTestingCsvFive = Paths.get(this.directoryPath + TESTING_CSV_FIVE);
+        Path pathTestingArffFive = Paths.get(this.directoryPath + TESTING_ARFF_FIVE);
+        Path pathTestingCsvThree = Paths.get(this.directoryPath + TESTING_CSV_THREE);
+        Path pathTestingArffThree = Paths.get(this.directoryPath + TESTING_ARFF_THREE);
 
         if (!Files.exists(path))
             Files.createDirectories(path);
@@ -78,29 +78,29 @@ public class FileCSVGenerator {
         if (!Files.exists(pathThreeRunTrain))
             Files.createDirectories(pathThreeRunTrain);
 
-        if (!Files.exists(pathTrainingCSV_five))
-            Files.createDirectories(pathTrainingCSV_five);
+        if (!Files.exists(pathTrainingCsvFive))
+            Files.createDirectories(pathTrainingCsvFive);
 
-        if (!Files.exists(pathTrainingARFF_five))
-            Files.createDirectories(pathTrainingARFF_five);
+        if (!Files.exists(pathTrainingArffFive))
+            Files.createDirectories(pathTrainingArffFive);
 
-        if (!Files.exists(pathTrainingCSV_three))
-            Files.createDirectories(pathTrainingCSV_three);
+        if (!Files.exists(pathTrainingCsvThree))
+            Files.createDirectories(pathTrainingCsvThree);
 
-        if (!Files.exists(pathTrainingARFF_three))
-            Files.createDirectories(pathTrainingARFF_three);
+        if (!Files.exists(pathTrainingArffThree))
+            Files.createDirectories(pathTrainingArffThree);
 
-        if (!Files.exists(pathTestingARFF_five))
-            Files.createDirectories(pathTestingARFF_five);
+        if (!Files.exists(pathTestingArffFive))
+            Files.createDirectories(pathTestingArffFive);
 
-        if (!Files.exists(pathTestingCSV_five))
-            Files.createDirectories(pathTestingCSV_five);
+        if (!Files.exists(pathTestingCsvFive))
+            Files.createDirectories(pathTestingCsvFive);
 
-        if (!Files.exists(pathTestingARFF_three))
-            Files.createDirectories(pathTestingARFF_three);
+        if (!Files.exists(pathTestingArffThree))
+            Files.createDirectories(pathTestingArffThree);
 
-        if (!Files.exists(pathTestingCSV_three))
-            Files.createDirectories(pathTestingCSV_three);
+        if (!Files.exists(pathTestingCsvThree))
+            Files.createDirectories(pathTestingCsvThree);
     }
 
     private void writeToFile(FileWriter fileWriter, String content) throws IOException {
