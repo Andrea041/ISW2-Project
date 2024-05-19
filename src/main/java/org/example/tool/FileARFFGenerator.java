@@ -19,20 +19,20 @@ public class FileARFFGenerator {
 
     public void csvToARFFTraining() throws IOException {
         // Fetch .csv file
-        String csvFile = PATH + this.projectName.toLowerCase() + "/training/five_run/CSV/" + this.projectName + "_trainingSet" + index + ".csv";
+        String csvFile = PATH + this.projectName.toLowerCase() + "/training/CSV/" + this.projectName + "_trainingSet" + index + ".csv";
 
         // Where to save .arff file
-        String arffFile = PATH + this.projectName.toLowerCase() + "/training/five_run/ARFF/" + this.projectName + "_trainingSet" + index + ".arff";
+        String arffFile = PATH + this.projectName.toLowerCase() + "/training/ARFF/" + this.projectName + "_trainingSet" + index + ".arff";
 
         csvToARFF(csvFile, arffFile);
     }
 
     public void csvToARFFTesting() throws IOException {
         // Fetch .csv file
-        String csvFile = PATH + this.projectName.toLowerCase() + "/testing/five_run/CSV/" + this.projectName + "_testingSet" + index + ".csv";
+        String csvFile = PATH + this.projectName.toLowerCase() + "/testing/CSV/" + this.projectName + "_testingSet" + index + ".csv";
 
         // Where to save .arff file
-        String arffFile = PATH + this.projectName.toLowerCase() + "/testing/five_run/ARFF/" + this.projectName + "_testingSet" + index + ".arff";
+        String arffFile = PATH + this.projectName.toLowerCase() + "/testing/ARFF/" + this.projectName + "_testingSet" + index + ".arff";
 
         csvToARFF(csvFile, arffFile);
     }
