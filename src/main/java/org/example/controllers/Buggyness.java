@@ -19,7 +19,12 @@ public class Buggyness {
         this.repository = RepoFactory.getRepo();
     }
 
-    public void evaluateBuggy(List<Ticket> ticketList) throws IOException {
+    public void evaluateBuggy(List<Ticket> ticketList, List<Release> releaseList) throws IOException {
+        for (Release release : releaseList) {
+            for (JavaClass javaClass : release.getJavaClassList())
+                javaClass.setBuggy(false);
+        }
+
         for (Ticket ticket : ticketList) {
             /* Fetching affected version releases */
             List<Release> affectedReleaseList = new ArrayList<>(ticket.getAffectedVersionsList());

@@ -33,6 +33,7 @@ public class JavaClass {
         this.content = content;
         this.commitList = new ArrayList<>();
         this.release = release;
+        this.buggy = false;
 
         this.locSize = 0;
         this.locTouched = 0;

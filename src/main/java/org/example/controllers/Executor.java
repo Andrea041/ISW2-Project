@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.CommitTool;
@@ -14,17 +15,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Executor {
+    private static final String DIRECTORY = "src/main/resources/";
 
     private Executor() {}
 
     public static void dataExtraction(String projectName) throws IOException {
         JiraExtraction jira = new JiraExtraction(projectName);
+        FileCSVGenerator csv = new FileCSVGenerator(DIRECTORY, projectName);
 
         List<Release> releaseList = jira.getReleaseInfo();  // fetch all project's releases
         Logger.getAnonymousLogger().log(Level.INFO, "Release list fetched!");
 
         /* Generate CSV file of releases */
-        FileCSVGenerator.generateReleaseInfo(projectName, releaseList);
+        csv.generateReleaseInfo(releaseList);
 
         List<Ticket> ticketList = jira.fetchTickets(releaseList);  // fetch all project's list
         Logger.getAnonymousLogger().log(Level.INFO, "Ticket list fetched!");
@@ -49,38 +52,67 @@ public class Executor {
 
         /* Keep half past releases */
         int half = releaseList.size() / 2;
-        releaseList.removeIf(release -> release.getIndex() > half);
+        List<Release> halfReleaseList = new ArrayList<>(releaseList);
+        halfReleaseList.removeIf(release -> release.getIndex() > half);
 
         Logger.getAnonymousLogger().log(Level.INFO, "Linking tickets and commits...");
         TicketTool.linkTicketsToCommits(ticketList, commitList);    // link tickets to commits and now tickets are in their "final stage"
 
         /* Generate CSV file of tickets */
-        FileCSVGenerator.generateTicketInfo(projectName, ticketList);
+        csv.generateTicketInfo(ticketList);
 
         List<RevCommit> filteredCommit = CommitTool.filterCommit(commitList, ticketList); // filter commits
 
-        Logger.getAnonymousLogger().log(Level.INFO, "Retrieving java classes...");
         git.getClasses(releaseList);
-        Logger.getAnonymousLogger().log(Level.INFO, "Classes fetched!");
 
         for (Release release : releaseList)
             git.assignCommitsToClasses(release.getJavaClassList(), release.getCommitList(), releaseList);
 
-        /* Evaluate buggyness */
-        Buggyness buggyness = new Buggyness();
-        buggyness.evaluateBuggy(ticketList);
-
-        /* Compute metrics for each java class in each release */
         for (Release release : releaseList) {
             EvaluateMetrics compMetrics = new EvaluateMetrics(release.getJavaClassList(), filteredCommit);
             compMetrics.evaluateMetrics();
         }
 
-        FileCSVGenerator.generateTrainingSet(projectName, releaseList);
-        Logger.getAnonymousLogger().log(Level.INFO, "Training set file generated!");
+        /* Walk forward */
+        for (int i = 2; i <= halfReleaseList.size(); i++) {
+            List<Release> walkRelease = new ArrayList<>(halfReleaseList);
+            int limit = i;
+            walkRelease.removeIf(release -> release.getIndex() > limit);
 
-        /* Generate .arff file */
-        FileARFFGenerator arffGenerator = new FileARFFGenerator(projectName);
-        arffGenerator.csvToARFF();
+            List<Ticket> walkTicket = new ArrayList<>(ticketList);
+            walkTicket.removeIf(ticket -> ticket.getFixedVersion().getIndex() > walkRelease.getLast().getIndex());
+
+            Buggyness buggyness = new Buggyness();
+
+            /* Evaluate buggyness with walk forward */
+            buggyness.evaluateBuggy(walkTicket, releaseList);
+
+            /* Generate training .csv file */
+            csv.generateTrainingSet(walkRelease, i);
+
+            FileARFFGenerator arffGenerator = new FileARFFGenerator(projectName, limit);
+
+            /* Generate training .arff file */
+            arffGenerator.csvToARFFTraining();
+
+            List<Release> testingRelease = new ArrayList<>();
+            for (Release release : releaseList) {
+                if (release.getIndex() == walkRelease.getLast().getIndex()+1) {
+                    testingRelease.add(release);
+                    break;
+                }
+            }
+
+            /* Evaluate buggyness for all classes with full ticket list */
+            buggyness.evaluateBuggy(ticketList, releaseList);
+
+            /* Generate testing .csv file */
+            csv.generateTestingSet(testingRelease.getFirst().getJavaClassList(), i);
+
+            /* Generate testing .arff file */
+            arffGenerator.csvToARFFTesting();
+        }
+
+        Logger.getAnonymousLogger().log(Level.INFO, "Training set and testing set files generated!");
     }
 }
