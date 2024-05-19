@@ -18,6 +18,10 @@ import java.util.logging.Logger;
 public class FileCSVGenerator {
     private final String directoryPath;
     private final String projName;
+
+    private static final String TRAINING_FILE = "_trainingSet";
+    private static final String TESTING_FILE = "_testingSet";
+
     private static final String TESTING = "testing" + File.separator;
     private static final String TRAINING = "training" + File.separator;
     private static final String OTHERFILES = "otherFiles" + File.separator;
@@ -146,7 +150,7 @@ public class FileCSVGenerator {
         FileWriter fileWriter = null;
 
         try {
-            String fileTitle = this.directoryPath + TRAINING_CSV_FIVE + this.projName + "_trainingSet" + walk + ".csv";
+            String fileTitle = this.directoryPath + TRAINING_CSV_FIVE + this.projName + TRAINING_FILE + walk + ".csv";
             fileWriter = new FileWriter(fileTitle);
 
             writeToFile(fileWriter, "Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
@@ -171,7 +175,7 @@ public class FileCSVGenerator {
         FileWriter fileWriter = null;
 
         try {
-            String fileTitle = this.directoryPath + TESTING_CSV_FIVE + this.projName + "_testingSet" + testIndex + ".csv";
+            String fileTitle = this.directoryPath + TESTING_CSV_FIVE + this.projName + TESTING_FILE + testIndex + ".csv";
             fileWriter = new FileWriter(fileTitle);
 
             writeToFile(fileWriter, "Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Number,LOC_added,MAX_LOC_added,AVG_LOC_added,churn,MAX_churn,Buggyness");
@@ -199,12 +203,12 @@ public class FileCSVGenerator {
 
     public void moveFilesCSV() throws IOException {
         for (int i = 4; i <= 6; i++) {
-            Path fileTrainingCSV = Path.of(this.directoryPath + TRAINING_CSV_FIVE + this.projName + "_trainingSet" + i + ".csv");
+            Path fileTrainingCSV = Path.of(this.directoryPath + TRAINING_CSV_FIVE + this.projName + TRAINING_FILE + i + ".csv");
             Path destinationTrainingCSV = Path.of(this.directoryPath + TRAINING_CSV_THREE);
             Path targetTrainingCSV = destinationTrainingCSV.resolve(fileTrainingCSV.getFileName());
             Files.copy(fileTrainingCSV, targetTrainingCSV, StandardCopyOption.REPLACE_EXISTING);
 
-            Path fileTestingCSV = Path.of(this.directoryPath + TESTING_CSV_FIVE + this.projName + "_testingSet" + i + ".csv");
+            Path fileTestingCSV = Path.of(this.directoryPath + TESTING_CSV_FIVE + this.projName + TESTING_FILE + i + ".csv");
             Path destinationTestingCSV = Path.of(this.directoryPath + TESTING_CSV_THREE);
             Path targetTestingCSV = destinationTestingCSV.resolve(fileTestingCSV.getFileName());
             Files.copy(fileTestingCSV, targetTestingCSV, StandardCopyOption.REPLACE_EXISTING);
@@ -213,12 +217,12 @@ public class FileCSVGenerator {
 
     public void moveFilesARFF() throws IOException {
         for (int i = 4; i <= 6; i++) {
-            Path fileTrainingARFF = Path.of(this.directoryPath + TRAINING_ARFF_FIVE + this.projName + "_trainingSet" + i + ".arff");
+            Path fileTrainingARFF = Path.of(this.directoryPath + TRAINING_ARFF_FIVE + this.projName + TRAINING_FILE + i + ".arff");
             Path destinationTrainingARFF = Path.of(this.directoryPath + TRAINING_ARFF_THREE);
             Path targetTrainingARFF = destinationTrainingARFF.resolve(fileTrainingARFF.getFileName());
             Files.copy(fileTrainingARFF, targetTrainingARFF, StandardCopyOption.REPLACE_EXISTING);
 
-            Path fileTestingARFF = Path.of(this.directoryPath + TESTING_ARFF_FIVE + this.projName + "_testingSet" + i + ".arff");
+            Path fileTestingARFF = Path.of(this.directoryPath + TESTING_ARFF_FIVE + this.projName + TESTING_FILE + i + ".arff");
             Path destinationTestingARFF = Path.of(this.directoryPath + TESTING_ARFF_THREE);
             Path targetTestingARFF = destinationTestingARFF.resolve(fileTestingARFF.getFileName());
             Files.copy(fileTestingARFF, targetTestingARFF, StandardCopyOption.REPLACE_EXISTING);
