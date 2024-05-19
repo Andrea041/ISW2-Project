@@ -17,21 +17,21 @@ import java.util.logging.Logger;
 public class FileCSVGenerator {
     private final String directoryPath;
     private final String projName;
-    private final static String TESTING = "testing" + File.separator;
-    private final static String TRAINING = "training" + File.separator;
-    private final static String OTHERFILES = "otherFiles" + File.separator;
-    private final static String FIVE_RUN_TRAINING = TRAINING + "five_Run" + File.separator;
-    private final static String THREE_RUN_TRAINING = TRAINING + "three_Run" + File.separator;
-    private final static String FIVE_RUN_TESTING = TESTING + "five_Run" + File.separator;
-    private final static String THREE_RUN_TESTING = TESTING + "three_Run" + File.separator;
-    private final static String TRAINING_CSV_FIVE = FIVE_RUN_TRAINING + "CSV" + File.separator;
-    private final static String TRAINING_ARFF_FIVE = FIVE_RUN_TRAINING + "ARFF" + File.separator;
-    private final static String TRAINING_CSV_THREE = THREE_RUN_TRAINING + "CSV" + File.separator;
-    private final static String TRAINING_ARFF_THREE = THREE_RUN_TRAINING + "ARFF" + File.separator;
-    private final static String TESTING_CSV_FIVE = FIVE_RUN_TESTING + "CSV" + File.separator;
-    private final static String TESTING_ARFF_FIVE = FIVE_RUN_TESTING + "ARFF" + File.separator;
-    private final static String TESTING_CSV_THREE = THREE_RUN_TESTING + "CSV" + File.separator;
-    private final static String TESTING_ARFF_THREE = THREE_RUN_TESTING + "ARFF" + File.separator;
+    private static final String TESTING = "testing" + File.separator;
+    private static final String TRAINING = "training" + File.separator;
+    private static final String OTHERFILES = "otherFiles" + File.separator;
+    private static final String FIVE_RUN_TRAINING = TRAINING + "five_Run" + File.separator;
+    private static final String THREE_RUN_TRAINING = TRAINING + "three_Run" + File.separator;
+    private static final String FIVE_RUN_TESTING = TESTING + "five_Run" + File.separator;
+    private static final String THREE_RUN_TESTING = TESTING + "three_Run" + File.separator;
+    private static final String TRAINING_CSV_FIVE = FIVE_RUN_TRAINING + "CSV" + File.separator;
+    private static final String TRAINING_ARFF_FIVE = FIVE_RUN_TRAINING + "ARFF" + File.separator;
+    private static final String TRAINING_CSV_THREE = THREE_RUN_TRAINING + "CSV" + File.separator;
+    private static final String TRAINING_ARFF_THREE = THREE_RUN_TRAINING + "ARFF" + File.separator;
+    private static final String TESTING_CSV_FIVE = FIVE_RUN_TESTING + "CSV" + File.separator;
+    private static final String TESTING_ARFF_FIVE = FIVE_RUN_TESTING + "ARFF" + File.separator;
+    private static final String TESTING_CSV_THREE = THREE_RUN_TESTING + "CSV" + File.separator;
+    private static final String TESTING_ARFF_THREE = THREE_RUN_TESTING + "ARFF" + File.separator;
 
     public FileCSVGenerator(String directoryPath, String projName) throws IOException {
         this.projName = projName;
