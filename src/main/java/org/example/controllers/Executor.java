@@ -1,7 +1,6 @@
 package org.example.controllers;
 
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.CommitTool;
