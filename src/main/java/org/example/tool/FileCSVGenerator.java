@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -194,5 +195,33 @@ public class FileCSVGenerator {
                 javaClass.getLocAdded() + "," + javaClass.getMaxLOCAdded() + "," +
                 javaClass.getAvgLOCAdded() + "," + javaClass.getChurn() + "," +
                 javaClass.getMaxChurn() + "," + javaClass.getBuggy());
+    }
+
+    public void moveFilesCSV() throws IOException {
+        for (int i = 4; i <= 6; i++) {
+            Path fileTrainingCSV = Path.of(this.directoryPath + TRAINING_CSV_FIVE + this.projName + "_trainingSet" + i + ".csv");
+            Path destinationTrainingCSV = Path.of(this.directoryPath + TRAINING_CSV_THREE);
+            Path targetTrainingCSV = destinationTrainingCSV.resolve(fileTrainingCSV.getFileName());
+            Files.copy(fileTrainingCSV, targetTrainingCSV, StandardCopyOption.REPLACE_EXISTING);
+
+            Path fileTestingCSV = Path.of(this.directoryPath + TESTING_CSV_FIVE + this.projName + "_testingSet" + i + ".csv");
+            Path destinationTestingCSV = Path.of(this.directoryPath + TESTING_CSV_THREE);
+            Path targetTestingCSV = destinationTestingCSV.resolve(fileTestingCSV.getFileName());
+            Files.copy(fileTestingCSV, targetTestingCSV, StandardCopyOption.REPLACE_EXISTING);
+        }
+    }
+
+    public void moveFilesARFF() throws IOException {
+        for (int i = 4; i <= 6; i++) {
+            Path fileTrainingARFF = Path.of(this.directoryPath + TRAINING_ARFF_FIVE + this.projName + "_trainingSet" + i + ".arff");
+            Path destinationTrainingARFF = Path.of(this.directoryPath + TRAINING_ARFF_THREE);
+            Path targetTrainingARFF = destinationTrainingARFF.resolve(fileTrainingARFF.getFileName());
+            Files.copy(fileTrainingARFF, targetTrainingARFF, StandardCopyOption.REPLACE_EXISTING);
+
+            Path fileTestingARFF = Path.of(this.directoryPath + TESTING_ARFF_FIVE + this.projName + "_testingSet" + i + ".arff");
+            Path destinationTestingARFF = Path.of(this.directoryPath + TESTING_ARFF_THREE);
+            Path targetTestingARFF = destinationTestingARFF.resolve(fileTestingARFF.getFileName());
+            Files.copy(fileTestingARFF, targetTestingARFF, StandardCopyOption.REPLACE_EXISTING);
+        }
     }
 }

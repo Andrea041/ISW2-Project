@@ -112,6 +112,8 @@ public class Executor {
             arffGenerator.csvToARFFTesting();
         }
 
+        csv.moveFilesCSV();
+        csv.moveFilesARFF();
         Logger.getAnonymousLogger().log(Level.INFO, "Training set and testing set files generated!");
     }
 }
