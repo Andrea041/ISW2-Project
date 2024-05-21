@@ -3,9 +3,10 @@ package org.example.tool;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FileARFFGenerator {
     private final String projectName;
@@ -17,7 +18,7 @@ public class FileARFFGenerator {
         this.index = index;
     }
 
-    public void csvToARFFTraining() throws IOException {
+    public void csvToARFFTraining() throws Exception {
         // Fetch .csv file
         String csvFile = PATH + this.projectName.toLowerCase() + "/training/CSV/" + this.projectName + "_trainingSet" + index + ".csv";
 
@@ -27,7 +28,7 @@ public class FileARFFGenerator {
         csvToARFF(csvFile, arffFile);
     }
 
-    public void csvToARFFTesting() throws IOException {
+    public void csvToARFFTesting() throws Exception {
         // Fetch .csv file
         String csvFile = PATH + this.projectName.toLowerCase() + "/testing/CSV/" + this.projectName + "_testingSet" + index + ".csv";
 
@@ -37,13 +38,19 @@ public class FileARFFGenerator {
         csvToARFF(csvFile, arffFile);
     }
 
-    private void csvToARFF(String csvFile, String arffFile) throws IOException {
+    private void csvToARFF(String csvFile, String arffFile) throws Exception {
         CSVLoader loader = new CSVLoader();
         loader.setSource(new File(csvFile));
         Instances data = loader.getDataSet();
 
+        int[] indicesToRemove = {0, 1};
+        Remove remove = new Remove();
+        remove.setAttributeIndicesArray(indicesToRemove);
+        remove.setInputFormat(data);
+        Instances newData = Filter.useFilter(data, remove);
+
         ArffSaver saver = new ArffSaver();
-        saver.setInstances(data);
+        saver.setInstances(newData);
         saver.setFile(new File(arffFile));
         saver.writeBatch();
     }

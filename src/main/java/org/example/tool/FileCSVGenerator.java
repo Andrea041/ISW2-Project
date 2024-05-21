@@ -1,5 +1,6 @@
 package org.example.tool;
 
+import org.example.entities.ClassifierResults;
 import org.example.entities.JavaClass;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
@@ -28,6 +29,7 @@ public class FileCSVGenerator {
     private static final String TRAINING_ARFF = TRAINING + "ARFF" + File.separator;
     private static final String TESTING_CSV = TESTING + "CSV" + File.separator;
     private static final String TESTING_ARFF = TESTING + "ARFF" + File.separator;
+    private static final String RESULT = "result" + File.separator;
 
     public FileCSVGenerator(String directoryPath, String projName) throws IOException {
         this.projName = projName;
@@ -41,7 +43,8 @@ public class FileCSVGenerator {
                 TRAINING_CSV,
                 TRAINING_ARFF,
                 TESTING_CSV,
-                TESTING_ARFF
+                TESTING_ARFF,
+                RESULT
         };
 
         createDirectories(subPaths);
@@ -167,6 +170,33 @@ public class FileCSVGenerator {
                 writeClasses(fileWriter, testIndex+1, javaClass);
             }
 
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        } finally {
+            closeWriter(fileWriter);
+        }
+    }
+
+    public void generateWekaResultFile(List<ClassifierResults> classifierResultsList) {
+        FileWriter fileWriter = null;
+
+        try {
+            String fileTitle = this.directoryPath + RESULT + this.projName + "_finalResults.csv";
+            fileWriter = new FileWriter(fileTitle);
+
+            writeToFile(fileWriter, "Project Name,Index,Classifier Name,Training Instances Percentage,Cost Sensitive,Sampling,Selection,Precision,Recall,F1,Kappa,AUC,True Positive,False Positive,True Negative,False Negative");
+
+            for (ClassifierResults classifierResults : classifierResultsList) {
+                writeToFile(fileWriter, classifierResults.getProjName() + ","
+                        + classifierResults.getIndex() + "," + classifierResults.getClassifierName() + ","
+                        + classifierResults.getPercTrainingInstances() + "," + classifierResults.isCostSensitive() + ","
+                        + classifierResults.isSampling() + ","
+                        + classifierResults.isSelection() + "," + classifierResults.getPreci() + ","
+                        + classifierResults.getRec() + "," + classifierResults.getFMeasure() + ","
+                        + classifierResults.getKappa() + "," + classifierResults.getAUC() + ","
+                        + classifierResults.getTruePositives() + "," + classifierResults.getFalsePositives() + ","
+                        + classifierResults.getTrueNegatives() + "," + classifierResults.getFalseNegatives());
+            }
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         } finally {

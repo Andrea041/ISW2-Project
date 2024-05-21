@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.example.entities.ClassifierResults;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 import org.example.tool.CommitTool;
@@ -18,7 +19,7 @@ public class Executor {
 
     private Executor() {}
 
-    public static void dataExtraction(String projectName) throws IOException {
+    public static void dataExtraction(String projectName) throws Exception {
         JiraExtraction jira = new JiraExtraction(projectName);
         FileCSVGenerator csv = new FileCSVGenerator(DIRECTORY, projectName);
 
@@ -111,7 +112,18 @@ public class Executor {
             /* Generate testing .arff file */
             arffGenerator.csvToARFFTesting();
         }
-
         Logger.getAnonymousLogger().log(Level.INFO, "Training set and testing set files generated!");
+
+        List<ClassifierResults> classifierResultsList = new ArrayList<>();
+        try {
+            WekaClassifiers weka = new WekaClassifiers(projectName, half);
+            classifierResultsList = weka.fetchWekaAnalysis();
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        }
+
+        csv.generateWekaResultFile(classifierResultsList);
+
+        Logger.getAnonymousLogger().log(Level.INFO, "Weka analysis completed!");
     }
 }
