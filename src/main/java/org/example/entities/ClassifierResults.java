@@ -16,11 +16,11 @@ public class ClassifierResults {
     private double AUC;
     private double fMeasure;
 
-    private final boolean costSensitive;
-    private final boolean sampling;
-    private final boolean selection;
+    private final String costSensitive;
+    private final String sampling;
+    private final String selection;
 
-    public ClassifierResults(String projName, int index, String classifierName, boolean costSensitive, boolean sampling, boolean selection, int trainInstances, int testInstances) {
+    public ClassifierResults(String projName, int index, String classifierName, String costSensitive, String sampling, String selection, int trainInstances, int testInstances) {
         this.projName = projName;
         this.index = index;
         this.classifierName = classifierName;
@@ -69,21 +69,21 @@ public class ClassifierResults {
     }
 
     public String isCostSensitive() {
-        if (!costSensitive)
-            return "No";
-        return "Yes";
+        if (costSensitive.isEmpty())
+            return "no";
+        return costSensitive;
     }
 
     public String isSampling() {
-        if (!sampling)
-            return "No";
-        return "Yes";
+        if (sampling.isEmpty())
+            return "no";
+        return sampling;
     }
 
     public String isSelection() {
-        if (!selection)
-            return "No";
-        return "Yes";
+        if (selection.isEmpty())
+            return "no";
+        return selection;
     }
 
     public double getPreci() {

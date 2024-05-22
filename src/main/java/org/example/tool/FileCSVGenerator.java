@@ -184,7 +184,7 @@ public class FileCSVGenerator {
             String fileTitle = this.directoryPath + RESULT + this.projName + "_finalResults.csv";
             fileWriter = new FileWriter(fileTitle);
 
-            writeToFile(fileWriter, "Project Name,Index,Classifier Name,Training Instances Percentage,Cost Sensitive,Sampling,Selection,Precision,Recall,F1,Kappa,AUC,True Positive,False Positive,True Negative,False Negative");
+            writeToFile(fileWriter, "Project Name,Index,Classifier Name,Training Instances (%),Cost Sensitive,Sampling,Selection,Precision,Recall,F1,Kappa,AUC,True Positive,False Positive,True Negative,False Negative");
 
             for (ClassifierResults classifierResults : classifierResultsList) {
                 writeToFile(fileWriter, classifierResults.getProjName() + ","

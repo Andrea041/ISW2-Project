@@ -9,6 +9,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TicketTool {
     private TicketTool() {}
@@ -52,6 +54,7 @@ public class TicketTool {
             for (RevCommit commit : commitList) {
                 if (checkCommit(commit.getFullMessage(), ticket.getTicketKey())) {
                     ticket.getCommitList().add(commit);
+                    Logger.getAnonymousLogger().log(Level.INFO, String.format("Ticket %s has been linked", ticket.getTicketKey()));
                 }
             }
 

@@ -1,6 +1,9 @@
 package org.example.controllers;
 
 import org.example.entities.ClassifierResults;
+import weka.attributeSelection.BestFirst;
+import weka.attributeSelection.CfsSubsetEval;
+import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.Classifier;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.Evaluation;
@@ -8,6 +11,8 @@ import weka.classifiers.lazy.IBk;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.filters.Filter;
+import weka.filters.supervised.attribute.AttributeSelection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,31 +56,63 @@ public class WekaClassifiers {
                                                                 new RandomForest(),
                                                                 new IBk()));
 
-            Evaluation eval = new Evaluation(testDataset);
-
             /* Default classifier: no cost sensitive, no sampling, no selection */
-            int index = 0;
-            for (Classifier classifier : classifiers) {
-                classifier.buildClassifier(trainDataset);
-                eval.evaluateModel(classifier, testDataset);
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "", "", "");
 
-                ClassifierResults res = new ClassifierResults(this.projName, i, CLASSIFIER_NAME[index], false, false, false, trainDataset.numInstances(), testDataset.numInstances());
+            /* classifier: no cost sensitive, no sampling, feature selection */
+            CfsSubsetEval subsetEval = new CfsSubsetEval();
+            AttributeSelection filter = new AttributeSelection();
 
-                res.setRec(eval.recall(0));
-                res.setPreci(eval.precision(0));
-                res.setKappa(eval.kappa());
-                res.setTrueNegatives(eval.numTrueNegatives(0));
-                res.setFalsePositives(eval.numFalsePositives(0));
-                res.setFalseNegatives(eval.numFalseNegatives(0));
-                res.setTruePositives(eval.numTruePositives(0));
-                res.setAUC(eval.areaUnderROC(0));
-                res.setFMeasure(eval.fMeasure(0));
+            BestFirst bestFirst = new BestFirst();
+            filter.setEvaluator(subsetEval);
+            filter.setSearch(bestFirst);
+            filter.setInputFormat(trainDataset);
 
-                classifierResults.add(res);
-                index++;
-            }
+            Instances newTrain = Filter.useFilter(trainDataset, filter);
+            Instances newTest = Filter.useFilter(testDataset, filter);
+
+            int numAttrFiltered = newTrain.numAttributes();
+            newTrain.setClassIndex(numAttrFiltered - 1);
+
+            evaluateClassifier(classifierResults, i, newTrain, newTest, classifiers, "", "", "best first");
+
+            GreedyStepwise greedyStepwise = new GreedyStepwise();
+            greedyStepwise.setSearchBackwards(true);
+
+            filter.setSearch(greedyStepwise);
+
+            newTrain = Filter.useFilter(trainDataset, filter);
+            newTest = Filter.useFilter(testDataset, filter);
+
+            evaluateClassifier(classifierResults, i, newTrain, newTest, classifiers, "", "", "greedy");
         }
 
         return classifierResults;
+    }
+
+    private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, List<Classifier> classifiers, String costSensitive, String samplingType, String selection) throws Exception {
+        Evaluation evaluation = new Evaluation(testDataset);
+        int index = 0;
+
+        for (Classifier classifier : classifiers) {
+            classifier.buildClassifier(trainDataset);
+            evaluation.evaluateModel(classifier, testDataset);
+
+            ClassifierResults res = new ClassifierResults(this.projName, i, CLASSIFIER_NAME[index], costSensitive, samplingType, selection, trainDataset.numInstances(), testDataset.numInstances());
+
+            // classIndex has value 0 or 1 {no, yes} so I choose index 1 to make prediction on 'yes' class
+            res.setRec(evaluation.recall(1));
+            res.setPreci(evaluation.precision(1));
+            res.setKappa(evaluation.kappa());
+            res.setTrueNegatives(evaluation.numTrueNegatives(1));
+            res.setFalsePositives(evaluation.numFalsePositives(1));
+            res.setFalseNegatives(evaluation.numFalseNegatives(1));
+            res.setTruePositives(evaluation.numTruePositives(1));
+            res.setAUC(evaluation.areaUnderROC(1));
+            res.setFMeasure(evaluation.fMeasure(1));
+
+            classifierResults.add(res);
+            index++;
+        }
     }
 }
