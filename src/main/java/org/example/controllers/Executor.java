@@ -119,7 +119,8 @@ public class Executor {
             WekaClassifiers weka = new WekaClassifiers(projectName, half);
             classifierResultsList = weka.fetchWekaAnalysis();
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+            //Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+            e.printStackTrace();
         }
 
         csv.generateWekaResultFile(classifierResultsList);

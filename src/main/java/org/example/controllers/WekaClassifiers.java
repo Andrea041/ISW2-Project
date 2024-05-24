@@ -5,14 +5,20 @@ import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.Classifier;
+import weka.classifiers.CostMatrix;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.Evaluation;
 import weka.classifiers.lazy.IBk;
+import weka.classifiers.meta.CostSensitiveClassifier;
+import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
+import weka.filters.supervised.instance.Resample;
+import weka.filters.supervised.instance.SpreadSubsample;
+import weka.filters.supervised.instance.SMOTE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,46 +63,78 @@ public class WekaClassifiers {
                                                                 new IBk()));
 
             /* Default classifier: no cost sensitive, no sampling, no selection */
-            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "", "", "");
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "", "", "", null, null);
 
-            /* classifier: no cost sensitive, no sampling, feature selection */
+            /* classifier: no cost sensitive, no sampling, feature selection (best first) */
             CfsSubsetEval subsetEval = new CfsSubsetEval();
-            AttributeSelection filter = new AttributeSelection();
+            AttributeSelection featureSelected = new AttributeSelection();
 
+            // Best First selection
             BestFirst bestFirst = new BestFirst();
-            filter.setEvaluator(subsetEval);
-            filter.setSearch(bestFirst);
-            filter.setInputFormat(trainDataset);
+            featureSelected.setEvaluator(subsetEval);
+            featureSelected.setSearch(bestFirst);
+            featureSelected.setInputFormat(trainDataset);
 
-            Instances newTrain = Filter.useFilter(trainDataset, filter);
-            Instances newTest = Filter.useFilter(testDataset, filter);
+            Instances newTrainBest = Filter.useFilter(trainDataset, featureSelected);
+            Instances newTestBest = Filter.useFilter(testDataset, featureSelected);
 
-            int numAttrFiltered = newTrain.numAttributes();
-            newTrain.setClassIndex(numAttrFiltered - 1);
+            newTrainBest.setClassIndex(newTrainBest.numAttributes() - 1);
+            newTestBest.setClassIndex(newTestBest.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrain, newTest, classifiers, "", "", "best first");
+            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "", "", "best first", null, null);
 
-            GreedyStepwise greedyStepwise = new GreedyStepwise();
-            greedyStepwise.setSearchBackwards(true);
+            /* classifier: no cost sensitive, sampling (SMOTE), no feature selection */
+            FilteredClassifier fc = new FilteredClassifier();
 
-            filter.setSearch(greedyStepwise);
+            SMOTE smote = new SMOTE();
+            smote.setInputFormat(trainDataset);
+            fc.setFilter(smote);
 
-            newTrain = Filter.useFilter(trainDataset, filter);
-            newTest = Filter.useFilter(testDataset, filter);
+            Instances newTrainSmote = Filter.useFilter(trainDataset, smote);
+            newTrainSmote.setClassIndex(newTrainSmote.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrain, newTest, classifiers, "", "", "greedy");
+            evaluateClassifier(classifierResults, i, newTrainSmote, testDataset, classifiers, "", "SMOTE", "" , fc, null);
+
+            /* classifier: cost sensitive, no sampling, no feature selection */
+            CostSensitiveClassifier cc = new CostSensitiveClassifier();
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "cost sensitive", "", "", null, cc);
+
+            /* classifier: cost sensitive, no sampling, feature selection */
+            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "cost sensitive", "", "best first", null, cc);
+
+            /* classifier: no cost sensitive, sampling, feature selection */
+            // Best First selection
+            featureSelected.setInputFormat(newTrainSmote);
+
+            // Apply feature selection to training set with smote
+            Instances newTrainSmoteBest = Filter.useFilter(newTrainSmote, featureSelected);
+            newTrainSmoteBest.setClassIndex(newTrainSmoteBest.numAttributes() - 1);
+
+            Instances newTestSmoteBest = Filter.useFilter(testDataset, featureSelected);
+            newTestSmoteBest.setClassIndex(newTestSmoteBest.numAttributes() - 1);
+
+            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, classifiers, "", "SMOTE", "best first" , null, null);
         }
 
         return classifierResults;
     }
 
-    private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, List<Classifier> classifiers, String costSensitive, String samplingType, String selection) throws Exception {
+    private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, List<Classifier> classifiers, String costSensitive, String samplingType, String selection, FilteredClassifier fc, CostSensitiveClassifier cc) throws Exception {
         Evaluation evaluation = new Evaluation(testDataset);
         int index = 0;
 
         for (Classifier classifier : classifiers) {
-            classifier.buildClassifier(trainDataset);
-            evaluation.evaluateModel(classifier, testDataset);
+            if (!samplingType.isEmpty() && costSensitive.isEmpty() && fc != null) {
+                fc.setClassifier(classifier);
+                fc.buildClassifier(trainDataset);
+                evaluation.evaluateModel(fc, testDataset);
+            } else if (!costSensitive.isEmpty()) {
+                setCostSensitive(cc, classifier, trainDataset);
+                evaluation.evaluateModel(cc, testDataset);
+            } else {
+                classifier.buildClassifier(trainDataset);
+                evaluation.evaluateModel(classifier, testDataset);
+            }
 
             ClassifierResults res = new ClassifierResults(this.projName, i, CLASSIFIER_NAME[index], costSensitive, samplingType, selection, trainDataset.numInstances(), testDataset.numInstances());
 
@@ -114,5 +152,24 @@ public class WekaClassifiers {
             classifierResults.add(res);
             index++;
         }
+    }
+
+    private void setCostSensitive(CostSensitiveClassifier cc, Classifier classifier, Instances trainDataset) throws Exception {
+        double cfp = 10.0;
+        double cfn = 1.0;
+
+        cc.setClassifier(classifier);
+        cc.setCostMatrix(createCostMatrix(cfp, cfn));
+        cc.buildClassifier(trainDataset);
+    }
+
+    private CostMatrix createCostMatrix(double weightFalsePositive, double weightFalseNegative) {
+        CostMatrix costMatrix = new CostMatrix(2);
+        costMatrix.setCell(0, 0, 0.0);
+        costMatrix.setCell(1, 0, weightFalsePositive);
+        costMatrix.setCell(0, 1, weightFalseNegative);
+        costMatrix.setCell(1, 1, 0.0);
+
+        return costMatrix;
     }
 }
