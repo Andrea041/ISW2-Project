@@ -114,13 +114,17 @@ public class Executor {
         }
         Logger.getAnonymousLogger().log(Level.INFO, "Training set and testing set files generated!");
 
+        List<Release> acumeRelease = new ArrayList<>();
+        for (int i = 2; i <= half+1; i++)
+            acumeRelease.add(releaseList.get(i));
+
+
         List<ClassifierResults> classifierResultsList = new ArrayList<>();
         try {
-            WekaClassifiers weka = new WekaClassifiers(projectName, half);
+            WekaClassifiers weka = new WekaClassifiers(projectName, half, acumeRelease);
             classifierResultsList = weka.fetchWekaAnalysis();
         } catch (Exception e) {
-            //Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
-            e.printStackTrace();
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
 
         csv.generateWekaResultFile(classifierResultsList);

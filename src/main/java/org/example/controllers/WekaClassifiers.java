@@ -1,9 +1,11 @@
 package org.example.controllers;
 
 import org.example.entities.ClassifierResults;
+import org.example.entities.JavaClass;
+import org.example.entities.Release;
+import org.example.tool.FileCSVGenerator;
 import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;
-import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.Classifier;
 import weka.classifiers.CostMatrix;
 import weka.classifiers.bayes.NaiveBayes;
@@ -16,8 +18,6 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
-import weka.filters.supervised.instance.Resample;
-import weka.filters.supervised.instance.SpreadSubsample;
 import weka.filters.supervised.instance.SMOTE;
 
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ import java.util.List;
 public class WekaClassifiers {
     private final String projName;
     private final int walkPass;
+    private final List<Release> acumeRelease;
 
     private static final String RESOURCES = "src/main/resources/";
 
@@ -35,9 +36,10 @@ public class WekaClassifiers {
 
     private static final String[] CLASSIFIER_NAME = {NAIVE_BAYES, RANDOM_FOREST, IBK};
 
-    public WekaClassifiers(String projName, int walkPass) {
+    public WekaClassifiers(String projName, int walkPass, List<Release> acumeRelease) {
         this.projName = projName;
         this.walkPass = walkPass;
+        this.acumeRelease = acumeRelease;
     }
 
     public List<ClassifierResults> fetchWekaAnalysis() throws Exception {
@@ -81,7 +83,7 @@ public class WekaClassifiers {
             newTrainBest.setClassIndex(newTrainBest.numAttributes() - 1);
             newTestBest.setClassIndex(newTestBest.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "", "", "best first", null, null);
+            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "", "", "BestFirst", null, null);
 
             /* classifier: no cost sensitive, sampling (SMOTE), no feature selection */
             FilteredClassifier fc = new FilteredClassifier();
@@ -97,10 +99,10 @@ public class WekaClassifiers {
 
             /* classifier: cost sensitive, no sampling, no feature selection */
             CostSensitiveClassifier cc = new CostSensitiveClassifier();
-            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "cost sensitive", "", "", null, cc);
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "CostSensitive", "", "", null, cc);
 
             /* classifier: cost sensitive, no sampling, feature selection */
-            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "cost sensitive", "", "best first", null, cc);
+            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "CostSensitive", "", "BestFirst", null, cc);
 
             /* classifier: no cost sensitive, sampling, feature selection */
             // Best First selection
@@ -113,7 +115,7 @@ public class WekaClassifiers {
             Instances newTestSmoteBest = Filter.useFilter(testDataset, featureSelected);
             newTestSmoteBest.setClassIndex(newTestSmoteBest.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, classifiers, "", "SMOTE", "best first" , null, null);
+            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, classifiers, "", "SMOTE", "BestFirst" , null, null);
         }
 
         return classifierResults;
@@ -122,18 +124,25 @@ public class WekaClassifiers {
     private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, List<Classifier> classifiers, String costSensitive, String samplingType, String selection, FilteredClassifier fc, CostSensitiveClassifier cc) throws Exception {
         Evaluation evaluation = new Evaluation(testDataset);
         int index = 0;
+        String combinationClassifier = costSensitive + samplingType + selection;
 
         for (Classifier classifier : classifiers) {
             if (!samplingType.isEmpty() && costSensitive.isEmpty() && fc != null) {
                 fc.setClassifier(classifier);
                 fc.buildClassifier(trainDataset);
                 evaluation.evaluateModel(fc, testDataset);
+
+                makePrediction(fc, testDataset, i, index, combinationClassifier);
             } else if (!costSensitive.isEmpty()) {
                 setCostSensitive(cc, classifier, trainDataset);
                 evaluation.evaluateModel(cc, testDataset);
+
+                makePrediction(cc, testDataset, i, index, combinationClassifier);
             } else {
                 classifier.buildClassifier(trainDataset);
                 evaluation.evaluateModel(classifier, testDataset);
+
+                makePrediction(classifier, testDataset, i, index, combinationClassifier);
             }
 
             ClassifierResults res = new ClassifierResults(this.projName, i, CLASSIFIER_NAME[index], costSensitive, samplingType, selection, trainDataset.numInstances(), testDataset.numInstances());
@@ -171,5 +180,22 @@ public class WekaClassifiers {
         costMatrix.setCell(1, 1, 0.0);
 
         return costMatrix;
+    }
+
+    private void makePrediction(Classifier classifier, Instances testDataset, int indexTestSet, int indexClassifier, String combination) throws Exception {
+        int numTesting = testDataset.numInstances();
+        List<JavaClass> acumeClasses = new ArrayList<>(acumeRelease.get(indexTestSet - 2).getJavaClassList());
+
+        for (int i = 0; i < numTesting; i++) {
+            // Get the prediction probability distribution
+            double[] predictionDistribution = classifier.distributionForInstance(testDataset.instance(i));
+
+            // Take index 1 that is prediction label "YES"
+            double prediction = predictionDistribution[1];
+            acumeClasses.get(i).setPrediction(prediction);
+        }
+
+        FileCSVGenerator csv = new FileCSVGenerator(RESOURCES, projName);
+        csv.generateAcumeFile(acumeClasses, CLASSIFIER_NAME[indexClassifier], combination, indexTestSet);
     }
 }

@@ -14,6 +14,7 @@ public class JavaClass {
     private List<RevCommit> commitList;
     private boolean buggy;
     private Release release;
+    private double prediction;
 
     /* metrics */
     private int locSize;
@@ -44,6 +45,7 @@ public class JavaClass {
         this.maxLOCAdded = 0;
         this.avgLOCAdded = 0;
         this.churn = 0;
+        this.prediction = 0;
         this.maxChurn = 0;
         this.age = Period.between(LocalDate.from(release.getDate()), LocalDate.from(LocalDateTime.now()));
     }
@@ -177,5 +179,13 @@ public class JavaClass {
 
     public Period getAge() {
         return age;
+    }
+
+    public double getPrediction() {
+        return prediction;
+    }
+
+    public void setPrediction(double prediction) {
+        this.prediction = prediction;
     }
 }

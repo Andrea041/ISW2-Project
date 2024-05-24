@@ -30,6 +30,7 @@ public class FileCSVGenerator {
     private static final String TESTING_CSV = TESTING + "CSV" + File.separator;
     private static final String TESTING_ARFF = TESTING + "ARFF" + File.separator;
     private static final String RESULT = "result" + File.separator;
+    private static final String ACUME = "acumeFiles" + File.separator;
 
     public FileCSVGenerator(String directoryPath, String projName) throws IOException {
         this.projName = projName;
@@ -44,7 +45,8 @@ public class FileCSVGenerator {
                 TRAINING_ARFF,
                 TESTING_CSV,
                 TESTING_ARFF,
-                RESULT
+                RESULT,
+                ACUME
         };
 
         createDirectories(subPaths);
@@ -204,6 +206,34 @@ public class FileCSVGenerator {
         }
     }
 
+    public void generateAcumeFile(List<JavaClass> acumeClasses, String classifierName, String combination, int walkPass) {
+        FileWriter fileWriter = null;
+        String fileTitle;
+
+        try {
+            if (combination.isEmpty())
+                fileTitle = this.directoryPath + ACUME + this.projName + "_" + toCamelCase(classifierName) + walkPass + ".csv";
+            else
+                fileTitle = this.directoryPath + ACUME + this.projName + "_" + toCamelCase(classifierName) + "-" + combination + walkPass + ".csv";
+
+            fileWriter = new FileWriter(fileTitle);
+
+            writeToFile(fileWriter, "ID,Size,Predicted,Actual");
+
+            int id = 1;
+            for (JavaClass javaClass : acumeClasses) {
+                writeToFile(fileWriter, id + ","
+                        + javaClass.getLocSize() + "," + javaClass.getPrediction() + ","
+                        + javaClass.getBuggy());
+                id++;
+            }
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        } finally {
+            closeWriter(fileWriter);
+        }
+    }
+
     private void writeClasses(FileWriter fileWriter, int index, JavaClass javaClass) throws IOException {
         writeToFile(fileWriter, index + "," + javaClass.getName() + "," +
                 javaClass.getLocSize() + "," + javaClass.getLocTouched() + "," +
@@ -212,5 +242,18 @@ public class FileCSVGenerator {
                 javaClass.getLocAdded() + "," + javaClass.getMaxLOCAdded() + "," +
                 javaClass.getAvgLOCAdded() + "," + javaClass.getChurn() + "," +
                 javaClass.getMaxChurn() + "," + javaClass.getBuggy());
+    }
+
+    private String toCamelCase(String input) {
+        String[] words = input.split(" ");
+        StringBuilder camelCaseString = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                camelCaseString.append(Character.toUpperCase(word.charAt(0)));
+                camelCaseString.append(word.substring(1).toLowerCase());
+            }
+        }
+        return camelCaseString.toString();
     }
 }
