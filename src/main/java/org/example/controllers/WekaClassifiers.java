@@ -92,10 +92,7 @@ public class WekaClassifiers {
             smote.setInputFormat(trainDataset);
             fc.setFilter(smote);
 
-            Instances newTrainSmote = Filter.useFilter(trainDataset, smote);
-            newTrainSmote.setClassIndex(newTrainSmote.numAttributes() - 1);
-
-            evaluateClassifier(classifierResults, i, newTrainSmote, testDataset, classifiers, "", "SMOTE", "" , fc, null);
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "", "SMOTE", "" , fc, null);
 
             /* classifier: cost sensitive, no sampling, no feature selection */
             CostSensitiveClassifier cc = new CostSensitiveClassifier();
@@ -106,16 +103,16 @@ public class WekaClassifiers {
 
             /* classifier: no cost sensitive, sampling, feature selection */
             // Best First selection
-            featureSelected.setInputFormat(newTrainSmote);
+            featureSelected.setInputFormat(trainDataset);
 
             // Apply feature selection to training set with smote
-            Instances newTrainSmoteBest = Filter.useFilter(newTrainSmote, featureSelected);
+            Instances newTrainSmoteBest = Filter.useFilter(trainDataset, featureSelected);
             newTrainSmoteBest.setClassIndex(newTrainSmoteBest.numAttributes() - 1);
 
             Instances newTestSmoteBest = Filter.useFilter(testDataset, featureSelected);
             newTestSmoteBest.setClassIndex(newTestSmoteBest.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, classifiers, "", "SMOTE", "BestFirst" , null, null);
+            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, classifiers, "", "SMOTE", "BestFirst" , fc, null);
         }
 
         return classifierResults;
