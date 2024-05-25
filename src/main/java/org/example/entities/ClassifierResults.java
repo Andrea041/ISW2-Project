@@ -13,26 +13,26 @@ public class ClassifierResults {
     private double falsePositives;
     private double falseNegatives;
     private double trueNegatives;
-    private double AUC;
+    private double auc;
     private double fMeasure;
 
     private final String costSensitive;
     private final String sampling;
     private final String selection;
 
-    public ClassifierResults(String projName, int index, String classifierName, String costSensitive, String sampling, String selection, int trainInstances, int testInstances) {
+    public ClassifierResults(String projName, int index, String classifierName, ClassifierSettings settings, int trainInstances, int testInstances) {
         this.projName = projName;
         this.index = index;
         this.classifierName = classifierName;
-        this.costSensitive = costSensitive;
-        this.sampling = sampling;
-        this.selection = selection;
+        this.costSensitive = settings.getCostSensitive();
+        this.sampling = settings.getSampling();
+        this.selection = settings.getFeatureSelection();
 
         this.percTrainingInstances = 100.0 * trainInstances /(trainInstances + testInstances);
     }
 
-    public void setAUC(double AUC) {
-        this.AUC = AUC;
+    public void setAuc(double auc) {
+        this.auc = auc;
     }
 
 
@@ -122,8 +122,8 @@ public class ClassifierResults {
         return classifierName;
     }
 
-    public double getAUC() {
-        return AUC;
+    public double getAuc() {
+        return auc;
     }
 
     public double getFMeasure() {

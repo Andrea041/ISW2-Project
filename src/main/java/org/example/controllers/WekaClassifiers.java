@@ -1,8 +1,10 @@
 package org.example.controllers;
 
 import org.example.entities.ClassifierResults;
+import org.example.entities.ClassifierSettings;
 import org.example.entities.JavaClass;
 import org.example.entities.Release;
+import org.example.enumeration.ClassifierProperty;
 import org.example.tool.FileCSVGenerator;
 import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;
@@ -27,6 +29,9 @@ public class WekaClassifiers {
     private final String projName;
     private final int walkPass;
     private final List<Release> acumeRelease;
+
+    /* Create List of classifiers to use */
+    private final List<Classifier> classifiers = new ArrayList<>(List.of(new NaiveBayes(), new RandomForest(), new IBk()));
 
     private static final String RESOURCES = "src/main/resources/";
 
@@ -59,13 +64,10 @@ public class WekaClassifiers {
             trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
             testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-            /* Create List of classifiers to use */
-            List<Classifier> classifiers = new ArrayList<>(List.of(new NaiveBayes(),
-                                                                new RandomForest(),
-                                                                new IBk()));
+            ClassifierSettings settings = new ClassifierSettings();
 
             /* Default classifier: no cost sensitive, no sampling, no selection */
-            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "", "", "", null, null);
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, settings, null, null);
 
             /* classifier: no cost sensitive, no sampling, feature selection (best first) */
             CfsSubsetEval subsetEval = new CfsSubsetEval();
@@ -83,7 +85,9 @@ public class WekaClassifiers {
             newTrainBest.setClassIndex(newTrainBest.numAttributes() - 1);
             newTestBest.setClassIndex(newTestBest.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "", "", "BestFirst", null, null);
+            settings.setFeatureSelection(ClassifierProperty.SELECTION.getValue());
+
+            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, settings, null, null);
 
             /* classifier: no cost sensitive, sampling (SMOTE), no feature selection */
             FilteredClassifier fc = new FilteredClassifier();
@@ -92,17 +96,28 @@ public class WekaClassifiers {
             smote.setInputFormat(trainDataset);
             fc.setFilter(smote);
 
-            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "", "SMOTE", "" , fc, null);
+            settings.reset();
+            settings.setSampling(ClassifierProperty.SAMPLING_TYPE.getValue());
+
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, settings, fc, null);
 
             /* classifier: cost sensitive, no sampling, no feature selection */
+            settings.reset();
+            settings.setCostSensitive(ClassifierProperty.COST_SENSITIVE.getValue());
+
             CostSensitiveClassifier cc = new CostSensitiveClassifier();
-            evaluateClassifier(classifierResults, i, trainDataset, testDataset, classifiers, "CostSensitive", "", "", null, cc);
+            evaluateClassifier(classifierResults, i, trainDataset, testDataset, settings, null, cc);
 
             /* classifier: cost sensitive, no sampling, feature selection */
-            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, classifiers, "CostSensitive", "", "BestFirst", null, cc);
+            settings.setFeatureSelection(ClassifierProperty.SELECTION.getValue());
+            evaluateClassifier(classifierResults, i, newTrainBest, newTestBest, settings, null, cc);
 
             /* classifier: no cost sensitive, sampling, feature selection */
             // Best First selection
+            settings.reset();
+            settings.setSampling(ClassifierProperty.SAMPLING_TYPE.getValue());
+            settings.setFeatureSelection(ClassifierProperty.SELECTION.getValue());
+
             featureSelected.setInputFormat(trainDataset);
 
             // Apply feature selection to training set with smote
@@ -112,25 +127,25 @@ public class WekaClassifiers {
             Instances newTestSmoteBest = Filter.useFilter(testDataset, featureSelected);
             newTestSmoteBest.setClassIndex(newTestSmoteBest.numAttributes() - 1);
 
-            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, classifiers, "", "SMOTE", "BestFirst" , fc, null);
+            evaluateClassifier(classifierResults, i, newTrainSmoteBest, newTestSmoteBest, settings , fc, null);
         }
 
         return classifierResults;
     }
 
-    private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, List<Classifier> classifiers, String costSensitive, String samplingType, String selection, FilteredClassifier fc, CostSensitiveClassifier cc) throws Exception {
+    private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, ClassifierSettings settings, FilteredClassifier fc, CostSensitiveClassifier cc) throws Exception {
         Evaluation evaluation = new Evaluation(testDataset);
         int index = 0;
-        String combinationClassifier = costSensitive + samplingType + selection;
+        String combinationClassifier = settings.getCostSensitive() + settings.getFeatureSelection() + settings.getSampling();
 
         for (Classifier classifier : classifiers) {
-            if (!samplingType.isEmpty() && costSensitive.isEmpty() && fc != null) {
+            if (!settings.getSampling().isEmpty() && settings.getCostSensitive().isEmpty() && fc != null) {
                 fc.setClassifier(classifier);
                 fc.buildClassifier(trainDataset);
                 evaluation.evaluateModel(fc, testDataset);
 
                 makePrediction(fc, testDataset, i, index, combinationClassifier);
-            } else if (!costSensitive.isEmpty()) {
+            } else if (!settings.getCostSensitive().isEmpty()) {
                 setCostSensitive(cc, classifier, trainDataset);
                 evaluation.evaluateModel(cc, testDataset);
 
@@ -142,7 +157,7 @@ public class WekaClassifiers {
                 makePrediction(classifier, testDataset, i, index, combinationClassifier);
             }
 
-            ClassifierResults res = new ClassifierResults(this.projName, i, CLASSIFIER_NAME[index], costSensitive, samplingType, selection, trainDataset.numInstances(), testDataset.numInstances());
+            ClassifierResults res = new ClassifierResults(this.projName, i, CLASSIFIER_NAME[index], settings, trainDataset.numInstances(), testDataset.numInstances());
 
             // classIndex has value 0 or 1 {no, yes} so I choose index 1 to make prediction on 'yes' class
             res.setRec(evaluation.recall(1));
@@ -152,7 +167,7 @@ public class WekaClassifiers {
             res.setFalsePositives(evaluation.numFalsePositives(1));
             res.setFalseNegatives(evaluation.numFalseNegatives(1));
             res.setTruePositives(evaluation.numTruePositives(1));
-            res.setAUC(evaluation.areaUnderROC(1));
+            res.setAuc(evaluation.areaUnderROC(1));
             res.setFMeasure(evaluation.fMeasure(1));
 
             classifierResults.add(res);

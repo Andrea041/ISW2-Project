@@ -195,7 +195,7 @@ public class FileCSVGenerator {
                         + classifierResults.isSampling() + ","
                         + classifierResults.isSelection() + "," + classifierResults.getPreci() + ","
                         + classifierResults.getRec() + "," + classifierResults.getFMeasure() + ","
-                        + classifierResults.getKappa() + "," + classifierResults.getAUC() + ","
+                        + classifierResults.getKappa() + "," + classifierResults.getAuc() + ","
                         + classifierResults.getTruePositives() + "," + classifierResults.getFalsePositives() + ","
                         + classifierResults.getTrueNegatives() + "," + classifierResults.getFalseNegatives());
             }
