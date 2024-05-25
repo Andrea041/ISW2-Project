@@ -49,12 +49,15 @@ public class TicketTool {
     }
 
     public static void linkTicketsToCommits(List<Ticket> ticketList, List<RevCommit> commitList) {
+        String msg;
+
         for (Iterator<Ticket> iterator = ticketList.iterator(); iterator.hasNext();) {
             Ticket ticket = iterator.next();
             for (RevCommit commit : commitList) {
                 if (checkCommit(commit.getFullMessage(), ticket.getTicketKey())) {
                     ticket.getCommitList().add(commit);
-                    Logger.getAnonymousLogger().log(Level.INFO, "Ticket " + ticket.getTicketKey() + " has been linked");
+                    msg = "Ticket " + ticket.getTicketKey() + " has been linked";
+                    Logger.getAnonymousLogger().log(Level.INFO, msg);
                 }
             }
 
