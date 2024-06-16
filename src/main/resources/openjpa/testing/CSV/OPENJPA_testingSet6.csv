@@ -221,7 +221,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/NoneDiscriminatorStrategy.java,58,0,16,0,0,0,0,0,0.0,0,0,no
 7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/NoneFieldStrategy.java,54,0,16,0,0,0,0,0,0.0,0,0,no
 7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/NoneVersionStrategy.java,55,0,16,0,0,0,0,0,0.0,0,0,no
-7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/NumberVersionStrategy.java,75,0,16,0,0,0,0,0,0.0,0,0,no
+7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/NumberVersionStrategy.java,75,0,16,0,0,0,0,0,0.0,0,0,yes
 7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/ObjectIdClassStrategy.java,49,0,16,0,0,0,0,0,0.0,0,0,no
 7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/ObjectIdValueHandler.java,84,0,16,0,0,0,0,0,0.0,0,0,no
 7,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/strats/PrimitiveFieldStrategy.java,403,0,16,0,0,0,0,0,0.0,0,0,no

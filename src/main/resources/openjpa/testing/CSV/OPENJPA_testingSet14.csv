@@ -933,7 +933,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/EventManager.java,59,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/Files.java,303,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/FormatPreservingProperties.java,703,0,14,0,0,0,0,0,0.0,0,0,no
-15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/J2DoPrivHelper.java,1215,0,14,0,0,0,0,0,0.0,0,0,no
+15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/J2DoPrivHelper.java,1215,0,14,0,0,0,0,0,0.0,0,0,yes
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/JavaVersions.java,263,0,14,0,0,0,0,0,0.0,0,0,yes
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/LRUMap.java,95,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/util/Localizer.java,302,0,14,0,0,0,0,0,0.0,0,0,no

@@ -493,7 +493,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 14,openjpa-kernel/src/main/java/org/apache/openjpa/event/TransactionEventManager.java,129,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/event/TransactionListener.java,32,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/event/UpdateListener.java,42,0,14,0,0,0,0,0,0.0,0,0,no
-14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/AbstractBrokerFactory.java,901,21,14,3,0,2,16,14,5.333333333333333,11,11,no
+14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/AbstractBrokerFactory.java,901,21,14,3,0,2,16,14,5.333333333333333,11,11,yes
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/AbstractFieldManager.java,112,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/AbstractLockManager.java,88,12,14,1,0,1,9,9,9.0,6,6,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/AbstractPCData.java,421,0,14,0,0,0,0,0,0.0,0,0,no
@@ -505,14 +505,14 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/AutoDetach.java,46,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/Bootstrap.java,163,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/Broker.java,763,7,14,1,0,1,7,7,7.0,7,7,no
-14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/BrokerFactory.java,130,0,14,0,0,0,0,0,0.0,0,0,no
+14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/BrokerFactory.java,130,0,14,0,0,0,0,0,0.0,0,0,yes
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/BrokerImpl.java,4954,106,14,6,0,3,54,9,9.0,88,43,yes
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/ClearFieldManager.java,78,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/ConnectionRetainModes.java,45,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DataCacheRetrieveMode.java,33,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DataCacheStoreMode.java,42,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DelegatingBroker.java,1421,40,14,2,0,1,8,8,4.0,40,32,no
-14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DelegatingBrokerFactory.java,222,0,14,0,0,0,0,0,0.0,0,0,no
+14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DelegatingBrokerFactory.java,222,0,14,0,0,0,0,0,0.0,0,0,yes
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DelegatingExtent.java,185,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DelegatingFetchConfiguration.java,590,71,14,3,0,2,64,40,21.333333333333332,57,40,no
 14,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/DelegatingQuery.java,667,41,14,4,0,1,29,2,7.25,35,17,yes
@@ -1067,7 +1067,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/ElementDependent.java,39,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/ElementType.java,40,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/EntityExistsException.java,110,0,14,0,0,0,0,0,0.0,0,0,no
-14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/EntityManagerFactoryImpl.java,339,14,14,2,0,2,7,4,3.5,2,1,no
+14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/EntityManagerFactoryImpl.java,339,14,14,2,0,2,7,4,3.5,2,1,yes
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/EntityManagerFactoryValue.java,64,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/EntityManagerImpl.java,1757,339,14,10,3,3,208,2,20.8,79,33,yes
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/EntityNotFoundException.java,110,0,14,0,0,0,0,0,0.0,0,0,no
@@ -1172,7 +1172,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/CompileTimeLogger.java,93,0,14,0,0,0,0,0,0.0,0,0,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/Members.java,343,2,14,1,0,1,1,1,1.0,0,0,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/MetadataProcessor.java,83,0,14,0,0,0,0,0,0.0,0,0,no
-14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/MetamodelImpl.java,423,6,14,2,0,2,3,2,1.5,0,0,no
+14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/MetamodelImpl.java,423,6,14,2,0,2,3,2,1.5,0,0,yes
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/SourceAnnotationHandler.java,745,73,14,2,1,2,50,49,25.0,27,27,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/Types.java,244,13,14,3,0,1,6,1,2.0,5,3,no
 14,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/query/AbsExpression.java,31,0,14,0,0,0,0,0,0.0,0,0,no

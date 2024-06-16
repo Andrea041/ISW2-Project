@@ -9,7 +9,6 @@ import org.example.tool.FileARFFGenerator;
 import org.example.tool.FileCSVGenerator;
 import org.example.tool.TicketTool;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +31,7 @@ public class Executor {
         List<Ticket> ticketList = jira.fetchTickets(releaseList);  // fetch all project's list
         Logger.getAnonymousLogger().log(Level.INFO, "Ticket list fetched!");
         TicketTool.fixInconsistentTickets(ticketList, releaseList);  // fix tickets inconsistency
-        ticketList.sort(Comparator.comparing(Ticket::getCreationDate)); // order ticket by creation date
+        ticketList.sort(Comparator.comparing(Ticket::getResolutionDate)); // order ticket by resolution date -> fixed version
 
         ProportionMethod.calculateProportion(ticketList, releaseList);  // compute proportion
         Logger.getAnonymousLogger().log(Level.INFO, "Proportion computed!");
