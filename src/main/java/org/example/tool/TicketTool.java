@@ -4,8 +4,6 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.example.entities.Release;
 import org.example.entities.Ticket;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
