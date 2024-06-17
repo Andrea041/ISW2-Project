@@ -133,7 +133,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/exps/UnaryOp.java,157,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/exps/Val.java,163,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/exps/Variable.java,177,0,15,0,0,0,0,0,0.0,0,0,no
-9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/ClassMapping.java,1080,161,15,3,1,2,126,20,42.0,105,83,yes
+9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/ClassMapping.java,1080,161,15,3,1,2,126,89,42.0,105,83,yes
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/ClassMappingInfo.java,473,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/ClassStrategy.java,115,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/DelegatingJoinable.java,128,0,15,0,0,0,0,0,0.0,0,0,no
@@ -141,7 +141,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/DiscriminatorMappingInfo.java,170,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/DiscriminatorStrategy.java,78,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/Embeddable.java,85,0,15,0,0,0,0,0,0.0,0,0,no
-9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/FieldMapping.java,1141,97,15,2,2,1,94,44,47.0,91,47,yes
+9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/FieldMapping.java,1141,97,15,2,2,1,94,50,47.0,91,47,yes
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/FieldMappingInfo.java,397,0,15,0,0,0,0,0,0.0,0,0,yes
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/FieldStrategy.java,247,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/meta/JDBCColumnOrder.java,87,0,15,0,0,0,0,0,0.0,0,0,no
@@ -538,7 +538,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/SavepointManager.java,39,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/Seq.java,73,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/SingleFieldManager.java,856,0,15,0,0,0,0,0,0.0,0,0,yes
-9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/StateManagerImpl.java,3259,5,15,2,0,2,3,1,1.5,1,1,yes
+9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/StateManagerImpl.java,3259,5,15,2,0,2,3,2,1.5,1,1,yes
 9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/StoreContext.java,461,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/StoreManager.java,426,0,15,0,0,0,0,0,0.0,0,0,no
 9,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/StoreQuery.java,325,0,15,0,0,0,0,0,0.0,0,0,yes

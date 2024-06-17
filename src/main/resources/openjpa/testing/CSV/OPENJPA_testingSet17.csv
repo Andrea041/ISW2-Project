@@ -50,7 +50,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/JDBCLockManager.java,54,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/JDBCSeq.java,41,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/JDBCStore.java,107,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/JDBCStoreManager.java,1746,69,14,2,0,2,47,1,23.5,25,25,yes
+18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/JDBCStoreManager.java,1746,69,14,2,0,2,47,46,23.5,25,25,yes
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/JDBCStoreQuery.java,1068,0,14,0,0,0,0,0,0.0,0,0,yes
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/LRSSizes.java,46,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/MappedQueryResultObjectProvider.java,465,0,14,0,0,0,0,0,0.0,0,0,no
@@ -60,7 +60,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PagingResultObjectProvider.java,460,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PessimisticLockManager.java,215,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PreparedProjectionResultObjectProvider.java,57,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PreparedQueryCacheImpl.java,429,19,14,2,0,1,15,3,7.5,11,10,no
+18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PreparedQueryCacheImpl.java,429,19,14,2,0,1,15,12,7.5,11,10,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PreparedQueryImpl.java,440,0,14,0,0,0,0,0,0.0,0,0,yes
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PreparedResultObjectProvider.java,53,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-jdbc/src/main/java/org/apache/openjpa/jdbc/kernel/PreparedSQLStoreQuery.java,163,0,14,0,0,0,0,0,0.0,0,0,no
@@ -585,7 +585,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/QueryImpl.java,2288,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/QueryLanguages.java,71,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/QueryOperations.java,51,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/QueryStatistics.java,341,112,14,3,0,1,95,18,31.666666666666668,78,71,no
+18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/QueryStatistics.java,341,112,14,3,0,1,95,73,31.666666666666668,78,71,no
 18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/ROPStoreManager.java,80,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/RestoreState.java,43,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-kernel/src/main/java/org/apache/openjpa/kernel/ResultPacker.java,385,0,14,0,0,0,0,0,0.0,0,0,no
@@ -1039,7 +1039,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-persistence-jdbc/src/main/java/org/apache/openjpa/persistence/jdbc/XSecondaryTables.java,38,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence-jdbc/src/main/java/org/apache/openjpa/persistence/jdbc/XTable.java,48,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/AnnotationBuilder.java,201,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/AnnotationPersistenceMetaDataParser.java,1992,95,14,3,0,2,84,3,28.0,73,73,yes
+18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/AnnotationPersistenceMetaDataParser.java,1992,95,14,3,0,2,84,78,28.0,73,73,yes
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/AnnotationPersistenceMetaDataSerializer.java,1522,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/AnnotationPersistenceXMLMetaDataParser.java,278,44,14,1,1,1,16,16,16.0,12,12,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/ArgumentException.java,116,0,14,0,0,0,0,0,0.0,0,0,no
@@ -1114,7 +1114,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistentCollection.java,51,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistentMap.java,53,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PessimisticLockException.java,110,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/QueryImpl.java,1096,14,14,4,0,2,10,2,2.5,8,4,no
+18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/QueryImpl.java,1096,14,14,4,0,2,10,5,2.5,8,4,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/QueryOperationType.java,59,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/QueryResultCache.java,64,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/QueryResultCacheImpl.java,103,0,14,0,0,0,0,0,0.0,0,0,no
@@ -1130,7 +1130,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/TupleImpl.java,118,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/Type.java,40,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/UpdateAction.java,31,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/XMLPersistenceMetaDataParser.java,2173,37,14,3,0,2,33,1,11.0,29,29,yes
+18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/XMLPersistenceMetaDataParser.java,2173,37,14,3,0,2,33,31,11.0,29,29,yes
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/XMLPersistenceMetaDataSerializer.java,1498,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/criteria/AliasContext.java,74,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/criteria/CompareByExample.java,128,0,14,0,0,0,0,0,0.0,0,0,no
@@ -1156,7 +1156,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/criteria/SelectionImpl.java,150,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/criteria/SubqueryImpl.java,371,0,14,0,0,0,0,0,0.0,0,0,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/AbstractManagedType.java,1048,0,14,0,0,0,0,0,0.0,0,0,no
-18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/AnnotationProcessor6.java,378,309,14,6,2,1,92,25,15.333333333333334,187,155,yes
+18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/AnnotationProcessor6.java,378,309,14,6,2,1,92,35,15.333333333333334,187,155,yes
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/CompileTimeLogger.java,91,6,14,1,1,1,2,2,2.0,2,2,yes
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/Members.java,348,4,14,1,0,1,4,4,4.0,4,4,no
 18,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/meta/MetadataProcessor.java,83,0,14,0,0,0,0,0,0.0,0,0,no

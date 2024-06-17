@@ -855,7 +855,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/identifier/IdentifierImpl.java,72,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/identifier/IdentifierRule.java,209,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/identifier/IdentifierUtil.java,326,7,14,1,0,1,7,7,7.0,7,7,no
-15,openjpa-lib/src/main/java/org/apache/openjpa/lib/identifier/IdentifierUtilImpl.java,591,121,14,2,0,1,82,2,41.0,47,45,no
+15,openjpa-lib/src/main/java/org/apache/openjpa/lib/identifier/IdentifierUtilImpl.java,591,121,14,2,0,1,82,80,41.0,47,45,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/jdbc/AbstractJDBCListener.java,91,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/jdbc/ConfiguringConnectionDecorator.java,185,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-lib/src/main/java/org/apache/openjpa/lib/jdbc/ConnectionDecorator.java,36,0,14,0,0,0,0,0,0.0,0,0,no
@@ -1106,7 +1106,7 @@ Version ID,Class Name,LOC,LOC_touched,Age,Revision number,Fix number,Author Numb
 15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceMetaDataDefaults.java,916,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceMetaDataFactory.java,601,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceProductDerivation.java,945,0,14,0,0,0,0,0,0.0,0,0,no
-15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceProviderImpl.java,377,133,14,7,6,3,72,1,10.285714285714286,41,10,yes
+15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceProviderImpl.java,377,133,14,7,6,3,72,25,10.285714285714286,41,10,yes
 15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceStrategy.java,46,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/PersistenceUnitInfoImpl.java,553,0,14,0,0,0,0,0,0.0,0,0,no
 15,openjpa-persistence/src/main/java/org/apache/openjpa/persistence/Persistent.java,49,0,14,0,0,0,0,0,0.0,0,0,no

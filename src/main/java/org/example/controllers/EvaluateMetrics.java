@@ -110,7 +110,7 @@ public class EvaluateMetrics {
         for (Integer line : addedLines) {
             sumLines += line;
 
-            if (sumLines > maxLOC)
+            if (line > maxLOC)
                 maxLOC = line;
         }
 
