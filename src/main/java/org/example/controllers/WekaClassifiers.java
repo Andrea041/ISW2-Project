@@ -176,8 +176,8 @@ public class WekaClassifiers {
     }
 
     private void setCostSensitive(CostSensitiveClassifier cc, Classifier classifier, Instances trainDataset) throws Exception {
-        double cfp = 1.0;
-        double cfn = 10.0;
+        double cfp = 10.0;
+        double cfn = 1.0;
 
         cc.setClassifier(classifier);
         cc.setCostMatrix(createCostMatrix(cfp, cfn));
