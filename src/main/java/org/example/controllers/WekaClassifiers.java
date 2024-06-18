@@ -92,10 +92,6 @@ public class WekaClassifiers {
             /* classifier: no cost sensitive, sampling (SMOTE), no feature selection */
             FilteredClassifier fc = new FilteredClassifier();
 
-            SMOTE smote = new SMOTE();
-            smote.setInputFormat(trainDataset);
-            fc.setFilter(smote);
-
             settings.reset();
             settings.setSampling(ClassifierProperty.SAMPLING_TYPE.getValue());
 
@@ -134,24 +130,32 @@ public class WekaClassifiers {
     }
 
     private void evaluateClassifier(List<ClassifierResults> classifierResults, int i, Instances trainDataset, Instances testDataset, ClassifierSettings settings, FilteredClassifier fc, CostSensitiveClassifier cc) throws Exception {
-        Evaluation evaluation = new Evaluation(testDataset);
+        Evaluation evaluation;
         int index = 0;
         String combinationClassifier = settings.getCostSensitive() + settings.getFeatureSelection() + settings.getSampling();
 
         for (Classifier classifier : classifiers) {
-            if (!settings.getSampling().isEmpty() && settings.getCostSensitive().isEmpty() && fc != null) {
+            if (fc != null) {
                 fc.setClassifier(classifier);
+
+                SMOTE smote = new SMOTE();
+                smote.setInputFormat(trainDataset);
+                fc.setFilter(smote);
+
                 fc.buildClassifier(trainDataset);
+                evaluation = new Evaluation(testDataset);
                 evaluation.evaluateModel(fc, testDataset);
 
                 makePrediction(fc, testDataset, i, index, combinationClassifier);
-            } else if (!settings.getCostSensitive().isEmpty()) {
+            } else if (cc != null) {
                 setCostSensitive(cc, classifier, trainDataset);
+                evaluation = new Evaluation(testDataset, cc.getCostMatrix());
                 evaluation.evaluateModel(cc, testDataset);
 
                 makePrediction(cc, testDataset, i, index, combinationClassifier);
             } else {
                 classifier.buildClassifier(trainDataset);
+                evaluation = new Evaluation(testDataset);
                 evaluation.evaluateModel(classifier, testDataset);
 
                 makePrediction(classifier, testDataset, i, index, combinationClassifier);
