@@ -1,7 +1,7 @@
 package org.example.enumeration;
 
 public enum ClassifierProperty {
-    COST_SENSITIVE("cost sensitive"),
+    COST_SENSITIVE("sensitive learning"),
     SAMPLING_TYPE("SMOTE"),
     SELECTION("feature selection");
 
