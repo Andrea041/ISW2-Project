@@ -26,7 +26,7 @@ Proportion (**Incremental** method): Used as the labeling technique for classify
 - IBK
 
 ## Variables to Validate Empirically
-### Feature Selection
+### Feature Selection:
 - No selection
 - Best first
 
