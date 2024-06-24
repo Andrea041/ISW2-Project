@@ -18,7 +18,7 @@ Evaluate the effectiveness of feature selection, balancing, and sensitivity tech
 **Walk Forward**: Used as the evaluation technique for temporal validation of predictive models.
 
 ## Labeling Techniques
-Proportion (Incremental method): Used as the labeling technique for classifying buggy classes.
+Proportion (**Incremental** method): Used as the labeling technique for classifying buggy classes.
 
 ## Classifiers
 - RandomForest
