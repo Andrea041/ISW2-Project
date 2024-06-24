@@ -14,10 +14,10 @@ Evaluate the effectiveness of feature selection, balancing, and sensitivity tech
 - Project A: [BookKeeper, https://github.com/Andrea041/bookkeeper]
 - Project B: [OpenJPA, https://github.com/Andrea041/openjpa]
 
-## Evaluation Techniques
+## Evaluation Technique
 **Walk Forward**: Used as the evaluation technique for temporal validation of predictive models.
 
-## Labeling Techniques
+## Labeling Technique
 Proportion (**Incremental** method): Used as the labeling technique for classifying buggy classes.
 
 ## Classifiers
