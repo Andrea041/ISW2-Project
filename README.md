@@ -26,14 +26,14 @@ Proportion (**Incremental** method): Used as the labeling technique for classify
 - IBK
 
 ## Variables to Validate Empirically
-### Feature Selection:
-No selection
-Best first
+### Feature Selection
+- No selection
+- Best first
 
 ### Balancing:
-No balancing
-SMOTE (Synthetic Minority Over-sampling Technique)
+- No balancing
+- SMOTE (Synthetic Minority Over-sampling Technique)
 
 ### Cost Sensitivity:
-No cost sensitivity
-Sensitive Learning (CFN = 10 * CFP)
+- No cost sensitivity
+- Sensitive Learning (CFN = 10 * CFP)
